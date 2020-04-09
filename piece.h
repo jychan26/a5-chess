@@ -22,4 +22,4 @@ class Piece { // abstract class
 		virtual vector<Move> getLegalMoves(Position) = 0;
 };
 
-#endif`
+#endif
