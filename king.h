@@ -4,9 +4,9 @@
 
 class King: public Piece {
 	bool firstMove;
-	const int force;
 	
 	public:
+	King(char name, const Colour pieceColour, const int force = 900, bool firstMove = true);
 	bool isObeyRule(Move) override;
 	vector<Move> getLegalMoves(Position) override;
 }

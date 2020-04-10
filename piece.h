@@ -1,7 +1,7 @@
 #ifndef _PIECE_H_
 #define _PIECE_H_
 #include "colour.h"
-#include "vector.h"
+#include <vector>
 
 // forward declaration
 class Move;
@@ -13,6 +13,8 @@ class Piece { // abstract class
 	int force;
 
 	public:
+	Piece(char name, const Colour pieceColour, const int force); // ctor
+
 	char getPiece(); // get name field
 	Colour getPieceColour(); // get pieceColour fielid
 	int getForce(); // get force field

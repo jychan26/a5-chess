@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Piece::Piece(char name, Colour pieceColour, int force) :
+Piece::Piece(char name, const Colour pieceColour, const int force) :
 	name{name}, pieceColour{pieceColour}, force{force} {}
 
 Piece::getPiece() {
