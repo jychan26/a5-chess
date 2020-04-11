@@ -7,7 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A155838243EC89F0090D285 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A155837243EC89F0090D285 /* main.cpp */; };
+		6A52690C24421AB7009DB73A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A155837243EC89F0090D285 /* main.cpp */; };
+		6A52690E24421AC7009DB73A /* colour.h in Sources */ = {isa = PBXBuildFile; fileRef = 6A52690D24421AC7009DB73A /* colour.h */; };
+		6A52691024421AD0009DB73A /* move.h in Sources */ = {isa = PBXBuildFile; fileRef = 6A52690F24421AD0009DB73A /* move.h */; };
+		6A52691224421ADD009DB73A /* position.h in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691124421ADD009DB73A /* position.h */; };
+		6A5269162442257C009DB73A /* chessplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5269142442257C009DB73A /* chessplayer.cpp */; };
+		6A52691924422716009DB73A /* human.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691724422716009DB73A /* human.cpp */; };
+		6A52691C244227E7009DB73A /* computer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691A244227E7009DB73A /* computer.cpp */; };
+		6A52691F24422853009DB73A /* level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691D24422853009DB73A /* level1.cpp */; };
+		6A526922244228C7009DB73A /* level2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A526920244228C7009DB73A /* level2.cpp */; };
+		6A526925244228E6009DB73A /* level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A526923244228E6009DB73A /* level3.cpp */; };
+		6A526928244228FD009DB73A /* level4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A526926244228FD009DB73A /* level4.cpp */; };
+		6A52692B244232EE009DB73A /* gameplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A526929244232EE009DB73A /* gameplayer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +36,25 @@
 /* Begin PBXFileReference section */
 		6A155834243EC89F0090D285 /* chess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = chess; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A155837243EC89F0090D285 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6A52690D24421AC7009DB73A /* colour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = colour.h; sourceTree = "<group>"; };
+		6A52690F24421AD0009DB73A /* move.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move.h; sourceTree = "<group>"; };
+		6A52691124421ADD009DB73A /* position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
+		6A5269142442257C009DB73A /* chessplayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chessplayer.cpp; sourceTree = "<group>"; };
+		6A5269152442257C009DB73A /* chessplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chessplayer.h; sourceTree = "<group>"; };
+		6A52691724422716009DB73A /* human.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = human.cpp; sourceTree = "<group>"; };
+		6A52691824422716009DB73A /* human.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = human.h; sourceTree = "<group>"; };
+		6A52691A244227E7009DB73A /* computer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = computer.cpp; sourceTree = "<group>"; };
+		6A52691B244227E7009DB73A /* computer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = computer.h; sourceTree = "<group>"; };
+		6A52691D24422853009DB73A /* level1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = level1.cpp; sourceTree = "<group>"; };
+		6A52691E24422853009DB73A /* level1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level1.h; sourceTree = "<group>"; };
+		6A526920244228C7009DB73A /* level2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = level2.cpp; sourceTree = "<group>"; };
+		6A526921244228C7009DB73A /* level2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level2.h; sourceTree = "<group>"; };
+		6A526923244228E6009DB73A /* level3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = level3.cpp; sourceTree = "<group>"; };
+		6A526924244228E6009DB73A /* level3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level3.h; sourceTree = "<group>"; };
+		6A526926244228FD009DB73A /* level4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = level4.cpp; sourceTree = "<group>"; };
+		6A526927244228FD009DB73A /* level4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level4.h; sourceTree = "<group>"; };
+		6A526929244232EE009DB73A /* gameplayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gameplayer.cpp; sourceTree = "<group>"; };
+		6A52692A244232EE009DB73A /* gameplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gameplayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +71,7 @@
 		6A15582B243EC89F0090D285 = {
 			isa = PBXGroup;
 			children = (
-				6A155836243EC89F0090D285 /* chess */,
+				6A52691324421B0C009DB73A /* chess */,
 				6A155835243EC89F0090D285 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,10 +84,29 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6A155836243EC89F0090D285 /* chess */ = {
+		6A52691324421B0C009DB73A /* chess */ = {
 			isa = PBXGroup;
 			children = (
 				6A155837243EC89F0090D285 /* main.cpp */,
+				6A52690D24421AC7009DB73A /* colour.h */,
+				6A52691124421ADD009DB73A /* position.h */,
+				6A52690F24421AD0009DB73A /* move.h */,
+				6A5269142442257C009DB73A /* chessplayer.cpp */,
+				6A5269152442257C009DB73A /* chessplayer.h */,
+				6A52691724422716009DB73A /* human.cpp */,
+				6A52691824422716009DB73A /* human.h */,
+				6A52691A244227E7009DB73A /* computer.cpp */,
+				6A52691B244227E7009DB73A /* computer.h */,
+				6A52691D24422853009DB73A /* level1.cpp */,
+				6A52691E24422853009DB73A /* level1.h */,
+				6A526920244228C7009DB73A /* level2.cpp */,
+				6A526921244228C7009DB73A /* level2.h */,
+				6A526923244228E6009DB73A /* level3.cpp */,
+				6A526924244228E6009DB73A /* level3.h */,
+				6A526926244228FD009DB73A /* level4.cpp */,
+				6A526927244228FD009DB73A /* level4.h */,
+				6A526929244232EE009DB73A /* gameplayer.cpp */,
+				6A52692A244232EE009DB73A /* gameplayer.h */,
 			);
 			path = chess;
 			sourceTree = "<group>";
@@ -119,7 +168,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A155838243EC89F0090D285 /* main.cpp in Sources */,
+				6A526925244228E6009DB73A /* level3.cpp in Sources */,
+				6A526922244228C7009DB73A /* level2.cpp in Sources */,
+				6A52691224421ADD009DB73A /* position.h in Sources */,
+				6A52691924422716009DB73A /* human.cpp in Sources */,
+				6A5269162442257C009DB73A /* chessplayer.cpp in Sources */,
+				6A526928244228FD009DB73A /* level4.cpp in Sources */,
+				6A52692B244232EE009DB73A /* gameplayer.cpp in Sources */,
+				6A52691024421AD0009DB73A /* move.h in Sources */,
+				6A52691F24422853009DB73A /* level1.cpp in Sources */,
+				6A52691C244227E7009DB73A /* computer.cpp in Sources */,
+				6A52690E24421AC7009DB73A /* colour.h in Sources */,
+				6A52690C24421AB7009DB73A /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +299,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/build/include";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/";
 			};
 			name = Debug;
 		};
@@ -247,7 +309,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/build/include";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/";
 			};
 			name = Release;
 		};
