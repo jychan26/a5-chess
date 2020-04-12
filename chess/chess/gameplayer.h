@@ -23,6 +23,10 @@ public:
     void setPlayer(string player);
     Move nextMove();
     ~GamePlayer();
+    int getScore();
+    Colour getColour();
+    bool win(Colour colour);
+    void stalemate();
 
 };
 
