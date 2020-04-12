@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "chessplayer.h"
 class Computer: public ChessPlayer{
-    //Board *board;
+    Colour colour;
 public:
     Computer(Colour colour);
     virtual Move nextMove() = 0;

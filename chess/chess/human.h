@@ -14,7 +14,6 @@
 class Human: public ChessPlayer{
   
 public:
-    Human(Colour colour);
     Move nextMove() override;
 };
 

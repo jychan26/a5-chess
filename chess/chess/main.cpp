@@ -6,7 +6,6 @@
 //  Copyright © 2020 CS246Team. All rights reserved.
 //
 
-#include <string>
 #include <iostream>
 #include <string>
 #include "level1.h"
@@ -15,7 +14,6 @@
 #include "level4.h"
 #include "gameplayer.h"
 using namespace std;
-using std::ios;
 
 int main(int argc, const char * argv[]) {
      //cin.exceptions(ios::eofbit|ios::failbit);

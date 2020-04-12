@@ -7,3 +7,9 @@
 //
 
 #include "level1.h"
+
+Level1::Level1(Colour colour): Computer(colour) {}
+Move Level1::nextMove() {
+    Move m;
+    return m;
+}
