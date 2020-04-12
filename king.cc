@@ -7,7 +7,7 @@ using namespace std;
 King::King(char name, const Colour pieceColour, const int force) :
 	Piece{name, pieceColour, force} {}
 
-bool King::isObeyRule(Move m) const { // TODO
+bool King::isObeyRule(Move &m) const { // TODO
 	/*
 	Position curr_pos = m.from;
 	Position next_pos = m.to;
@@ -17,7 +17,7 @@ bool King::isObeyRule(Move m) const { // TODO
 	return true;
 }
 
-vector<Move> King::getLegalMoves(Position pos) const { // TODO
+vector<Move> King::getLegalMoves(Position &pos) const { // TODO
 	vector<Move> moves;
 	return moves;
 }

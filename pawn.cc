@@ -15,11 +15,11 @@ void Pawn::setNofMove(int n) {
 	nofMove = n;
 }
 
-bool Pawn::isObeyRule(Move m) const { //TODO
+bool Pawn::isObeyRule(Move &m) const { //TODO
 	return true;
 }
 
-vector<Move> Pawn::getLegalMoves(Position pos) const { //TODO
+vector<Move> Pawn::getLegalMoves(Position &pos) const { //TODO
 	vector<Move> moves;
 	return moves;
 }

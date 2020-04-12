@@ -27,7 +27,7 @@ void Piece::setFirstMove(bool b) {
 	firstMove = b;
 }
 	
-vector<Position> Piece::getInBetweenPositions(Move m) const {
+vector<Position> Piece::getInBetweenPositions(Move &m) const {
 	vector<Position> positions;
 	return positions;
 }

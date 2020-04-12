@@ -10,8 +10,8 @@ class Pawn: public Piece {
 	int getNofMove() const;
 	void setNofMove(int);
 
-	bool isObeyRule(Move) const override;
-	std::vector<Move> getLegalMoves(Position) const override;
+	bool isObeyRule(Move &) const override;
+	std::vector<Move> getLegalMoves(Position &) const override;
 };
 
 #endif
