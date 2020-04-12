@@ -12,6 +12,7 @@
 #include "move.h"
 #include "colour.h"
 #include <stdio.h>
+#include "board.h"
 class ChessPlayer {
 public:
     virtual Move nextMove() = 0;
