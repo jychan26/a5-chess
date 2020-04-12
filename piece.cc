@@ -7,19 +7,29 @@ using namespace std;
 Piece::Piece(char name, const Colour pieceColour, const int force) :
 	name{name}, pieceColour{pieceColour}, force{force} {}
 
-Piece::getPiece() {
+char Piece::getPiece() const {
 	return name;
 }
 
-Piece::getPieceColour() {
+Colour Piece::getPieceColour() const {
 	return pieceColour;
 }
 
-Piece::getForce() {
+int Piece::getForce() const {
 	return force;
-}|
+}
 
-vector<Position> getInBetweenPositions(Move) {
+bool Piece::getFirstMove() const {
+	return firstMove;
+}
+
+void Piece::setFirstMove(bool b) {
+	firstMove = b;
+}
+	
+vector<Position> Piece::getInBetweenPositions(Move m) const {
 	vector<Position> positions;
 	return positions;
 }
+
+Piece::~Piece() {}

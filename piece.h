@@ -11,17 +11,21 @@ class Piece { // abstract class
 	char name;
 	Colour pieceColour;
 	int force;
+	bool firstMove = true;
 
 	public:
 	Piece(char name, const Colour pieceColour, const int force); // ctor
 
-	char getPiece(); // get name field
-	Colour getPieceColour(); // get pieceColour fielid
-	int getForce(); // get force field
+	char getPiece() const; // get name field
+	Colour getPieceColour() const; // get pieceColour fielid
+	int getForce() const; // get force field
+	bool getFirstMove() const; // get firstMove field
+	void setFirstMove(bool); // set firstMove field
 
-	virtual bool isObeyRule(Move) = 0; // does Move agree with Piece's movement (in terms of direction and distance)?
-	virtual vector<Position> getInBetweenPositions(Move); // get positions between Move that Piece could otherwise have validly landed on
-	virtual vector<Move> getLegalMoves(Position) = 0;
+	virtual bool isObeyRule(Move) const = 0; // does Move agree with Piece's movement (in terms of direction and distance)?
+	virtual std::vector<Position> getInBetweenPositions(Move) const; // get positions between Move that Piece could otherwise have validly landed on
+	virtual std::vector<Move> getLegalMoves(Position) const = 0;
+	virtual ~Piece();
 };
 
 #endif

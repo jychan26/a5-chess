@@ -1,10 +1,10 @@
-#ifndef _QUEEN_H_
-#define _QUEEN_H_
+#ifndef _BISHOP_H_
+#define _BISHOP_H_
 #include "piece.h"
 
-class Queen: public Piece {
+class Bishop: public Piece {
 	public:
-	Queen(char name, const Colour pieceColour, const int force = 70);
+	Bishop(char name, const Colour pieceColour, const int force = 30);
 
 	bool isObeyRule(Move) const override;
 	std::vector<Move> getLegalMoves(Position) const override;
