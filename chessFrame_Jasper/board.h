@@ -32,6 +32,7 @@ public:
     void promote(char name, Move m);
     bool isCastlingValid(Move m);
     void castle(Move m);
+    std::vector<Move> getLegalMoves();
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
 };
 
