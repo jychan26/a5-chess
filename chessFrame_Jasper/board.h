@@ -33,6 +33,10 @@ public:
     bool isCastlingValid(Move m);
     void castle(Move m);
     std::vector<Move> getLegalMoves();
+    bool isCheckmate(Colour colour);
+    bool isStalemate(Colour colour);
+    Colour getWhoseTurn();
+    bool isSetupComplete();
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
 };
 

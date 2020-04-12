@@ -132,10 +132,6 @@
 		6A52691324421B0C009DB73A /* chess */ = {
 			isa = PBXGroup;
 			children = (
-				6A3DBC1C2443608300ACB3C3 /* board.cc */,
-				6A3DBC242443608300ACB3C3 /* board.h */,
-				6A3DBC192443608300ACB3C3 /* cell.cc */,
-				6A3DBC1B2443608300ACB3C3 /* cell.h */,
 				6A3DBC202443608300ACB3C3 /* colour.h */,
 				6A3DBC1E2443608300ACB3C3 /* graphicsdisplay.cc */,
 				6A3DBC262443608300ACB3C3 /* graphicsdisplay.h */,
@@ -165,6 +161,10 @@
 				6A3DBBFF2443607700ACB3C3 /* queen.h */,
 				6A3DBC0E2443607800ACB3C3 /* rook.cc */,
 				6A3DBC032443607700ACB3C3 /* rook.h */,
+				6A3DBC192443608300ACB3C3 /* cell.cc */,
+				6A3DBC1B2443608300ACB3C3 /* cell.h */,
+				6A3DBC1C2443608300ACB3C3 /* board.cc */,
+				6A3DBC242443608300ACB3C3 /* board.h */,
 				6A155837243EC89F0090D285 /* main.cpp */,
 				6A52690D24421AC7009DB73A /* colour.h */,
 				6A52691124421ADD009DB73A /* position.h */,
@@ -390,9 +390,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/build/include";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(PROJECT_DIR)/build/include",
+					/usr/X11/include,
+					/usr/X11/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/";
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = (
+					/usr/X11/lib,
+					/usr/X11/include,
+					"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/",
+				);
 			};
 			name = Debug;
 		};
@@ -400,9 +408,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/build/include";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(PROJECT_DIR)/build/include",
+					/usr/X11/lib,
+					/usr/X11/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/";
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = (
+					"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/",
+					/usr/X11/lib,
+					/usr/X11/include,
+				);
 			};
 			name = Release;
 		};

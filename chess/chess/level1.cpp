@@ -13,5 +13,5 @@ using namespace std;
 Level1::Level1(Colour colour): Computer(colour) {}
 Move Level1::nextMove() {
     vector<Move> moves = board->getLegalMoves();
-    return moves[rand() * moves.size()];
+    return moves[int(rand() * moves.size())];
 }
