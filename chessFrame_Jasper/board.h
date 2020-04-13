@@ -25,14 +25,14 @@ public:
     void setPiece(char name, Position pos);
     void removePiece(Position pos);
     void move(Move m);
-    bool isObeyRule(Move m);
-    std::vector<Position> getInBetweenPositions(Move m);
+    bool isObeyRule(Move &m);
+    std::vector<Position> getInBetweenPositions(Move &m);
     bool isBlocked(std::vector<Position>);
     bool isChecked(Colour kingColour);
     void promote(char name, Move m);
     bool isCastlingValid(Move m);
     void castle(Move m);
-    std::vector<Move> getLegalMoves();
+    std::vector<Move> getLegalMoves(Position &pos);
     bool isCheckmate(Colour colour);
     bool isStalemate(Colour colour);
     Colour getWhoseTurn();

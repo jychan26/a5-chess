@@ -14,13 +14,14 @@ class Cell : public Subject {
     Piece *piece = nullptr;
 public:
     Cell(Position pos, Colour cellColour);
+    ~Cell();
     void setPiece(char name);
     void removePiece();
     Piece *&moveFrom();
     void moveTo(Piece *&);
     Info getInfo() const override;
-    bool isObeyRule(Move m);
-    std::vector<Position> getInBetweenPositions(Move m);
+    bool isObeyRule(Move &m);
+    std::vector<Position> getInBetweenPositions(Move &m);
     void promote(char name);
     bool isFirstMove();
     std::vector<Move> getLegalMoves();
