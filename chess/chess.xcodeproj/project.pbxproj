@@ -20,8 +20,6 @@
 		6A3DBC2A2443608400ACB3C3 /* textdisplay.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC212443608300ACB3C3 /* textdisplay.cc */; };
 		6A3DBC2B2443608400ACB3C3 /* window.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC222443608300ACB3C3 /* window.cc */; };
 		6A52690C24421AB7009DB73A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A155837243EC89F0090D285 /* main.cpp */; };
-		6A52690E24421AC7009DB73A /* colour.h in Sources */ = {isa = PBXBuildFile; fileRef = 6A52690D24421AC7009DB73A /* colour.h */; };
-		6A52691024421AD0009DB73A /* move.h in Sources */ = {isa = PBXBuildFile; fileRef = 6A52690F24421AD0009DB73A /* move.h */; };
 		6A52691224421ADD009DB73A /* position.h in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691124421ADD009DB73A /* position.h */; };
 		6A5269162442257C009DB73A /* chessplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5269142442257C009DB73A /* chessplayer.cpp */; };
 		6A52691924422716009DB73A /* human.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691724422716009DB73A /* human.cpp */; };
@@ -51,10 +49,8 @@
 		6A3DBBFF2443607700ACB3C3 /* queen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queen.h; path = ../../queen.h; sourceTree = "<group>"; };
 		6A3DBC002443607700ACB3C3 /* knight.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = knight.cc; path = ../../knight.cc; sourceTree = "<group>"; };
 		6A3DBC012443607700ACB3C3 /* piece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = piece.h; path = ../../piece.h; sourceTree = "<group>"; };
-		6A3DBC022443607700ACB3C3 /* colour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = colour.h; path = ../../colour.h; sourceTree = "<group>"; };
 		6A3DBC032443607700ACB3C3 /* rook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rook.h; path = ../../rook.h; sourceTree = "<group>"; };
 		6A3DBC042443607700ACB3C3 /* king.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = king.cc; path = ../../king.cc; sourceTree = "<group>"; };
-		6A3DBC052443607700ACB3C3 /* position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = position.h; path = ../../position.h; sourceTree = "<group>"; };
 		6A3DBC062443607700ACB3C3 /* move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = move.h; path = ../../move.h; sourceTree = "<group>"; };
 		6A3DBC072443607700ACB3C3 /* bishop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bishop.h; path = ../../bishop.h; sourceTree = "<group>"; };
 		6A3DBC082443607700ACB3C3 /* piece.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = piece.cc; path = ../../piece.cc; sourceTree = "<group>"; };
@@ -79,10 +75,7 @@
 		6A3DBC222443608300ACB3C3 /* window.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = window.cc; path = ../../chessFrame_Jasper/window.cc; sourceTree = "<group>"; };
 		6A3DBC232443608300ACB3C3 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = window.h; path = ../../chessFrame_Jasper/window.h; sourceTree = "<group>"; };
 		6A3DBC242443608300ACB3C3 /* board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = board.h; path = ../../chessFrame_Jasper/board.h; sourceTree = "<group>"; };
-		6A3DBC252443608300ACB3C3 /* position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = position.h; path = ../../chessFrame_Jasper/position.h; sourceTree = "<group>"; };
 		6A3DBC262443608300ACB3C3 /* graphicsdisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = graphicsdisplay.h; path = ../../chessFrame_Jasper/graphicsdisplay.h; sourceTree = "<group>"; };
-		6A52690D24421AC7009DB73A /* colour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = colour.h; sourceTree = "<group>"; };
-		6A52690F24421AD0009DB73A /* move.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move.h; sourceTree = "<group>"; };
 		6A52691124421ADD009DB73A /* position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		6A5269142442257C009DB73A /* chessplayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chessplayer.cpp; sourceTree = "<group>"; };
 		6A5269152442257C009DB73A /* chessplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chessplayer.h; sourceTree = "<group>"; };
@@ -138,7 +131,6 @@
 				6A3DBC1F2443608300ACB3C3 /* info.h */,
 				6A3DBC182443608300ACB3C3 /* move.h */,
 				6A3DBC1A2443608300ACB3C3 /* observer.h */,
-				6A3DBC252443608300ACB3C3 /* position.h */,
 				6A3DBC1D2443608300ACB3C3 /* subject.h */,
 				6A3DBC212443608300ACB3C3 /* textdisplay.cc */,
 				6A3DBC172443608300ACB3C3 /* textdisplay.h */,
@@ -146,7 +138,6 @@
 				6A3DBC232443608300ACB3C3 /* window.h */,
 				6A3DBC0F2443607800ACB3C3 /* bishop.cc */,
 				6A3DBC072443607700ACB3C3 /* bishop.h */,
-				6A3DBC022443607700ACB3C3 /* colour.h */,
 				6A3DBC042443607700ACB3C3 /* king.cc */,
 				6A3DBC0B2443607700ACB3C3 /* king.h */,
 				6A3DBC002443607700ACB3C3 /* knight.cc */,
@@ -156,7 +147,6 @@
 				6A3DBC0D2443607800ACB3C3 /* pawn.h */,
 				6A3DBC082443607700ACB3C3 /* piece.cc */,
 				6A3DBC012443607700ACB3C3 /* piece.h */,
-				6A3DBC052443607700ACB3C3 /* position.h */,
 				6A3DBC092443607700ACB3C3 /* queen.cc */,
 				6A3DBBFF2443607700ACB3C3 /* queen.h */,
 				6A3DBC0E2443607800ACB3C3 /* rook.cc */,
@@ -166,9 +156,7 @@
 				6A3DBC1C2443608300ACB3C3 /* board.cc */,
 				6A3DBC242443608300ACB3C3 /* board.h */,
 				6A155837243EC89F0090D285 /* main.cpp */,
-				6A52690D24421AC7009DB73A /* colour.h */,
 				6A52691124421ADD009DB73A /* position.h */,
-				6A52690F24421AD0009DB73A /* move.h */,
 				6A5269142442257C009DB73A /* chessplayer.cpp */,
 				6A5269152442257C009DB73A /* chessplayer.h */,
 				6A52691724422716009DB73A /* human.cpp */,
@@ -258,7 +246,6 @@
 				6A526928244228FD009DB73A /* level4.cpp in Sources */,
 				6A52692B244232EE009DB73A /* gameplayer.cpp in Sources */,
 				6A3DBC102443607800ACB3C3 /* knight.cc in Sources */,
-				6A52691024421AD0009DB73A /* move.h in Sources */,
 				6A3DBC2B2443608400ACB3C3 /* window.cc in Sources */,
 				6A52691F24422853009DB73A /* level1.cpp in Sources */,
 				6A3DBC132443607800ACB3C3 /* queen.cc in Sources */,
@@ -266,7 +253,6 @@
 				6A3DBC112443607800ACB3C3 /* king.cc in Sources */,
 				6A3DBC122443607800ACB3C3 /* piece.cc in Sources */,
 				6A52691C244227E7009DB73A /* computer.cpp in Sources */,
-				6A52690E24421AC7009DB73A /* colour.h in Sources */,
 				6A3DBC292443608400ACB3C3 /* graphicsdisplay.cc in Sources */,
 				6A52690C24421AB7009DB73A /* main.cpp in Sources */,
 				6A3DBC272443608300ACB3C3 /* cell.cc in Sources */,
