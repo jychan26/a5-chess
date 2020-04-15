@@ -37,6 +37,9 @@ public:
     bool isStalemate(Colour colour);
     Colour getWhoseTurn();
     bool isSetupComplete();
+    Info getInfo(Position pos);
+    std::vector<Info> getPieces();
+    std::vector<Position> threatenedBy(Position pos);
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
 };
 

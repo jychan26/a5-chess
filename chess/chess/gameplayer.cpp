@@ -8,13 +8,13 @@
 
 #include "gameplayer.h"
 
-
-GamePlayer::GamePlayer(Colour colour) {}
-void GamePlayer::setPlayer(string player) {}
-Move GamePlayer::nextMove() {
-    Move m;
-    return m;
-}
-GamePlayer::~GamePlayer() {
-    delete player;
-}
+//
+//GamePlayer::GamePlayer(Colour colour) {}
+//void GamePlayer::setPlayer(string player) {}
+//Move GamePlayer::nextMove() {
+//    Move m;
+//    return m;
+//}
+//GamePlayer::~GamePlayer() {
+//    delete player;
+//}
