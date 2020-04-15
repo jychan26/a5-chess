@@ -17,7 +17,16 @@ bool King::isObeyRule(Move &m) const { // TODO
 	return true;
 }
 
-vector<Move> King::getLegalMoves(Position &pos) const { // TODO
-	vector<Move> moves;
-	return moves;
+vector<Move*> King::getLegalMoves(Position pos) const { // TODO
+    vector<Move*> moves;
+    Position dest;
+    for (int i = -1; i < 2; i += 1) {
+        for (int j = -1; j < 2; j += 1) {
+                dest = pos;
+                dest.col += i;
+                dest.row += j;
+                if (dest.isValid() && dest != pos) moves.push_back(new Move(pos, dest));
+        }
+    }
+    return moves;
 }

@@ -7,6 +7,7 @@ using namespace std;
 struct Position {
     int row;
     char col;
+    Position() {}
     Position(string str) {
         col = str.front();
         str = str.back();
@@ -16,6 +17,14 @@ struct Position {
     bool isValid() {
         return (row >= 0 && row <= 7) && (col >= 'a' && col <= 'h');
     }
+    bool operator==(const Position &pos) const{
+        return col == pos.col && row == pos.row;
+    }
+    bool operator!=(const Position &pos) const {
+        return !(*this == pos);
+    }
 };
+
+
 
 #endif

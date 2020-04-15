@@ -7,28 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A3DBC102443607800ACB3C3 /* knight.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC002443607700ACB3C3 /* knight.cc */; };
-		6A3DBC112443607800ACB3C3 /* king.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC042443607700ACB3C3 /* king.cc */; };
-		6A3DBC122443607800ACB3C3 /* piece.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC082443607700ACB3C3 /* piece.cc */; };
-		6A3DBC132443607800ACB3C3 /* queen.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC092443607700ACB3C3 /* queen.cc */; };
-		6A3DBC142443607800ACB3C3 /* pawn.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC0A2443607700ACB3C3 /* pawn.cc */; };
-		6A3DBC152443607800ACB3C3 /* rook.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC0E2443607800ACB3C3 /* rook.cc */; };
-		6A3DBC162443607800ACB3C3 /* bishop.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC0F2443607800ACB3C3 /* bishop.cc */; };
-		6A3DBC272443608300ACB3C3 /* cell.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC192443608300ACB3C3 /* cell.cc */; };
-		6A3DBC282443608400ACB3C3 /* board.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC1C2443608300ACB3C3 /* board.cc */; };
-		6A3DBC292443608400ACB3C3 /* graphicsdisplay.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC1E2443608300ACB3C3 /* graphicsdisplay.cc */; };
-		6A3DBC2A2443608400ACB3C3 /* textdisplay.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC212443608300ACB3C3 /* textdisplay.cc */; };
-		6A3DBC2B2443608400ACB3C3 /* window.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DBC222443608300ACB3C3 /* window.cc */; };
 		6A52690C24421AB7009DB73A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A155837243EC89F0090D285 /* main.cpp */; };
-		6A52691224421ADD009DB73A /* position.h in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691124421ADD009DB73A /* position.h */; };
-		6A5269162442257C009DB73A /* chessplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5269142442257C009DB73A /* chessplayer.cpp */; };
-		6A52691924422716009DB73A /* human.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691724422716009DB73A /* human.cpp */; };
-		6A52691C244227E7009DB73A /* computer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691A244227E7009DB73A /* computer.cpp */; };
-		6A52691F24422853009DB73A /* level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A52691D24422853009DB73A /* level1.cpp */; };
-		6A526922244228C7009DB73A /* level2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A526920244228C7009DB73A /* level2.cpp */; };
-		6A526925244228E6009DB73A /* level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A526923244228E6009DB73A /* level3.cpp */; };
-		6A526928244228FD009DB73A /* level4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A526926244228FD009DB73A /* level4.cpp */; };
-		6A52692B244232EE009DB73A /* gameplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A526929244232EE009DB73A /* gameplayer.cpp */; };
+		6A6F473F2447B1F3001EE8D6 /* human.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F472F2447B1F3001EE8D6 /* human.cpp */; };
+		6A6F47402447B1F3001EE8D6 /* level4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47312447B1F3001EE8D6 /* level4.cpp */; };
+		6A6F47412447B1F3001EE8D6 /* chessplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47332447B1F3001EE8D6 /* chessplayer.cpp */; };
+		6A6F47422447B1F3001EE8D6 /* level2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47342447B1F3001EE8D6 /* level2.cpp */; };
+		6A6F47432447B1F3001EE8D6 /* gameplayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47362447B1F3001EE8D6 /* gameplayer.cpp */; };
+		6A6F47442447B1F3001EE8D6 /* level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47382447B1F3001EE8D6 /* level1.cpp */; };
+		6A6F47452447B1F3001EE8D6 /* level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F473C2447B1F3001EE8D6 /* level3.cpp */; };
+		6A6F47462447B1F3001EE8D6 /* computer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F473D2447B1F3001EE8D6 /* computer.cpp */; };
+		6A6F47552447B212001EE8D6 /* knight.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47482447B210001EE8D6 /* knight.cc */; };
+		6A6F47562447B212001EE8D6 /* rook.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47492447B210001EE8D6 /* rook.cc */; };
+		6A6F47572447B212001EE8D6 /* piece.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F474A2447B210001EE8D6 /* piece.cc */; };
+		6A6F47582447B212001EE8D6 /* bishop.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F474D2447B211001EE8D6 /* bishop.cc */; };
+		6A6F47592447B212001EE8D6 /* pawn.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F474F2447B211001EE8D6 /* pawn.cc */; };
+		6A6F475A2447B212001EE8D6 /* queen.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47512447B211001EE8D6 /* queen.cc */; };
+		6A6F475B2447B212001EE8D6 /* king.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47522447B211001EE8D6 /* king.cc */; };
+		6A6F476B2447B221001EE8D6 /* textdisplay.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F475D2447B21F001EE8D6 /* textdisplay.cc */; };
+		6A6F476C2447B221001EE8D6 /* graphicsdisplay.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47632447B220001EE8D6 /* graphicsdisplay.cc */; };
+		6A6F476D2447B221001EE8D6 /* window.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47672447B220001EE8D6 /* window.cc */; };
+		6A6F476E2447B221001EE8D6 /* board.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47682447B220001EE8D6 /* board.cc */; };
+		6A6F476F2447B221001EE8D6 /* cell.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47692447B220001EE8D6 /* cell.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,53 +45,52 @@
 /* Begin PBXFileReference section */
 		6A155834243EC89F0090D285 /* chess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = chess; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A155837243EC89F0090D285 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		6A3DBBFF2443607700ACB3C3 /* queen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queen.h; path = ../../queen.h; sourceTree = "<group>"; };
-		6A3DBC002443607700ACB3C3 /* knight.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = knight.cc; path = ../../knight.cc; sourceTree = "<group>"; };
-		6A3DBC012443607700ACB3C3 /* piece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = piece.h; path = ../../piece.h; sourceTree = "<group>"; };
-		6A3DBC032443607700ACB3C3 /* rook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rook.h; path = ../../rook.h; sourceTree = "<group>"; };
-		6A3DBC042443607700ACB3C3 /* king.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = king.cc; path = ../../king.cc; sourceTree = "<group>"; };
-		6A3DBC062443607700ACB3C3 /* move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = move.h; path = ../../move.h; sourceTree = "<group>"; };
-		6A3DBC072443607700ACB3C3 /* bishop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bishop.h; path = ../../bishop.h; sourceTree = "<group>"; };
-		6A3DBC082443607700ACB3C3 /* piece.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = piece.cc; path = ../../piece.cc; sourceTree = "<group>"; };
-		6A3DBC092443607700ACB3C3 /* queen.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = queen.cc; path = ../../queen.cc; sourceTree = "<group>"; };
-		6A3DBC0A2443607700ACB3C3 /* pawn.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pawn.cc; path = ../../pawn.cc; sourceTree = "<group>"; };
-		6A3DBC0B2443607700ACB3C3 /* king.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = king.h; path = ../../king.h; sourceTree = "<group>"; };
-		6A3DBC0C2443607800ACB3C3 /* knight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = knight.h; path = ../../knight.h; sourceTree = "<group>"; };
-		6A3DBC0D2443607800ACB3C3 /* pawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pawn.h; path = ../../pawn.h; sourceTree = "<group>"; };
-		6A3DBC0E2443607800ACB3C3 /* rook.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rook.cc; path = ../../rook.cc; sourceTree = "<group>"; };
-		6A3DBC0F2443607800ACB3C3 /* bishop.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bishop.cc; path = ../../bishop.cc; sourceTree = "<group>"; };
-		6A3DBC172443608300ACB3C3 /* textdisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = textdisplay.h; path = ../../chessFrame_Jasper/textdisplay.h; sourceTree = "<group>"; };
-		6A3DBC182443608300ACB3C3 /* move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = move.h; path = ../../chessFrame_Jasper/move.h; sourceTree = "<group>"; };
-		6A3DBC192443608300ACB3C3 /* cell.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cell.cc; path = ../../chessFrame_Jasper/cell.cc; sourceTree = "<group>"; };
-		6A3DBC1A2443608300ACB3C3 /* observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = observer.h; path = ../../chessFrame_Jasper/observer.h; sourceTree = "<group>"; };
-		6A3DBC1B2443608300ACB3C3 /* cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cell.h; path = ../../chessFrame_Jasper/cell.h; sourceTree = "<group>"; };
-		6A3DBC1C2443608300ACB3C3 /* board.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = board.cc; path = ../../chessFrame_Jasper/board.cc; sourceTree = "<group>"; };
-		6A3DBC1D2443608300ACB3C3 /* subject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = subject.h; path = ../../chessFrame_Jasper/subject.h; sourceTree = "<group>"; };
-		6A3DBC1E2443608300ACB3C3 /* graphicsdisplay.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = graphicsdisplay.cc; path = ../../chessFrame_Jasper/graphicsdisplay.cc; sourceTree = "<group>"; };
-		6A3DBC1F2443608300ACB3C3 /* info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = info.h; path = ../../chessFrame_Jasper/info.h; sourceTree = "<group>"; };
-		6A3DBC202443608300ACB3C3 /* colour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = colour.h; path = ../../chessFrame_Jasper/colour.h; sourceTree = "<group>"; };
-		6A3DBC212443608300ACB3C3 /* textdisplay.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = textdisplay.cc; path = ../../chessFrame_Jasper/textdisplay.cc; sourceTree = "<group>"; };
-		6A3DBC222443608300ACB3C3 /* window.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = window.cc; path = ../../chessFrame_Jasper/window.cc; sourceTree = "<group>"; };
-		6A3DBC232443608300ACB3C3 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = window.h; path = ../../chessFrame_Jasper/window.h; sourceTree = "<group>"; };
-		6A3DBC242443608300ACB3C3 /* board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = board.h; path = ../../chessFrame_Jasper/board.h; sourceTree = "<group>"; };
-		6A3DBC262443608300ACB3C3 /* graphicsdisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = graphicsdisplay.h; path = ../../chessFrame_Jasper/graphicsdisplay.h; sourceTree = "<group>"; };
-		6A52691124421ADD009DB73A /* position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
-		6A5269142442257C009DB73A /* chessplayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chessplayer.cpp; sourceTree = "<group>"; };
-		6A5269152442257C009DB73A /* chessplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chessplayer.h; sourceTree = "<group>"; };
-		6A52691724422716009DB73A /* human.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = human.cpp; sourceTree = "<group>"; };
-		6A52691824422716009DB73A /* human.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = human.h; sourceTree = "<group>"; };
-		6A52691A244227E7009DB73A /* computer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = computer.cpp; sourceTree = "<group>"; };
-		6A52691B244227E7009DB73A /* computer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = computer.h; sourceTree = "<group>"; };
-		6A52691D24422853009DB73A /* level1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = level1.cpp; sourceTree = "<group>"; };
-		6A52691E24422853009DB73A /* level1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level1.h; sourceTree = "<group>"; };
-		6A526920244228C7009DB73A /* level2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = level2.cpp; sourceTree = "<group>"; };
-		6A526921244228C7009DB73A /* level2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level2.h; sourceTree = "<group>"; };
-		6A526923244228E6009DB73A /* level3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = level3.cpp; sourceTree = "<group>"; };
-		6A526924244228E6009DB73A /* level3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level3.h; sourceTree = "<group>"; };
-		6A526926244228FD009DB73A /* level4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = level4.cpp; sourceTree = "<group>"; };
-		6A526927244228FD009DB73A /* level4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = level4.h; sourceTree = "<group>"; };
-		6A526929244232EE009DB73A /* gameplayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gameplayer.cpp; sourceTree = "<group>"; };
-		6A52692A244232EE009DB73A /* gameplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gameplayer.h; sourceTree = "<group>"; };
+		6A6F472E2447B1F3001EE8D6 /* human.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = human.h; sourceTree = "<group>"; };
+		6A6F472F2447B1F3001EE8D6 /* human.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = human.cpp; sourceTree = "<group>"; };
+		6A6F47302447B1F3001EE8D6 /* level2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = level2.h; sourceTree = "<group>"; };
+		6A6F47312447B1F3001EE8D6 /* level4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = level4.cpp; sourceTree = "<group>"; };
+		6A6F47322447B1F3001EE8D6 /* level3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = level3.h; sourceTree = "<group>"; };
+		6A6F47332447B1F3001EE8D6 /* chessplayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chessplayer.cpp; sourceTree = "<group>"; };
+		6A6F47342447B1F3001EE8D6 /* level2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = level2.cpp; sourceTree = "<group>"; };
+		6A6F47352447B1F3001EE8D6 /* level4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = level4.h; sourceTree = "<group>"; };
+		6A6F47362447B1F3001EE8D6 /* gameplayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameplayer.cpp; sourceTree = "<group>"; };
+		6A6F47372447B1F3001EE8D6 /* level1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = level1.h; sourceTree = "<group>"; };
+		6A6F47382447B1F3001EE8D6 /* level1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = level1.cpp; sourceTree = "<group>"; };
+		6A6F47392447B1F3001EE8D6 /* gameplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameplayer.h; sourceTree = "<group>"; };
+		6A6F473A2447B1F3001EE8D6 /* chessplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chessplayer.h; sourceTree = "<group>"; };
+		6A6F473B2447B1F3001EE8D6 /* position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
+		6A6F473C2447B1F3001EE8D6 /* level3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = level3.cpp; sourceTree = "<group>"; };
+		6A6F473D2447B1F3001EE8D6 /* computer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = computer.cpp; sourceTree = "<group>"; };
+		6A6F473E2447B1F3001EE8D6 /* computer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = computer.h; sourceTree = "<group>"; };
+		6A6F47472447B210001EE8D6 /* queen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queen.h; path = ../../queen.h; sourceTree = "<group>"; };
+		6A6F47482447B210001EE8D6 /* knight.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = knight.cc; path = ../../knight.cc; sourceTree = "<group>"; };
+		6A6F47492447B210001EE8D6 /* rook.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rook.cc; path = ../../rook.cc; sourceTree = "<group>"; };
+		6A6F474A2447B210001EE8D6 /* piece.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = piece.cc; path = ../../piece.cc; sourceTree = "<group>"; };
+		6A6F474B2447B211001EE8D6 /* king.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = king.h; path = ../../king.h; sourceTree = "<group>"; };
+		6A6F474C2447B211001EE8D6 /* knight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = knight.h; path = ../../knight.h; sourceTree = "<group>"; };
+		6A6F474D2447B211001EE8D6 /* bishop.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bishop.cc; path = ../../bishop.cc; sourceTree = "<group>"; };
+		6A6F474E2447B211001EE8D6 /* piece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = piece.h; path = ../../piece.h; sourceTree = "<group>"; };
+		6A6F474F2447B211001EE8D6 /* pawn.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pawn.cc; path = ../../pawn.cc; sourceTree = "<group>"; };
+		6A6F47502447B211001EE8D6 /* bishop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bishop.h; path = ../../bishop.h; sourceTree = "<group>"; };
+		6A6F47512447B211001EE8D6 /* queen.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = queen.cc; path = ../../queen.cc; sourceTree = "<group>"; };
+		6A6F47522447B211001EE8D6 /* king.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = king.cc; path = ../../king.cc; sourceTree = "<group>"; };
+		6A6F47532447B211001EE8D6 /* pawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pawn.h; path = ../../pawn.h; sourceTree = "<group>"; };
+		6A6F47542447B211001EE8D6 /* rook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rook.h; path = ../../rook.h; sourceTree = "<group>"; };
+		6A6F475C2447B21F001EE8D6 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = window.h; path = ../../chessFrame_Jasper/window.h; sourceTree = "<group>"; };
+		6A6F475D2447B21F001EE8D6 /* textdisplay.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = textdisplay.cc; path = ../../chessFrame_Jasper/textdisplay.cc; sourceTree = "<group>"; };
+		6A6F475E2447B21F001EE8D6 /* info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = info.h; path = ../../chessFrame_Jasper/info.h; sourceTree = "<group>"; };
+		6A6F475F2447B220001EE8D6 /* colour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = colour.h; path = ../../chessFrame_Jasper/colour.h; sourceTree = "<group>"; };
+		6A6F47602447B220001EE8D6 /* textdisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = textdisplay.h; path = ../../chessFrame_Jasper/textdisplay.h; sourceTree = "<group>"; };
+		6A6F47612447B220001EE8D6 /* graphicsdisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = graphicsdisplay.h; path = ../../chessFrame_Jasper/graphicsdisplay.h; sourceTree = "<group>"; };
+		6A6F47622447B220001EE8D6 /* move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = move.h; path = ../../chessFrame_Jasper/move.h; sourceTree = "<group>"; };
+		6A6F47632447B220001EE8D6 /* graphicsdisplay.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = graphicsdisplay.cc; path = ../../chessFrame_Jasper/graphicsdisplay.cc; sourceTree = "<group>"; };
+		6A6F47642447B220001EE8D6 /* cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cell.h; path = ../../chessFrame_Jasper/cell.h; sourceTree = "<group>"; };
+		6A6F47652447B220001EE8D6 /* observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = observer.h; path = ../../chessFrame_Jasper/observer.h; sourceTree = "<group>"; };
+		6A6F47662447B220001EE8D6 /* subject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = subject.h; path = ../../chessFrame_Jasper/subject.h; sourceTree = "<group>"; };
+		6A6F47672447B220001EE8D6 /* window.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = window.cc; path = ../../chessFrame_Jasper/window.cc; sourceTree = "<group>"; };
+		6A6F47682447B220001EE8D6 /* board.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = board.cc; path = ../../chessFrame_Jasper/board.cc; sourceTree = "<group>"; };
+		6A6F47692447B220001EE8D6 /* cell.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cell.cc; path = ../../chessFrame_Jasper/cell.cc; sourceTree = "<group>"; };
+		6A6F476A2447B221001EE8D6 /* board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = board.h; path = ../../chessFrame_Jasper/board.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,54 +123,53 @@
 		6A52691324421B0C009DB73A /* chess */ = {
 			isa = PBXGroup;
 			children = (
-				6A3DBC202443608300ACB3C3 /* colour.h */,
-				6A3DBC1E2443608300ACB3C3 /* graphicsdisplay.cc */,
-				6A3DBC262443608300ACB3C3 /* graphicsdisplay.h */,
-				6A3DBC1F2443608300ACB3C3 /* info.h */,
-				6A3DBC182443608300ACB3C3 /* move.h */,
-				6A3DBC1A2443608300ACB3C3 /* observer.h */,
-				6A3DBC1D2443608300ACB3C3 /* subject.h */,
-				6A3DBC212443608300ACB3C3 /* textdisplay.cc */,
-				6A3DBC172443608300ACB3C3 /* textdisplay.h */,
-				6A3DBC222443608300ACB3C3 /* window.cc */,
-				6A3DBC232443608300ACB3C3 /* window.h */,
-				6A3DBC0F2443607800ACB3C3 /* bishop.cc */,
-				6A3DBC072443607700ACB3C3 /* bishop.h */,
-				6A3DBC042443607700ACB3C3 /* king.cc */,
-				6A3DBC0B2443607700ACB3C3 /* king.h */,
-				6A3DBC002443607700ACB3C3 /* knight.cc */,
-				6A3DBC0C2443607800ACB3C3 /* knight.h */,
-				6A3DBC062443607700ACB3C3 /* move.h */,
-				6A3DBC0A2443607700ACB3C3 /* pawn.cc */,
-				6A3DBC0D2443607800ACB3C3 /* pawn.h */,
-				6A3DBC082443607700ACB3C3 /* piece.cc */,
-				6A3DBC012443607700ACB3C3 /* piece.h */,
-				6A3DBC092443607700ACB3C3 /* queen.cc */,
-				6A3DBBFF2443607700ACB3C3 /* queen.h */,
-				6A3DBC0E2443607800ACB3C3 /* rook.cc */,
-				6A3DBC032443607700ACB3C3 /* rook.h */,
-				6A3DBC192443608300ACB3C3 /* cell.cc */,
-				6A3DBC1B2443608300ACB3C3 /* cell.h */,
-				6A3DBC1C2443608300ACB3C3 /* board.cc */,
-				6A3DBC242443608300ACB3C3 /* board.h */,
+				6A6F47682447B220001EE8D6 /* board.cc */,
+				6A6F476A2447B221001EE8D6 /* board.h */,
+				6A6F47692447B220001EE8D6 /* cell.cc */,
+				6A6F47642447B220001EE8D6 /* cell.h */,
+				6A6F475F2447B220001EE8D6 /* colour.h */,
+				6A6F47632447B220001EE8D6 /* graphicsdisplay.cc */,
+				6A6F47612447B220001EE8D6 /* graphicsdisplay.h */,
+				6A6F475E2447B21F001EE8D6 /* info.h */,
+				6A6F47622447B220001EE8D6 /* move.h */,
+				6A6F47652447B220001EE8D6 /* observer.h */,
+				6A6F47662447B220001EE8D6 /* subject.h */,
+				6A6F475D2447B21F001EE8D6 /* textdisplay.cc */,
+				6A6F47602447B220001EE8D6 /* textdisplay.h */,
+				6A6F47672447B220001EE8D6 /* window.cc */,
+				6A6F475C2447B21F001EE8D6 /* window.h */,
+				6A6F474D2447B211001EE8D6 /* bishop.cc */,
+				6A6F47502447B211001EE8D6 /* bishop.h */,
+				6A6F47522447B211001EE8D6 /* king.cc */,
+				6A6F474B2447B211001EE8D6 /* king.h */,
+				6A6F47482447B210001EE8D6 /* knight.cc */,
+				6A6F474C2447B211001EE8D6 /* knight.h */,
+				6A6F474F2447B211001EE8D6 /* pawn.cc */,
+				6A6F47532447B211001EE8D6 /* pawn.h */,
+				6A6F474A2447B210001EE8D6 /* piece.cc */,
+				6A6F474E2447B211001EE8D6 /* piece.h */,
+				6A6F47512447B211001EE8D6 /* queen.cc */,
+				6A6F47472447B210001EE8D6 /* queen.h */,
+				6A6F47492447B210001EE8D6 /* rook.cc */,
+				6A6F47542447B211001EE8D6 /* rook.h */,
+				6A6F47332447B1F3001EE8D6 /* chessplayer.cpp */,
+				6A6F473A2447B1F3001EE8D6 /* chessplayer.h */,
+				6A6F473D2447B1F3001EE8D6 /* computer.cpp */,
+				6A6F473E2447B1F3001EE8D6 /* computer.h */,
+				6A6F47362447B1F3001EE8D6 /* gameplayer.cpp */,
+				6A6F47392447B1F3001EE8D6 /* gameplayer.h */,
+				6A6F472F2447B1F3001EE8D6 /* human.cpp */,
+				6A6F472E2447B1F3001EE8D6 /* human.h */,
+				6A6F47382447B1F3001EE8D6 /* level1.cpp */,
+				6A6F47372447B1F3001EE8D6 /* level1.h */,
+				6A6F47342447B1F3001EE8D6 /* level2.cpp */,
+				6A6F47302447B1F3001EE8D6 /* level2.h */,
+				6A6F473C2447B1F3001EE8D6 /* level3.cpp */,
+				6A6F47322447B1F3001EE8D6 /* level3.h */,
+				6A6F47312447B1F3001EE8D6 /* level4.cpp */,
+				6A6F47352447B1F3001EE8D6 /* level4.h */,
+				6A6F473B2447B1F3001EE8D6 /* position.h */,
 				6A155837243EC89F0090D285 /* main.cpp */,
-				6A52691124421ADD009DB73A /* position.h */,
-				6A5269142442257C009DB73A /* chessplayer.cpp */,
-				6A5269152442257C009DB73A /* chessplayer.h */,
-				6A52691724422716009DB73A /* human.cpp */,
-				6A52691824422716009DB73A /* human.h */,
-				6A52691A244227E7009DB73A /* computer.cpp */,
-				6A52691B244227E7009DB73A /* computer.h */,
-				6A52691D24422853009DB73A /* level1.cpp */,
-				6A52691E24422853009DB73A /* level1.h */,
-				6A526920244228C7009DB73A /* level2.cpp */,
-				6A526921244228C7009DB73A /* level2.h */,
-				6A526923244228E6009DB73A /* level3.cpp */,
-				6A526924244228E6009DB73A /* level3.h */,
-				6A526926244228FD009DB73A /* level4.cpp */,
-				6A526927244228FD009DB73A /* level4.h */,
-				6A526929244232EE009DB73A /* gameplayer.cpp */,
-				6A52692A244232EE009DB73A /* gameplayer.h */,
 			);
 			path = chess;
 			sourceTree = "<group>";
@@ -234,28 +231,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A526925244228E6009DB73A /* level3.cpp in Sources */,
-				6A3DBC142443607800ACB3C3 /* pawn.cc in Sources */,
-				6A526922244228C7009DB73A /* level2.cpp in Sources */,
-				6A52691224421ADD009DB73A /* position.h in Sources */,
-				6A3DBC282443608400ACB3C3 /* board.cc in Sources */,
-				6A52691924422716009DB73A /* human.cpp in Sources */,
-				6A3DBC2A2443608400ACB3C3 /* textdisplay.cc in Sources */,
-				6A5269162442257C009DB73A /* chessplayer.cpp in Sources */,
-				6A3DBC152443607800ACB3C3 /* rook.cc in Sources */,
-				6A526928244228FD009DB73A /* level4.cpp in Sources */,
-				6A52692B244232EE009DB73A /* gameplayer.cpp in Sources */,
-				6A3DBC102443607800ACB3C3 /* knight.cc in Sources */,
-				6A3DBC2B2443608400ACB3C3 /* window.cc in Sources */,
-				6A52691F24422853009DB73A /* level1.cpp in Sources */,
-				6A3DBC132443607800ACB3C3 /* queen.cc in Sources */,
-				6A3DBC162443607800ACB3C3 /* bishop.cc in Sources */,
-				6A3DBC112443607800ACB3C3 /* king.cc in Sources */,
-				6A3DBC122443607800ACB3C3 /* piece.cc in Sources */,
-				6A52691C244227E7009DB73A /* computer.cpp in Sources */,
-				6A3DBC292443608400ACB3C3 /* graphicsdisplay.cc in Sources */,
+				6A6F476F2447B221001EE8D6 /* cell.cc in Sources */,
+				6A6F476E2447B221001EE8D6 /* board.cc in Sources */,
+				6A6F47432447B1F3001EE8D6 /* gameplayer.cpp in Sources */,
+				6A6F47422447B1F3001EE8D6 /* level2.cpp in Sources */,
+				6A6F47572447B212001EE8D6 /* piece.cc in Sources */,
+				6A6F47552447B212001EE8D6 /* knight.cc in Sources */,
+				6A6F475B2447B212001EE8D6 /* king.cc in Sources */,
+				6A6F47442447B1F3001EE8D6 /* level1.cpp in Sources */,
+				6A6F475A2447B212001EE8D6 /* queen.cc in Sources */,
+				6A6F47562447B212001EE8D6 /* rook.cc in Sources */,
 				6A52690C24421AB7009DB73A /* main.cpp in Sources */,
-				6A3DBC272443608300ACB3C3 /* cell.cc in Sources */,
+				6A6F47592447B212001EE8D6 /* pawn.cc in Sources */,
+				6A6F47402447B1F3001EE8D6 /* level4.cpp in Sources */,
+				6A6F473F2447B1F3001EE8D6 /* human.cpp in Sources */,
+				6A6F47452447B1F3001EE8D6 /* level3.cpp in Sources */,
+				6A6F47412447B1F3001EE8D6 /* chessplayer.cpp in Sources */,
+				6A6F47462447B1F3001EE8D6 /* computer.cpp in Sources */,
+				6A6F476D2447B221001EE8D6 /* window.cc in Sources */,
+				6A6F476C2447B221001EE8D6 /* graphicsdisplay.cc in Sources */,
+				6A6F47582447B212001EE8D6 /* bishop.cc in Sources */,
+				6A6F476B2447B221001EE8D6 /* textdisplay.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +372,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_NO_COMMON_BLOCKS = NO;
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"$(PROJECT_DIR)/build/include",
 					/usr/X11/include,
@@ -394,6 +391,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_NO_COMMON_BLOCKS = NO;
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"$(PROJECT_DIR)/build/include",
 					/usr/X11/lib,

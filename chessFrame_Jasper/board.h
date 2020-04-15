@@ -32,14 +32,14 @@ public:
     void promote(char name, Move m);
     bool isCastlingValid(Move m);
     void castle(Move m);
-    std::vector<Move> getLegalMoves(Position &pos);
+    std::vector<Move*> getLegalMoves(Position &pos);
     bool isCheckmate(Colour colour);
     bool isStalemate(Colour colour);
     Colour getWhoseTurn();
     bool isSetupComplete();
     Info getInfo(Position pos);
     std::vector<Info> getPieces();
-    std::vector<Position> threatenedBy(Position pos);
+    std::vector<Info> threatenedBy(Position pos);
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
 };
 
