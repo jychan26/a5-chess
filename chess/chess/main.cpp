@@ -20,31 +20,31 @@ using namespace std;
 
 
 int main(int argc, const char * argv[]) {
-     //cin.exceptions(ios::eofbit|ios::failbit);
-     Board board;
-     string cmd;
-     GamePlayer white{Colour::White}, black{Colour::Black};
-     Colour whoseTurn;
+    //cin.exceptions(ios::eofbit|ios::failbit);
+    Board board;
+    string cmd;
+    GamePlayer white{Colour::White}, black{Colour::Black};
+    Colour whoseTurn;
     Position pos1, pos2;
     Move move;
     istringstream iss;
-     board.init();
-     try {
-         while (true) {
-             cin >> cmd;
+    board.init();
+    try {
+        while (true) {
+            cin >> cmd;
             if (cmd == "game") {
-               string p1, p2;
-               cout << board;
-               cin >> p1 >> p2;
-               white.setPlayer(p1);
-               black.setPlayer(p2);
+                string p1, p2;
+                cout << board;
+                cin >> p1 >> p2;
+                white.setPlayer(p1);
+                black.setPlayer(p2);
                 
                 while (true) {
                     cin >> cmd;
                     whoseTurn = board.getWhoseTurn();
                     if (cmd == "move") {
-                       string m1, m2;
-                       cin >> m1 >> m2;
+                        string m1, m2;
+                        cin >> m1 >> m2;
                         pos1.col = m1.front();
                         pos2.col = m2.front();
                         m1 = m1.back();
@@ -57,8 +57,8 @@ int main(int argc, const char * argv[]) {
                         iss.clear();
                         move.from = pos1;
                         move.to = pos2;
-                       board.move(move);
-                       cout << board;
+                        board.move(move);
+                        cout << board;
                         if (board.isCheckmate(whoseTurn)) {
                             cout << "Checkmate! ";
                             if (white.win(whoseTurn)) cout << "White wins!";
@@ -81,7 +81,7 @@ int main(int argc, const char * argv[]) {
                     }
                 }
             } else if (cmd == "setup") {
-                    cin >> cmd;
+                cin >> cmd;
                 if (cmd == "+") {
                     
                 } else if (cmd == "-") {
@@ -90,11 +90,10 @@ int main(int argc, const char * argv[]) {
                     
                 } else if (cmd == "done") {
                     if (board.isSetupComplete()) break;
-                    cout << board;
                     cout << "Please make sure that: \n1. the board contains exactly one white king and exactly one black king\n2.no pawns are on the first or last row of the board\n3. neither king is in check";
                 }
             }
         }
-     }
-     catch (ios::failure &) {}
+    }
+    catch (ios::failure &) {}
 }
