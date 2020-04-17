@@ -9,6 +9,9 @@ struct Position {
     char col;
     Position() {}
     Position(string str) {
+        convert(str);
+    }
+    void convert(string str) {
         col = str.front();
         str = str.back();
         istringstream iss(str);
