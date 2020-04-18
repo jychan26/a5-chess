@@ -12,6 +12,7 @@ bool King::isObeyRule(Move &m) const {
 	Position next_pos = m.to;
 
 	// movement check - if Move consists of one square in any direction
+	// assumes that initial and final positions are not equivalent
 	return ((abs(curr_pos.col - next_pos.col) <= 1) and (abs(curr_pos.row - next_pos.row) <= 1));
 }
 
