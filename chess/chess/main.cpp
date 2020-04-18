@@ -72,7 +72,7 @@ int main(int argc, const char * argv[]) {
                             board.init();
                             break;
                         }
-                    } else if (cmd == "resign") {
+                     else if (cmd == "resign") {
                         whoseTurn = board.getWhoseTurn();
                         if (white.win(whoseTurn)) cout << "White wins!";
                         if (black.win(whoseTurn)) cout << "Black wins!";

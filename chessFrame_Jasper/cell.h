@@ -17,7 +17,7 @@ public:
     ~Cell();
     void setPiece(char name);
     void removePiece();
-    Piece *&moveFrom();
+    Piece *moveFrom();
     void moveTo(Piece *&);
     Info getInfo() const override;
     bool isObeyRule(Move &m);
