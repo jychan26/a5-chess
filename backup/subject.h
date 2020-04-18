@@ -7,13 +7,10 @@
 class Subject {
     std::vector<Observer *> observers;
 public:
-    void attach(Observer *o) {
-        observers.emplace_back(o);
-    }
-    void notifyObservers() {
-        for (auto &ob : observers) ob->notify(*this);
-    }
+    void attach(Observer *o);
+    void notifyObservers();
     virtual Info getInfo() const = 0;
 };
+
 #endif
 
