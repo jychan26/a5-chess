@@ -192,6 +192,16 @@ vector<Position> Board::getInBetweenPositions(Move m) {
 
 
 
+// / / / / /
+// / / / / / needs to be implemented
+bool Board::isChecked(Colour kingColour) {
+    return false;
+}
+// / / / / /
+// / / / / /
+
+
+
 bool Board::isBlocked(vector<Position> inBetweens) {
     for (auto pos : inBetweens) {
         Piece *p = grid[pos.row - 1][pos.col - 'a'].getPiece();
@@ -416,6 +426,9 @@ Colour Board::getWhoseTurn() {
     return whoseTurn;
 }
 
+void Board::setWhoseTurn(Colour colour) {
+    whoseTurn = colour;
+}
 
 bool Board::isSetupComplete() {
     int whiteKingCount = 0;
@@ -442,6 +455,16 @@ bool Board::isSetupComplete() {
 
 
 
+// / / / / /
+// / / / / / needs to be implemented
+vector<Info> Board::threatenedBy(Position pos, Colour myColour) {
+    vector<Info> v;
+    return v;
+}
+// / / / / /
+// / / / / /
+
+
 ostream &operator<<(ostream &out, const Board &b) {
     if (b.td != nullptr) {
         out << *(b.td);
@@ -449,74 +472,3 @@ ostream &operator<<(ostream &out, const Board &b) {
     return out;
 }
 
-
-
-
-std::vector<Move*> Board::getLegalMoves(Position &pos) {
-    std::vector<Move*> moves = grid[pos.col - 'a'][pos.row - 1].getLegalMoves();
-    for (vector<Move*>::iterator it= moves.begin(); it < moves.end(); ++it) {
-        // if (isBlocked(getInBetweenPositions(**it))) moves.erase(it);
-    }
-    return moves;
-}
-
-std::vector<Info> Board::getPieces() {
-    vector<Info> pieces;
-    for (map<std::string, Info>::iterator it = piecesOnBoard.begin(); it != piecesOnBoard.end(); it++) {
-        pieces.push_back(it->second);
-    }
-    return pieces;
-}
-
-std::vector<Info> Board::threatenedBy(Position pos, Colour myColour) {
-    std::vector<Info> threatenInfo;
-    Colour oppoColour = Colour::White;
-    if (myColour == oppoColour) oppoColour = Colour::Black;
-    vector<Move *> allLegalMoves = getAllLegalMoves(oppoColour);
-    for (Move *move: allLegalMoves) {
-        if (move->to == pos) threatenInfo.push_back(grid[pos.col - 'a'][pos.row - 1].getInfo());
-    }
-    for (Move *move: allLegalMoves) {delete move;}
-    return threatenInfo;
-}
-
-bool Board::isCheckmate(Colour colour) {
-    for (int i = 0; i < kings.size(); i++) {
-        // if (kings[i].piece && kings[i].piece->getPieceColour() == colour) return false;
-    }
-    return true;
-}
-
-bool Board::isChecked(Colour kingColour) {
-    Colour oppoColour = Colour::White;
-    if (kingColour == oppoColour) oppoColour = Colour::Black;
-    for (map<std::string, Info>::iterator it = kings.begin(); it != kings.end(); it++) {
-        if (it->second.piece && it->second.piece->getPieceColour() == kingColour) {
-            if (threatenedBy(it->second.pos, kingColour).size()) return true;
-        }
-    }
-    return false;
-}
-
-bool Board::setWhoseTurn(Colour colour) {
-    whoseTurn = colour;
-    return true;
-}
-
-std::vector<Move*> Board::getAllLegalMoves(Colour myColour) {
-    vector<Move*> allLegalMoves, moves;
-    Position pos;
-    Piece* piece;
-    
-    for (Info &pieceInfo: getPieces()) {
-        pos = pieceInfo.pos;
-        piece = pieceInfo.piece;
-        if (piece->getPieceColour() == myColour) {
-            moves = getLegalMoves(pos);
-            allLegalMoves.insert(allLegalMoves.end(),moves.begin(),moves.end());
-        }
-    }
-    return allLegalMoves;
-}
-
-Info Board::getInfo(Position pos) {return grid[pos.col - 'a'][pos.row - 1].getInfo();}

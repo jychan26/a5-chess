@@ -24,7 +24,6 @@ public:
     void moveTo(Piece *&);
     bool isObeyRule(Move m);
     std::vector<Position> getInBetweenPositions(Move m);
-    std::vector<Move*> getLegalMoves();
     void promote(char name);
 };
 

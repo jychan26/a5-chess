@@ -104,5 +104,3 @@ void Cell::promote(char name) {
     piece = createPiece(name);
     this->notifyObservers();
 }
-
-std::vector<Move*> Cell::getLegalMoves() {return piece->getLegalMoves(pos);}
