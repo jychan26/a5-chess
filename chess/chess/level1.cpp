@@ -13,11 +13,11 @@ using namespace std;
 Level1::Level1(Colour colour, Board *board): Computer(colour, board) {}
 Move Level1::nextMove() {
     Move randMove;
-//    vector<Move *> allLegalMoves;
-//    
-//    // get legal moves
-//    allLegalMoves = board->getAllLegalMoves(colour);
-//    randMove = *allLegalMoves[int(rand() * allLegalMoves.size())];
-//    for (Move *move: allLegalMoves) {delete move;}
+    vector<Move *> allLegalMoves;
+    
+    // get legal moves
+    allLegalMoves = board->getAllLegalMoves(colour);
+    randMove = *allLegalMoves[int(rand() * allLegalMoves.size())];
+    for (Move *move: allLegalMoves) {delete move;}
     return randMove;
 }
