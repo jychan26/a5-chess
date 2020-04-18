@@ -16,7 +16,7 @@ protected:
     Colour colour;
     Board *board;
 public:
-    Computer(Colour colour);
+    Computer(Colour colour, Board *board);
     virtual Move nextMove() = 0;
 };
 
