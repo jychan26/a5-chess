@@ -14,7 +14,7 @@
 class Level3: public Computer{
   
 public:
-    Level3(Colour colour);
+    Level3(Colour colour, Board *board);
     Move nextMove() override;
 };
 #endif /* level3_hpp */

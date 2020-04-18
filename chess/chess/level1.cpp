@@ -10,7 +10,7 @@
 #include <vector>
 using namespace std;
 
-Level1::Level1(Colour colour): Computer(colour) {}
+Level1::Level1(Colour colour, Board *board): Computer(colour, board) {}
 Move Level1::nextMove() {
     Move randMove;
 //    vector<Move *> allLegalMoves;
