@@ -24,7 +24,7 @@ public:
     std::vector<Position> getInBetweenPositions(Move &m);
     void promote(char name);
     bool isFirstMove();
-    std::vector<Move> getLegalMoves();
+    std::vector<Move*> getLegalMoves();
 };
 
 #endif

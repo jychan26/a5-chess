@@ -16,8 +16,8 @@ class Board {
     TextDisplay *td = nullptr;
     GraphicsDisplay *gd = nullptr;
     std::vector<Move> history;
-    std::vector<Cell *> piecesOnBoard;
-    std::vector<Cell *> kings;
+    std::vector<Info> piecesOnBoard;
+    std::vector<Info> kings;
     Colour whoseTurn;
 public:
     ~Board();
@@ -32,11 +32,16 @@ public:
     void promote(char name, Move m);
     bool isCastlingValid(Move m);
     void castle(Move m);
-    std::vector<Move> getLegalMoves(Position &pos);
+    std::vector<Move*> getLegalMoves(Position &pos);
+    std::vector<Move*> getAllLegalMoves(Colour myColour);
     bool isCheckmate(Colour colour);
     bool isStalemate(Colour colour);
     Colour getWhoseTurn();
     bool isSetupComplete();
+    Info getInfo(Position pos);
+    std::vector<Info> getPieces();
+    std::vector<Info> threatenedBy(Position pos, Colour myColour);
+    bool setWhoseTurn(Colour colour);
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
 };
 

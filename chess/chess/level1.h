@@ -14,7 +14,7 @@
 class Level1: public Computer{
   
 public:
-    Level1(Colour colour);
+    Level1(Colour colour, Board *board);
     Move nextMove() override;
 };
 #endif /* level1_hpp */
