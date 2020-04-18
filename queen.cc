@@ -15,6 +15,7 @@ bool Queen::isObeyRule(Move &m) const {
 	int row_diff_abs{abs(curr_pos.row - next_pos.row)};
 
 	// movement check (if direction from Move is valid regardless of being blocked)
+	// assumes that initial and final positions are not equivalent
 	return ((col_diff_abs == 0) or 
 		(row_diff_abs == 0) or 
 		(col_diff_abs == row_diff_abs));
