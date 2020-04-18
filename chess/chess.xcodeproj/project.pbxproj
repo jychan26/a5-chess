@@ -28,6 +28,7 @@
 		6A6F476D2447B221001EE8D6 /* window.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47672447B220001EE8D6 /* window.cc */; };
 		6A6F476E2447B221001EE8D6 /* board.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47682447B220001EE8D6 /* board.cc */; };
 		6A6F476F2447B221001EE8D6 /* cell.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47692447B220001EE8D6 /* cell.cc */; };
+		6A6F4772244BB00E001EE8D6 /* errormessage.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F4771244BB00D001EE8D6 /* errormessage.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,6 +92,8 @@
 		6A6F47682447B220001EE8D6 /* board.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = board.cc; path = ../../chessFrame_Jasper/board.cc; sourceTree = "<group>"; };
 		6A6F47692447B220001EE8D6 /* cell.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cell.cc; path = ../../chessFrame_Jasper/cell.cc; sourceTree = "<group>"; };
 		6A6F476A2447B221001EE8D6 /* board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = board.h; path = ../../chessFrame_Jasper/board.h; sourceTree = "<group>"; };
+		6A6F4770244BB00D001EE8D6 /* errormessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = errormessage.h; path = ../../chessFrame_Jasper/errormessage.h; sourceTree = "<group>"; };
+		6A6F4771244BB00D001EE8D6 /* errormessage.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = errormessage.cc; path = ../../chessFrame_Jasper/errormessage.cc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 		6A52691324421B0C009DB73A /* chess */ = {
 			isa = PBXGroup;
 			children = (
+				6A6F4771244BB00D001EE8D6 /* errormessage.cc */,
+				6A6F4770244BB00D001EE8D6 /* errormessage.h */,
 				6A6F47682447B220001EE8D6 /* board.cc */,
 				6A6F476A2447B221001EE8D6 /* board.h */,
 				6A6F47692447B220001EE8D6 /* cell.cc */,
@@ -243,6 +248,7 @@
 				6A6F47562447B212001EE8D6 /* rook.cc in Sources */,
 				6A52690C24421AB7009DB73A /* main.cpp in Sources */,
 				6A6F47592447B212001EE8D6 /* pawn.cc in Sources */,
+				6A6F4772244BB00E001EE8D6 /* errormessage.cc in Sources */,
 				6A6F47402447B1F3001EE8D6 /* level4.cpp in Sources */,
 				6A6F473F2447B1F3001EE8D6 /* human.cpp in Sources */,
 				6A6F47452447B1F3001EE8D6 /* level3.cpp in Sources */,
