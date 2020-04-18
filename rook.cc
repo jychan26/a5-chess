@@ -12,7 +12,9 @@ bool Rook::isObeyRule(Move &m) const {
 	Position curr_pos{m.from};
 	Position next_pos{m.to};
 
-	// assumes Move consists of valid positions
+	// assumes:
+	// (1) Move consists of valid positions
+	// (2) initial and final positions are not equivalent
 	// checks if Move is horizontal/vertical for any distance
 	return ((curr_pos.col == next_pos.col) or (curr_pos.row == next_pos.row));
 }
