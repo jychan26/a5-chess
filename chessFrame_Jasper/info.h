@@ -10,7 +10,6 @@ struct Info {
     Piece *piece;
     // ctor, dtor, copy ctor
     Info(Position pos, Colour cellColour, Piece *piece);
-    ~Info();
     Info(const Info &other);
 };
 

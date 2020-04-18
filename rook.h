@@ -7,7 +7,7 @@ class Rook: public Piece {
 	Rook(char name, const Colour pieceColour, const int force = 50);
 
 	bool isObeyRule(Move &) const override;
-	std::vector<Move> getLegalMoves(Position &) const override;
+	std::vector<Move*> getLegalMoves(Position) const override;
 	std::vector<Position> getInBetweenPositions(Move &) const override;
 };
 
