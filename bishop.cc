@@ -11,7 +11,9 @@ bool Bishop::isObeyRule(Move &m) const {
 	Position curr_pos{m.from};
 	Position next_pos{m.to};
 
-	// assumes Move consists of valid initial and final positions
+	// assumes:
+	// (1) Move consists of valid initial and final positions
+	// (2) initial and final positions are not equivalent
 	// checks if Move is diagonal for any distance
 	return (abs(curr_pos.col - next_pos.col) == abs(curr_pos.row - next_pos.row)); 
 }
