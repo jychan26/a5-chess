@@ -19,7 +19,7 @@ struct Position {
         iss >> row;
     }
     bool isValid() {
-        return (row >= 0 && row <= 7) && (col >= 'a' && col <= 'h');
+        return (row >= 1 && row <= 8) && (col >= 'a' && col <= 'h');
     }
     bool operator==(const Position &pos) const{
         return col == pos.col && row == pos.row;
