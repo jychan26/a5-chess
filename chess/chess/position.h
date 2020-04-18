@@ -8,6 +8,10 @@ struct Position {
     int row;
     char col;
     Position() {}
+    Position(int row, char col)  {
+	row = row;
+	col = col;
+    }
     Position(string str) {
         convert(str);
     }
@@ -18,7 +22,7 @@ struct Position {
         iss >> row;
     }
     bool isValid() {
-        return (row >= 0 && row <= 7) && (col >= 'a' && col <= 'h');
+        return (row >= 1 && row <= 8) && (col >= 'a' && col <= 'h');
     }
     bool operator==(const Position &pos) const{
         return col == pos.col && row == pos.row;

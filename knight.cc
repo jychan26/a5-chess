@@ -7,11 +7,19 @@ using namespace std;
 Knight::Knight(char name, const Colour pieceColour, const int force) :
 	Piece{name, pieceColour, force} {}
 
-bool Knight::isObeyRule(Move &m) const { // TODO
-	return true;
+bool Knight::isObeyRule(Move &m) const {
+	Position curr_pos{m.from};
+	Position next_pos{m.to};
+
+	int row_diff_abs{abs(curr_pos.row - next_pos.row)};
+	int col_diff_abs{abs(curr_pos.col - next_pos.col)};
+
+	// assumes Move consists of valid intiial and final positions
+	return (((row_diff_abs == 2) and (col_diff_abs == 1)) or
+		((row_diff_abs == 1) and (col_diff_abs == 2)));
 }
 
-vector<Move*> Knight::getLegalMoves(Position pos) const { //TODO
+vector<Move*> Knight::getLegalMoves(Position pos) const {
 	vector<Move*> moves;
     Position dest;
     for (int i = -1; i < 2; i += 2) {
@@ -26,4 +34,5 @@ vector<Move*> Knight::getLegalMoves(Position pos) const { //TODO
         }
     }
 	return moves;
+
 }
