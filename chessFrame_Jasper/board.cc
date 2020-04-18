@@ -61,3 +61,5 @@ std::vector<Move*> Board::getAllLegalMoves(Colour myColour) {
     }
     return allLegalMoves;
 }
+
+Info Board::getInfo(Position pos) {return grid[pos.col - 'a'][pos.row - 1].getInfo();}
