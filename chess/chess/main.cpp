@@ -25,10 +25,10 @@ int main(int argc, const char * argv[]) {
     board.init();
     cout << board;
     
-    for (Move *randMove: board.getAllLegalMoves(Colour::White)) {
-        cout << randMove->from.col << randMove->from.row << "|" << randMove->to.col << randMove->to.row << " ";
-    }
-    cout << endl;
+//    for (Move *randMove: board.getAllLegalMoves(Colour::White)) {
+//        cout << randMove->from.col << randMove->from.row << "|" << randMove->to.col << randMove->to.row << " ";
+//    }
+//    cout << endl;
     
     try {
         while (true) {
@@ -36,10 +36,16 @@ int main(int argc, const char * argv[]) {
             if (cmd == "game") {
                 string p1, p2;
                 cout << board;
-                cin >> p1 >> p2;
-                white.setPlayer(p1, &board);
-                black.setPlayer(p2, &board);
-                
+                try {
+                    cin >> p1 >> p2;
+                    white.setPlayer(p1, &board);
+                    black.setPlayer(p2, &board);
+                    if (!white.isValid() || !black.isValid()) {
+                        throw ErrorMessage{"Invalid player name."};
+                    }
+                } catch (ErrorMessage &e) {
+                    cout << e.getErrorMessage() << endl;
+                }
                 while (true) {
                     cin >> cmd;
                     whoseTurn = board.getWhoseTurn();

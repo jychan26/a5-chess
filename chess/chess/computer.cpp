@@ -9,8 +9,14 @@
 #include "computer.h"
 Computer::Computer(Colour colour, Board *board): colour(colour), board(board) {}
 
-char Computer::getPromotion() {
-    return 'Q';
+Move Computer::nextMove() {
+    Move move;
+    return move;
 }
+
+char Computer::getPromotion() {
+    return NULL;
+}
+
 
 
