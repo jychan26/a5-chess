@@ -23,15 +23,15 @@ static int forceThreaten(Board *board, Move m, Colour myColour) {
 
 Level3::Level3(Colour colour, Board *board): Computer(colour, board) {}
 Move Level3::nextMove() {
-    vector<Move*> bestMoves, allLegalMoves, moves;
+    vector<Move*> sortedMoves, allLegalMoves, moves;
     Position pos, from, to;
     Move bestMove;
     vector<Info> threatenedPieces;
-    int idx = 0;
+    int nofBestMoves = 0;
     int advantage1, advantage2, threaten1, threaten2;
     // get legal moves
     allLegalMoves = board->getAllLegalMoves(colour);
-    bestMoves.push_back(allLegalMoves[idx]);
+    sortedMoves.push_back(allLegalMoves[0]);
     
     // get threatenedPieces
 //    for (Info &pieceInfo: board->getPieces()) {
@@ -50,12 +50,12 @@ Move Level3::nextMove() {
 //        }
 //    }
     
-    // sort the bestMoves
+    // sort the sortedMoves
     for (int i = 1; i < allLegalMoves.size(); i++) {
-        for (vector<Move*>::iterator it= bestMoves.begin(); it != bestMoves.end(); it += 1) {
+        for (vector<Move*>::iterator it= sortedMoves.begin(); it != sortedMoves.end(); it += 1) {
             Move currentMove = **it;
-            if (it == bestMoves.end() - 1) {
-                bestMoves.push_back(allLegalMoves[i]);
+            if (it == sortedMoves.end() - 1) {
+                sortedMoves.push_back(allLegalMoves[i]);
                 break;
             }
             advantage1 = forceAdvantage(board, *allLegalMoves[i]);
@@ -63,29 +63,34 @@ Move Level3::nextMove() {
             threaten1 = forceThreaten(board, *allLegalMoves[i], colour);
             threaten2 = forceThreaten(board, currentMove, colour);
             if (advantage1 - threaten1 >= advantage2 - threaten2) {
-                bestMoves.insert(it, allLegalMoves[i]);
+                if (advantage1 - threaten1 == advantage2 - threaten2) {
+                    nofBestMoves += 1;
+                } else {
+                    nofBestMoves = 1;
+                }
+                sortedMoves.insert(it, allLegalMoves[i]);
                 break;
             }
         }
     }
-    
+
 
     
 //    for (vector<Info>::iterator it = threatenedPieces.begin(); it < threatenedPieces.end(); ++it) {
 //        Info currentPiece = *it;
 //        for (int i = 1; i < allLegalMoves.size(); i++) {
-//            if (currentPiece.pos == allLegalMoves[i]->from) {bestMoves.push_back(allLegalMoves[i]);}
+//            if (currentPiece.pos == allLegalMoves[i]->from) {sortedMoves.push_back(allLegalMoves[i]);}
 //        }
 //    }
 //
-//    if (bestMoves.size() == 0)  {
+//    if (sortedMoves.size() == 0)  {
 //
 //    }
 
     
-//    int random = 0;
-//    if (bestMoves.size() >= 1) random = rand() % bestMoves.size();
-    bestMove = *bestMoves[0];
+    int random = 0;
+    if (sortedMoves.size() >= 1) random = rand() % nofBestMoves;
+    bestMove = *sortedMoves[random];
     for (Move *move: allLegalMoves) {delete move;}
     return bestMove;
 }

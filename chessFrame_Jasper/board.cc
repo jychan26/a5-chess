@@ -520,13 +520,77 @@ ostream &operator<<(ostream &out, const Board &b) {
 std::vector<Move*> Board::getLegalMoves(Position &pos) {
     std::vector<Move*> moves = grid[pos.row - 1][pos.col - 'a'].getLegalMoves();
     Move m;
+    bool erase = false;
+    
     for (vector<Move*>::iterator it= moves.begin(); it < moves.end(); ++it) {
         m = **it;
+        erase = false;
         Info fromInfo = grid[m.from.row - 1][m.from.col - 'a'].getInfo(), toInfo = grid[m.to.row - 1][m.to.col - 'a'].getInfo();
-        if (isBlocked(getInBetweenPositions(m))) {
-            moves.erase(it);
-            it -= 1;
+        Colour pieceColour = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPieceColour();
+        char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
+        // raise invalid position
+        if (this->isBlocked(this->getInBetweenPositions(m))) {
+            erase = true;
+            // if move a pawn one square diagonally but there is no piece in destination cell
+            // en passant or throw error message
         } else if ((toInfo.piece != nullptr) && (fromInfo.piece->getPieceColour() == toInfo.piece->getPieceColour())) {
+            erase = true;
+        } else if ((name == 'p' || name == 'P') && this->isOneSquareDiagonal(m) &&
+                   grid[m.to.row - 1][m.to.col - 'a'].getPiece() == nullptr) {
+            // if the cell where the would-be attacked pawn should have sit has no piece,
+            
+            if (grid[m.from.row - 1][m.to.col - 'a'].getPiece() == nullptr) {
+                erase = true;
+            }
+            
+            // if the cell where the would-be attacked pawn should have sit has a piece that is not a pawn,
+            // then throw error message
+            if (grid[m.from.row-1][m.to.col-'a'].getPiece()) {
+                char besidePieceName = grid[m.from.row-1][m.to.col-'a'].getPiece()->getPiece();
+                if (besidePieceName != 'p' && besidePieceName != 'P') {
+                    erase = true;
+                }
+                
+                // en passant must be used to capture the opposing pawn, cannot capture my own pawn
+                if (!isOpponentPawn(besidePieceName)) {
+                    erase = true;
+                }
+            }
+            // if isEnPassantValid field of the captured pawn is false, i.e. the opposing pawn does not
+            // make a two-square move or the attack does not immediately follow, then throw error message
+            if (grid[m.from.row - 1][m.to.col - 'a'].getPiece()) {
+                if (!grid[m.from.row - 1][m.to.col - 'a'].getPiece()->getIsEnPassantValid()) {
+                    erase = true;
+                }
+            }
+            
+            if (grid[m.to.row - 1][m.to.col - 'a'].getPiece() != nullptr) {
+                // cannot capture your own's piece
+                pieceColour = grid[m.to.row - 1][m.to.col - 'a'].getPiece()->getPieceColour();
+                if (whoseTurn == pieceColour) {
+                    string s;
+                    erase = true;
+                }
+                
+                // move does not obey the rule of piece's movement
+            }
+        }
+        //    else {
+        //
+        //            Info fromInfo = grid[m.from.row - 1][m.from.col - 'a'].getInfo(), toInfo = grid[m.to.row - 1][m.to.col - 'a'].getInfo();
+        //            if (isBlocked(getInBetweenPositions(m))) {
+        //                moves.erase(it);
+        //                it -= 1;
+        //            } else if ((toInfo.piece != nullptr) && (fromInfo.piece->getPieceColour() == toInfo.piece->getPieceColour())) {
+        //                moves.erase(it);
+        //                it -= 1;
+        //            } else if (fromInfo.piece ) {
+        //
+        //            }
+        //        }
+        
+        // erase the move not satisfied
+        if (erase == true) {
             moves.erase(it);
             it -= 1;
         }
