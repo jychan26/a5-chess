@@ -26,7 +26,15 @@ bool Piece::getFirstMove() const {
 void Piece::setFirstMove(bool b) {
 	firstMove = b;
 }
-	
+
+bool Piece::getIsEnPassantValid() const {
+	return isEnPassantValid;
+}
+
+void Piece::setIsEnPassantValid(bool b) {
+	isEnPassantValid = b;
+}
+
 vector<Position> Piece::getInBetweenPositions(Move &m) const {
 	vector<Position> positions;
 	return positions;

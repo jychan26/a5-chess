@@ -12,6 +12,7 @@ class Piece { // abstract class
 	Colour pieceColour;
 	int force;
 	bool firstMove = true;
+	bool isEnPassantValid = false;
 
 	public:
 	Piece(char name, const Colour pieceColour, const int force); // ctor
@@ -21,6 +22,8 @@ class Piece { // abstract class
 	int getForce() const; // get force field
 	bool getFirstMove() const; // get firstMove field
 	void setFirstMove(bool); // set firstMove field
+	bool getIsEnPassantValid() const; // get isEnPassantValid field
+	void setIsEnPassantValid(bool); // set isEnPassantValid field
 
 	virtual bool isObeyRule(Move &) const = 0; // does Move agree with Piece's movement (in terms of direction and distance)?
 	virtual std::vector<Position> getInBetweenPositions(Move &) const; // get positions between Move that Piece could otherwise have validly landed on

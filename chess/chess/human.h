@@ -11,10 +11,14 @@
 
 #include <stdio.h>
 #include "chessplayer.h"
+#include <sstream>
+#include <string>
+#include <iostream>
 class Human: public ChessPlayer{
-  
+    char promotion;
 public:
     Move nextMove() override;
+    char getPromotion() override;
 };
 
 #endif /* human_hpp */
