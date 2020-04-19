@@ -701,3 +701,39 @@ bool Board::isPawnMoveTwoSquares(Move m) {
         return m.to.row - m.from.row == -2;
     }
 }
+
+bool Board::undoMove() {
+    if (history.size() == 0) return false;
+    char piece;
+    int offset;
+    Cell *from, *to;
+    Colour myColour;
+    Move lastMove = history.back();
+    history.pop_back();
+    lastMove.reverse();
+    
+    from = &grid[lastMove.from.row - 1][lastMove.from.col - 'a'];
+    to = &grid[lastMove.to.row - 1][lastMove.to.col - 'a'];
+    myColour = from->getInfo().piece->getPieceColour();
+    if (lastMove.promotion) {
+        if (myColour == Colour::White) {
+            piece = 'P';
+        } else piece = 'p';
+        from->removePiece();
+        to->setPiece(piece);
+    } else if (lastMove.enPassant) {
+        if (myColour == Colour::White) {
+            offset = -1;
+        } else offset = 1;
+        move(lastMove);
+        grid[lastMove.from.row - 1 + offset][lastMove.from.col - 'a'].setPiece(lastMove.captured);
+    } else if (lastMove.castling) {
+        undoMove();
+    } else if (!(lastMove.captured == '/')) {
+        move(lastMove);
+        from->setPiece(lastMove.captured);
+    } else{
+        move(lastMove);
+    }
+    return true;
+}
