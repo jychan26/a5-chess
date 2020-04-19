@@ -599,3 +599,41 @@ Info Board::getInfo(Position pos) {return grid[pos.row - 1][pos.col - 'a'].getIn
 
 
 bool Board::isStalemate(Colour colour) {return false;}
+
+
+bool Board::isOpponentPawn(char name) {
+    if (whoseTurn == Colour::White) {
+        return name == 'p';
+    } else {
+        return name == 'P';
+    }
+}
+
+bool Board::isOneSquareDiagonal(Move m) {
+    if (whoseTurn == Colour::White) {
+        if (m.to.row - m.from.row == 1 &&
+            (m.to.col - m.from.col == 1 || m.to.col - m.from.col == -1)) {
+            return true;
+        }
+        return false;
+    } else {
+        if (m.to.row - m.from.row == -1 &&
+            (m.to.col - m.from.col == 1 || m.to.col - m.from.col == -1)) {
+            return true;
+        }
+        return false;
+    }
+}
+
+bool Board::isPawnMoveTwoSquares(Move m) {
+    if (grid[m.from.row - 1][m.from.col - 'a'].getPiece() == nullptr) return false;
+    char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
+    if (name != 'p' && name != 'P') {
+        return false;
+    }
+    if (whoseTurn == Colour::White) {
+        return m.to.row - m.from.row == 2;
+    } else {
+        return m.to.row - m.from.row == -2;
+    }
+}
