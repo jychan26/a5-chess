@@ -4,56 +4,54 @@
 #include "cell.h"
 #include "board.h"
 #include "errormessage.h"
+#include "level1.h"
+#include "level2.h"
+#include "level3.h"
+#include "level4.h"
+#include "human.h"
+#include "gameplayer.h"
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    cin.exceptions(ios::eofbit|ios::failbit);
+    //cin.exceptions(ios::eofbit|ios::failbit);
     Board board;
     string cmd;
-//    GamePlayer white{Colour::White}, black{Colour::Black};
+    GamePlayer white{Colour::White}, black{Colour::Black};
+    GamePlayer *currentPlayer;
     Colour whoseTurn;
     Position pos1, pos2;
     Move move;
     istringstream iss;
     board.init();
     cout << board;
+    
+    for (Move *randMove: board.getAllLegalMoves(Colour::White)) {
+        cout << randMove->from.col << randMove->from.row << "|" << randMove->to.col << randMove->to.row << " ";
+    }
+    cout << endl;
+    
     try {
         while (true) {
             cin >> cmd;
             if (cmd == "game") {
-//                string p1, p2;
-//                cout << board;
-//                cin >> p1 >> p2;
-//                white.setPlayer(p1);
-//                black.setPlayer(p2);
+                string p1, p2;
+                cout << board;
+                cin >> p1 >> p2;
+                white.setPlayer(p1, &board);
+                black.setPlayer(p2, &board);
                 
                 while (true) {
                     cin >> cmd;
-//                    whoseTurn = board.getWhoseTurn();
+                    whoseTurn = board.getWhoseTurn();
                     if (cmd == "move") {
-                        string line;
-                        getline(cin, line);
-                        istringstream iss_line{line};
-                        string m1, m2;
-                        iss_line >> m1 >> m2;
-//                        pos1.col = m1.front();
-//                        pos2.col = m2.front();
-//                        m1 = m1.back();
-//                        m2 = m2.back();
-//                        iss.str(m1);
-//                        iss >> pos1.row;
-//                        iss.clear();
-//                        iss.str(m2);
-//                        iss >> pos2.row;
-//                        iss.clear();
-                        pos1.convert(m1);
-                        pos2.convert(m2);
-                        move.from = pos1;
-                        move.to = pos2;
-                        move.promotion = false;
-                        move.castling = false;
-                        char type;
-                        if (iss_line >> type) {
+                        if (whoseTurn == white.getColour()) {
+                            currentPlayer = &white;
+                        } else {
+                            currentPlayer = &black;
+                        }
+                        move = currentPlayer->nextMove();
+                        char type = currentPlayer->getPromotion();
+                        if (type) {
                             try {
                                 move.promotion = true;
                                 board.promote(type, move);
@@ -61,7 +59,8 @@ int main(int argc, const char * argv[]) {
                             } catch (ErrorMessage &e) {
                                 cout << e.getErrorMessage() << endl;
                             }
-                        } else if (board.isCastlingValid(move)) {
+                        }
+                        if (board.isCastlingValid(move)) {
                             move.castling = true;
                             board.castle(move);
                             cout << board;
@@ -73,26 +72,25 @@ int main(int argc, const char * argv[]) {
                                 cout << e.getErrorMessage() << endl;
                             }
                         }
-//                        if (board.isCheckmate(whoseTurn)) {
-//                            cout << "Checkmate! ";
-//                            if (white.win(whoseTurn)) cout << "White wins!";
-//                            if (black.win(whoseTurn)) cout << "Black wins!";
-//                            board.init();
-//                            break;
-//                        } else if (board.isStalemate(whoseTurn)) {
-//                            white.stalemate();
-//                            black.stalemate();
-//                            cout << "Stalemate! ";
-//                            board.init();
-//                            break;
-//                        }
-//                    } else if (cmd == "resign") {
-//                        whoseTurn = board.getWhoseTurn();
-//                        if (white.win(whoseTurn)) cout << "White wins!";
-//                        if (black.win(whoseTurn)) cout << "Black wins!";
-//                        board.init();
-//                        break;
-//                    }
+                        if (board.isCheckmate(whoseTurn)) {
+                            cout << "Checkmate! ";
+                            if (white.win(whoseTurn)) cout << "White wins!";
+                            if (black.win(whoseTurn)) cout << "Black wins!";
+                            board.init();
+                            break;
+                        } else if (board.isStalemate(whoseTurn)) {
+                            white.stalemate();
+                            black.stalemate();
+                            cout << "Stalemate! ";
+                            board.init();
+                            break;
+                        }
+                    } else if (cmd == "resign") {
+                        whoseTurn = board.getWhoseTurn();
+                        if (white.win(whoseTurn)) cout << "White wins!";
+                        if (black.win(whoseTurn)) cout << "Black wins!";
+                        board.init();
+                        break;
                     }
                 } // end of while loop inside game
             } else if (cmd == "setup") {
@@ -142,5 +140,5 @@ int main(int argc, const char * argv[]) {
                 }
             } // end of setup
         }
-    } catch (ios::failure &) {}
+    } catch (ios::failure &e) {}
 }
