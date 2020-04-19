@@ -60,7 +60,7 @@ vector<Position> Pawn::getInBetweenPositions(Move &m) const {
 	Position curr_pos{m.from};
 	Position next_pos{m.to};
 
-	// assumes Move is valid 
+	// assumes that Pawn::isObeyRule returns True already 
 	int row_diff = abs(next_pos.row - curr_pos.row);
 	if (this->getFirstMove() and (row_diff == 2)) {
 		if (getPieceColour() == Colour::White) {
