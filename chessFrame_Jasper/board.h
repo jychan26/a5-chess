@@ -48,6 +48,9 @@ public:
     std::vector<Info> getPieces();
     std::vector<Info> threatenedBy(Position pos, Colour myColour);
     bool setWhoseTurn(Colour colour);
+    bool isOpponentPawn(char name);
+    bool isOneSquareDiagonal(Move m);
+    bool isPawnMoveTwoSquares(Move m);
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
 };
 
