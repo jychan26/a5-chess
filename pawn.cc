@@ -26,8 +26,8 @@ bool Pawn::isObeyRule(Move &m) const {
 	// Move consists of valid initial and final positions
 	// initial and final positions are not equal
 	return ((col_diff == 0) and // vertical
-			(this->getFirstMove() and (row_diff <= 2)) or
-			(not(this->getFirstMove()) and (row_diff == 1))
+		((this->getFirstMove() and (row_diff <= 2)) or
+		  (not(this->getFirstMove()) and (row_diff == 1)))
 		);
 }
 
