@@ -26,6 +26,7 @@ public:
     std::vector<Position> getInBetweenPositions(Move m);
     std::vector<Move*> getLegalMoves();
     void promote(char name);
+    void setIsEnPassantValid(bool isEnPassantValid);
 };
 
 #endif

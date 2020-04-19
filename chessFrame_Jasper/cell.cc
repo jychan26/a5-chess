@@ -110,3 +110,8 @@ std::vector<Move*> Cell::getLegalMoves() {
     vector<Move*> moves;
     return moves;
 }
+
+void Cell::setIsEnPassantValid(bool isEnPassantValid) {
+    if (piece == nullptr) return;
+    piece->setIsEnPassantValid(isEnPassantValid);
+}

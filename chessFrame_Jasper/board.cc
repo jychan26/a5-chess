@@ -157,9 +157,53 @@ void Board::move(Move m) {
     //
     //
     
+    // if move a pawn one square diagonally but there is no piece in destination cell
+    // en passant or throw error message
+    bool enPassant = false;
+    char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
+    if ((name == 'p' || name == 'P') && this->isOneSquareDiagonal(m) &&
+        grid[m.to.row - 1][m.to.col - 'a'].getPiece() == nullptr) {
+        // if the cell where the would-be attacked pawn should have sit has no piece,
+        // then throw error message
+        if (grid[m.from.row - 1][m.to.col - 'a'].getPiece() == nullptr) {
+            throw ErrorMessage{"Pawn cannot move diagonally without capturing."};
+        }
+        
+        // if the cell where the would-be attacked pawn should have sit has a piece that is not a pawn,
+        // then throw error message
+        char besidePieceName = grid[m.from.row-1][m.to.col-'a'].getPiece()->getPiece();
+        if (besidePieceName != 'p' && besidePieceName != 'P') {
+            throw ErrorMessage{"Pawn cannot move diagonally without capturing."};
+        }
+        
+        // en passant must be used to capture the opposing pawn, cannot capture my own pawn
+        if (!isOpponentPawn(besidePieceName)) {
+            throw ErrorMessage{"En Passant cannot capture your own pawn."};
+        }
+        
+        // if isEnPassantValid field of the captured pawn is false, i.e. the opposing pawn does not
+        // make a two-square move or the attack does not immediately follow, then throw error message
+        if (!grid[m.from.row - 1][m.to.col - 'a'].getPiece()->getIsEnPassantValid()) {
+            throw ErrorMessage{"This move does not obey the rule of En Passant."};
+        }
+        
+        // The conditions of using en passant are satisfied, set enPassant to true
+        enPassant = true;
+    }
+    
+    // set the field isEnPassantValid of all pawns on the board to false
+    for (int r = 0; r < size; ++r) {
+        for (int c = 0; c < size; ++c) {
+            if (grid[r][c].getPiece() != nullptr &&
+                (grid[r][c].getPiece()->getPiece() == 'p' || grid[r][c].getPiece()->getPiece() == 'P')) {
+                grid[r][c].setIsEnPassantValid(false);
+            }
+        }
+    }
+    
     // if move a pawn to the other end of the board, then have to promote
     // Otherwise, throw error message
-    char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
+    name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
     Position destination = grid[m.to.row - 1][m.to.col - 'a'].getInfo().pos;
     if ((name == 'P' && destination.row == 8 && whoseTurn == Colour::White) ||
         (name == 'p' && destination.row == 1 && whoseTurn == Colour::Black)) {
@@ -168,12 +212,33 @@ void Board::move(Move m) {
         }
     }
     
-    // move the piece, modify piecesOnBoard, kings and history
-    Piece *pieceToBeMoved = grid[m.from.row - 1][m.from.col - 'a'].moveFrom();
-    this->eraseFromMap(m.from);
-    grid[m.to.row - 1][m.to.col - 'a'].moveTo(pieceToBeMoved); // Cell::moveTo will notify observers
-    this->addToMap(pieceToBeMoved->getPiece(), m.to);
-    history.emplace_back(m);
+    if (!enPassant) {
+        bool twoSquaresMove = isPawnMoveTwoSquares(m);
+        // move the piece, modify piecesOnBoard, kings and history
+        Piece *pieceToBeMoved = grid[m.from.row - 1][m.from.col - 'a'].moveFrom();
+        this->eraseFromMap(m.from);
+        // if there is a piece to capture, we need to earse the captured piece from piecesOnBoard, kings
+        if (grid[m.to.row - 1][m.to.col - 'a'].getPiece() != nullptr) {
+            this->eraseFromMap(m.to);
+        }
+        grid[m.to.row - 1][m.to.col - 'a'].moveTo(pieceToBeMoved); // Cell::moveTo will notify observers
+        // if a pawn makes a two-square move, then set its field isEnPassantValid to true
+        if (twoSquaresMove) {
+            grid[m.to.row - 1][m.to.col - 'a'].setIsEnPassantValid(true);
+        }
+        this->addToMap(pieceToBeMoved->getPiece(), m.to);
+        history.emplace_back(m);
+    } else { // en passant implementation
+        // move the attacking pawn one square diagonally
+        Piece *pawnToBeMoved = grid[m.from.row - 1][m.from.col - 'a'].moveFrom();
+        this->eraseFromMap(m.from);
+        grid[m.to.row - 1][m.to.col - 'a'].moveTo(pawnToBeMoved);
+        this->addToMap(pawnToBeMoved->getPiece(), m.to);
+        history.emplace_back(m);
+        // remove the attacked pawn from the board, modify piecesOnBoard, kings
+        grid[m.from.row - 1][m.to.col - 'a'].removePiece();
+        this->eraseFromMap(Position{m.from.row, m.to.col});
+    }
     
     // reset whoseTurn after moving the piece
     if (whoseTurn == Colour::Black) this->setWhoseTurn(Colour::White);
