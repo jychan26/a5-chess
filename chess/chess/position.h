@@ -8,10 +8,7 @@ struct Position {
     int row;
     char col;
     Position() {}
-    Position(int row, char col)  {
-	row = row;
-	col = col;
-    }
+    Position(int row, char col) : row{row}, col{col} {}
     Position(string str) {
         convert(str);
     }
