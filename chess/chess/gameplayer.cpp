@@ -11,7 +11,6 @@
 
 GamePlayer::GamePlayer(Colour colour): colour(colour), score(0) {}
 void GamePlayer::setPlayer(string playerName, Board *board) {
-    
     if (playerName == "human") {
         player = new Human;
     } else if (playerName == "computer[1]") {
@@ -22,10 +21,14 @@ void GamePlayer::setPlayer(string playerName, Board *board) {
         player = new Level3(colour, board);
     } else if (playerName == "computer[4]") {
         player = new Level4(colour, board);
+    } else {
+        player = nullptr;
     }
 }
 Move GamePlayer::nextMove() {
-    return player->nextMove();
+    if (player) return player->nextMove();
+    Move move;
+    return move;
 }
 GamePlayer::~GamePlayer() {
     delete player;
@@ -40,3 +43,8 @@ bool GamePlayer::win(Colour colour) {
 void GamePlayer::stalemate() {score += 0.5;}
 
 char GamePlayer::getPromotion() {return player->getPromotion();}
+
+bool GamePlayer::isValid() {
+    if (player == nullptr) return false;
+    return true;
+}

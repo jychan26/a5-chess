@@ -34,6 +34,7 @@ public:
     bool win(Colour colour);
     void stalemate();
     char getPromotion();
+    bool isValid();
 
 };
 

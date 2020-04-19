@@ -13,11 +13,12 @@
 #include "chessplayer.h"
 class Computer: public ChessPlayer{
 protected:
+    char promotion;
     Colour colour;
     Board *board;
 public:
     Computer(Colour colour, Board *board);
-    virtual Move nextMove() = 0;
+    virtual Move nextMove() override;
     char getPromotion() override;
 };
 

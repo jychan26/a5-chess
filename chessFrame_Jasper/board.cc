@@ -555,8 +555,10 @@ std::vector<Info> Board::threatenedBy(Position pos, Colour myColour) {
 }
 
 bool Board::isCheckmate(Colour colour) {
+    Colour oppoColour = Colour::White;
+    if (colour == oppoColour) oppoColour = Colour::Black;
     for (map<std::string, Info>::iterator it = kings.begin(); it != kings.end(); it++) {
-        if (it->second.piece && it->second.piece->getPieceColour() == colour) return false;
+        if (it->second.piece && it->second.piece->getPieceColour() == oppoColour) return false;
     }
     return true;
 }
