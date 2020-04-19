@@ -93,6 +93,8 @@ int main(int argc, const char * argv[]) {
                         if (black.win(whoseTurn)) cout << "Black wins!";
                         board.init();
                         break;
+                    } else if (cmd == "undo") {
+                        if (board.undoMove()) cout << board;
                     }
                 } // end of while loop inside game
             } else if (cmd == "setup") {

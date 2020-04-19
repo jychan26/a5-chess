@@ -52,6 +52,7 @@ public:
     bool isOneSquareDiagonal(Move m);
     bool isPawnMoveTwoSquares(Move m);
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
+    bool undoMove();
 };
 
 
