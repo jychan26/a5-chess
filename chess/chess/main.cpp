@@ -25,11 +25,6 @@ int main(int argc, const char * argv[]) {
     board.init();
     cout << board;
     
-//    for (Move *randMove: board.getAllLegalMoves(Colour::White)) {
-//        cout << randMove->from.col << randMove->from.row << "|" << randMove->to.col << randMove->to.row << " ";
-//    }
-//    cout << endl;
-    
     try {
         while (true) {
             cin >> cmd;
@@ -45,6 +40,7 @@ int main(int argc, const char * argv[]) {
                     }
                 } catch (ErrorMessage &e) {
                     cout << e.getErrorMessage() << endl;
+                    continue;
                 }
                 while (true) {
                     cin >> cmd;
@@ -142,6 +138,10 @@ int main(int argc, const char * argv[]) {
                         if (board.isSetupComplete()) break;
                         cout << "Please make sure that: \n1. the board contains exactly one white king and exactly one black king\n2. no pawns are on the first or last row of the board\n3. neither king is in check" << endl;
                     }
+                    for (Move *randMove: board.getAllLegalMoves(Colour::White)) {
+                        cout << randMove->from.col << randMove->from.row << "|" << randMove->to.col << randMove->to.row << " ";
+                    }
+                    cout << endl;
                     cin >> cmd;
                 }
             } // end of setup
