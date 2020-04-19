@@ -18,6 +18,7 @@ protected:
 public:
     Computer(Colour colour, Board *board);
     virtual Move nextMove() = 0;
+    char getPromotion() override;
 };
 
 

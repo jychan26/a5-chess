@@ -105,4 +105,8 @@ void Cell::promote(char name) {
     this->notifyObservers();
 }
 
-std::vector<Move*> Cell::getLegalMoves() {return piece->getLegalMoves(pos);}
+std::vector<Move*> Cell::getLegalMoves() {
+    if (piece) return piece->getLegalMoves(pos);
+    vector<Move*> moves;
+    return moves;
+}

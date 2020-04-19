@@ -11,22 +11,29 @@
 #include <string>
 #include <stdio.h>
 #include "move.h"
-#include "chessplayer.h"
+#include "level1.h"
+#include "level2.h"
+#include "level3.h"
+#include "level4.h"
+#include "human.h"
+
 using namespace std;
+
 
 class GamePlayer {
     ChessPlayer *player;
     Colour colour;
-    int score;
+    float score;
 public:
     GamePlayer(Colour colour);
-    void setPlayer(string player);
+    void setPlayer(string playerName, Board *board);
     Move nextMove();
     ~GamePlayer();
-    int getScore();
+    float getScore();
     Colour getColour();
     bool win(Colour colour);
     void stalemate();
+    char getPromotion();
 
 };
 

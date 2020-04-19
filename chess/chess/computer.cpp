@@ -8,3 +8,9 @@
 
 #include "computer.h"
 Computer::Computer(Colour colour, Board *board): colour(colour), board(board) {}
+
+char Computer::getPromotion() {
+    return 'Q';
+}
+
+

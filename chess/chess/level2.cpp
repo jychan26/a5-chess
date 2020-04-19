@@ -10,7 +10,7 @@
 #include <vector>
 using namespace std;
 
-int forceAdvantage(Board *board, Move m) {
+static int forceAdvantage(Board *board, Move m) {
     if (board->getInfo(m.to).piece == nullptr) return 0;
     return board->getInfo(m.to).piece->getForce();
     

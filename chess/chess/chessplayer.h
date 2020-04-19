@@ -16,5 +16,6 @@
 class ChessPlayer {
 public:
     virtual Move nextMove() = 0;
+    virtual char getPromotion() = 0;
 };
 #endif

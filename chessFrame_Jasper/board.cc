@@ -453,9 +453,18 @@ ostream &operator<<(ostream &out, const Board &b) {
 
 
 std::vector<Move*> Board::getLegalMoves(Position &pos) {
-    std::vector<Move*> moves = grid[pos.col - 'a'][pos.row - 1].getLegalMoves();
+    std::vector<Move*> moves = grid[pos.row - 1][pos.col - 'a'].getLegalMoves();
+    Move m;
     for (vector<Move*>::iterator it= moves.begin(); it < moves.end(); ++it) {
-        // if (isBlocked(getInBetweenPositions(**it))) moves.erase(it);
+        m = **it;
+        Info fromInfo = grid[m.from.row - 1][m.from.col - 'a'].getInfo(), toInfo = grid[m.to.row - 1][m.to.col - 'a'].getInfo();
+        if (isBlocked(getInBetweenPositions(m))) {
+            moves.erase(it);
+            it -= 1;
+        } else if ((toInfo.piece != nullptr) && (fromInfo.piece->getPieceColour() == toInfo.piece->getPieceColour())) {
+            moves.erase(it);
+            it -= 1;
+        }
     }
     return moves;
 }
@@ -474,15 +483,15 @@ std::vector<Info> Board::threatenedBy(Position pos, Colour myColour) {
     if (myColour == oppoColour) oppoColour = Colour::Black;
     vector<Move *> allLegalMoves = getAllLegalMoves(oppoColour);
     for (Move *move: allLegalMoves) {
-        if (move->to == pos) threatenInfo.push_back(grid[pos.col - 'a'][pos.row - 1].getInfo());
+        if (move->to == pos) threatenInfo.push_back(grid[pos.row - 1][pos.col - 'a'].getInfo());
     }
     for (Move *move: allLegalMoves) {delete move;}
     return threatenInfo;
 }
 
 bool Board::isCheckmate(Colour colour) {
-    for (int i = 0; i < kings.size(); i++) {
-        // if (kings[i].piece && kings[i].piece->getPieceColour() == colour) return false;
+    for (map<std::string, Info>::iterator it = kings.begin(); it != kings.end(); it++) {
+        if (it->second.piece && it->second.piece->getPieceColour() == colour) return false;
     }
     return true;
 }
@@ -519,4 +528,7 @@ std::vector<Move*> Board::getAllLegalMoves(Colour myColour) {
     return allLegalMoves;
 }
 
-Info Board::getInfo(Position pos) {return grid[pos.col - 'a'][pos.row - 1].getInfo();}
+Info Board::getInfo(Position pos) {return grid[pos.row - 1][pos.col - 'a'].getInfo();}
+
+
+bool Board::isStalemate(Colour colour) {return false;}
