@@ -51,8 +51,10 @@ public:
     bool isOpponentPawn(char name);
     bool isOneSquareDiagonal(Move m);
     bool isPawnMoveTwoSquares(Move m);
+    bool isPawnForwardStraight(Move m);
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
     bool undoMove();
+    void moveNoCapture(Move m);
 };
 
 

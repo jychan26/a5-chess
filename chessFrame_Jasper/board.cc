@@ -157,10 +157,19 @@ void Board::move(Move m) {
     //
     //
     
+    // if move a pawn straight forward, then the pawn cannot capture pieces
+    char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
+    if ((name == 'p' || name == 'P') && this->isPawnForwardStraight(m)) {
+        // if there is a piece in the destination cell, throw error message
+        if (grid[m.to.row - 1][m.to.col - 'a'].getPiece() != nullptr) {
+            throw ErrorMessage{"Pawn cannot capture on straight forward move."};
+        }
+    }
+    
     // if move a pawn one square diagonally but there is no piece in destination cell
     // en passant or throw error message
     bool enPassant = false;
-    char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
+    name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
     if ((name == 'p' || name == 'P') && this->isOneSquareDiagonal(m) &&
         grid[m.to.row - 1][m.to.col - 'a'].getPiece() == nullptr) {
         // if the cell where the would-be attacked pawn should have sit has no piece,
@@ -217,9 +226,11 @@ void Board::move(Move m) {
         // move the piece, modify piecesOnBoard, kings and history
         Piece *pieceToBeMoved = grid[m.from.row - 1][m.from.col - 'a'].moveFrom();
         this->eraseFromMap(m.from);
-        // if there is a piece to capture, we need to earse the captured piece from piecesOnBoard, kings
+        // if there is a piece to capture, we need to erase the captured piece from piecesOnBoard, kings
+        // we also need to update the field captured of move m
         if (grid[m.to.row - 1][m.to.col - 'a'].getPiece() != nullptr) {
             this->eraseFromMap(m.to);
+            m.captured = grid[m.to.row - 1][m.to.col - 'a'].getPiece()->getPiece();
         }
         grid[m.to.row - 1][m.to.col - 'a'].moveTo(pieceToBeMoved); // Cell::moveTo will notify observers
         // if a pawn makes a two-square move, then set its field isEnPassantValid to true
@@ -229,6 +240,9 @@ void Board::move(Move m) {
         this->addToMap(pieceToBeMoved->getPiece(), m.to);
         history.emplace_back(m);
     } else { // en passant implementation
+        // set the enPassant field of the move to true, update the captured field of the move
+        m.enPassant = true;
+        m.captured = grid[m.from.row - 1][m.to.col - 'a'].getPiece()->getPiece();
         // move the attacking pawn one square diagonally
         Piece *pawnToBeMoved = grid[m.from.row - 1][m.from.col - 'a'].moveFrom();
         this->eraseFromMap(m.from);
@@ -338,10 +352,10 @@ bool Board::isCastlingValid(Move m) {
     // there must be no pieces between king and rook, rook must not have previously moved,
     // and king is not in check on starting, final, in between position
     if (m.from == Position{"e1"} && m.to == Position{"g1"}) {
-        name = grid[0]['h'].getPiece()->getPiece();
+        name = grid[0]['h' - 'a'].getPiece()->getPiece();
         if (name != 'R' && name != 'r') return false;
         // rook at h1 must not have previously moved
-        rookFirstMove = grid[0]['h'].getPiece()->getFirstMove();
+        rookFirstMove = grid[0]['h' - 'a'].getPiece()->getFirstMove();
         if (!rookFirstMove) return false;
         // check if there is any piece between e1 and h1
         vector<Position> inBetweens {Position{"f1"}, Position{"g1"}};
@@ -353,10 +367,10 @@ bool Board::isCastlingValid(Move m) {
             return false;
         }
     } else if (m.from == Position{"e1"} && m.to == Position{"c1"}) {
-        name = grid[0]['a'].getPiece()->getPiece();
+        name = grid[0]['a' - 'a'].getPiece()->getPiece();
         if (name != 'R' && name != 'r') return false;
         // rook at a1 must not have previously moved
-        rookFirstMove = grid[0]['a'].getPiece()->getFirstMove();
+        rookFirstMove = grid[0]['a' - 'a'].getPiece()->getFirstMove();
         if (!rookFirstMove) return false;
         // check if there is no piece between e1 and a1
         vector<Position> inBetweens {Position{"b1"}, Position{"c1"}, Position{"d1"}};
@@ -368,10 +382,10 @@ bool Board::isCastlingValid(Move m) {
             return false;
         }
     } else if (m.from == Position{"e8"} && m.to == Position{"g8"}) {
-        name = grid[7]['h'].getPiece()->getPiece();
+        name = grid[7]['h' - 'a'].getPiece()->getPiece();
         if (name != 'R' && name != 'r') return false;
         // rook at h8 must not have previously moved
-        rookFirstMove = grid[7]['h'].getPiece()->getFirstMove();
+        rookFirstMove = grid[7]['h' - 'a'].getPiece()->getFirstMove();
         if (!rookFirstMove) return false;
         // check if there is no piece between e8 and h8
         vector<Position> inBetweens {Position{"f8"}, Position{"g8"}};
@@ -383,10 +397,10 @@ bool Board::isCastlingValid(Move m) {
             return false;
         }
     } else if (m.from == Position{"e8"} && m.to == Position{"c8"}) {
-        name = grid[7]['a'].getPiece()->getPiece();
+        name = grid[7]['a' - 'a'].getPiece()->getPiece();
         if (name != 'R' && name != 'r') return false;
         // rook at a8 must not have previously moved
-        rookFirstMove = grid[7]['a'].getPiece()->getFirstMove();
+        rookFirstMove = grid[7]['a' - 'a'].getPiece()->getFirstMove();
         if (!rookFirstMove) return false;
         // check if there is no piece between e8 and a8
         vector<Position> inBetweens {Position{"b8"}, Position{"c8"}, Position{"d8"}};
@@ -404,15 +418,15 @@ bool Board::isCastlingValid(Move m) {
 void Board::castle(Move m) {
     if (m.from == Position{"e1"} && m.to == Position{"g1"}) {
         // move king from e1 to g1, and modify piecesOnBoard, kings
-        Piece *kingToBeMoved = grid[0]['e'].moveFrom();
+        Piece *kingToBeMoved = grid[0]['e' - 'a'].moveFrom();
         this->eraseFromMap(Position{"e1"});
-        grid[0]['g'].moveTo(kingToBeMoved); // Cell::moveTo will notify observers
+        grid[0]['g' - 'a'].moveTo(kingToBeMoved); // Cell::moveTo will notify observers
         this->addToMap(kingToBeMoved->getPiece(), Position{"g1"});
         
         // move rook from h1 to f1, and modify piecesOnBoard, kings
-        Piece *rookToBeMoved = grid[0]['h'].moveFrom();
+        Piece *rookToBeMoved = grid[0]['h' - 'a'].moveFrom();
         this->eraseFromMap(Position{"h1"});
-        grid[0]['f'].moveTo(rookToBeMoved); // Cell::moveTo will notify observers
+        grid[0]['f' - 'a'].moveTo(rookToBeMoved); // Cell::moveTo will notify observers
         this->addToMap(rookToBeMoved->getPiece(), Position{"f1"});
         
         // modify history
@@ -421,15 +435,15 @@ void Board::castle(Move m) {
         history.emplace_back(rookMove);
     } else if (m.from == Position{"e1"} && m.to == Position{"c1"}) {
         // move king from e1 to c1, and modify piecesOnBoard, kings
-        Piece *kingToBeMoved = grid[0]['e'].moveFrom();
+        Piece *kingToBeMoved = grid[0]['e' - 'a'].moveFrom();
         this->eraseFromMap(Position{"e1"});
-        grid[0]['c'].moveTo(kingToBeMoved); // Cell::moveTo will notify observers
+        grid[0]['c' - 'a'].moveTo(kingToBeMoved); // Cell::moveTo will notify observers
         this->addToMap(kingToBeMoved->getPiece(), Position{"c1"});
         
         // move rook from a1 to d1, and modify piecesOnBoard, kings
-        Piece *rookToBeMoved = grid[0]['a'].moveFrom();
+        Piece *rookToBeMoved = grid[0]['a' - 'a'].moveFrom();
         this->eraseFromMap(Position{"a1"});
-        grid[0]['d'].moveTo(rookToBeMoved); // Cell::moveTo will notify observers
+        grid[0]['d' - 'a'].moveTo(rookToBeMoved); // Cell::moveTo will notify observers
         this->addToMap(rookToBeMoved->getPiece(), Position{"d1"});
         
         // modify history
@@ -438,15 +452,15 @@ void Board::castle(Move m) {
         history.emplace_back(rookMove);
     } else if (m.from == Position{"e8"} && m.to == Position{"g8"}) {
         // move king from e8 to g8, and modify piecesOnBoard, kings
-        Piece *kingToBeMoved = grid[7]['e'].moveFrom();
+        Piece *kingToBeMoved = grid[7]['e' - 'a'].moveFrom();
         this->eraseFromMap(Position{"e8"});
-        grid[7]['g'].moveTo(kingToBeMoved); // Cell::moveTo will notify observers
+        grid[7]['g' - 'a'].moveTo(kingToBeMoved); // Cell::moveTo will notify observers
         this->addToMap(kingToBeMoved->getPiece(), Position{"g8"});
         
         // move rook from h8 to f8, and modify piecesOnBoard, kings
-        Piece *rookToBeMoved = grid[7]['h'].moveFrom();
+        Piece *rookToBeMoved = grid[7]['h' - 'a'].moveFrom();
         this->eraseFromMap(Position{"h8"});
-        grid[7]['f'].moveTo(rookToBeMoved); // Cell::moveTo will notify observers
+        grid[7]['f' - 'a'].moveTo(rookToBeMoved); // Cell::moveTo will notify observers
         this->addToMap(rookToBeMoved->getPiece(), Position{"f8"});
         
         // modify history
@@ -455,15 +469,15 @@ void Board::castle(Move m) {
         history.emplace_back(rookMove);
     } else if (m.from == Position{"e8"} && m.to == Position{"c8"}) {
         // move king from e8 to c8, and modify piecesOnBoard, kings
-        Piece *kingToBeMoved = grid[7]['e'].moveFrom();
+        Piece *kingToBeMoved = grid[7]['e' - 'a'].moveFrom();
         this->eraseFromMap(Position{"e8"});
-        grid[7]['c'].moveTo(kingToBeMoved); // Cell::moveTo will notify observers
+        grid[7]['c' - 'a'].moveTo(kingToBeMoved); // Cell::moveTo will notify observers
         this->addToMap(kingToBeMoved->getPiece(), Position{"c8"});
         
         // move rook from a8 to d8, and modify piecesOnBoard, kings
-        Piece *rookToBeMoved = grid[7]['a'].moveFrom();
+        Piece *rookToBeMoved = grid[7]['a' - 'a'].moveFrom();
         this->eraseFromMap(Position{"a8"});
-        grid[7]['d'].moveTo(rookToBeMoved); // Cell::moveTo will notify observers
+        grid[7]['d' - 'a'].moveTo(rookToBeMoved); // Cell::moveTo will notify observers
         this->addToMap(rookToBeMoved->getPiece(), Position{"d8"});
         
         // modify history
@@ -702,6 +716,21 @@ bool Board::isPawnMoveTwoSquares(Move m) {
     }
 }
 
+bool Board::isPawnForwardStraight(Move m) {
+    if (grid[m.from.row - 1][m.from.col - 'a'].getPiece() == nullptr) return false;
+    char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
+    if (name != 'p' && name != 'P') {
+        return false;
+    }
+    if (whoseTurn == Colour::White) {
+        return ((m.to.row - m.from.row == 1 && m.to.col == m.from.col)
+                || m.to.row - m.from.row == 2);
+    } else {
+        return ((m.to.row - m.from.row == -1 && m.to.col == m.from.col)
+                || m.to.row - m.from.row == -2);
+    }
+}
+
 bool Board::undoMove() {
     if (history.size() == 0) return false;
     char piece;
@@ -720,20 +749,42 @@ bool Board::undoMove() {
             piece = 'P';
         } else piece = 'p';
         from->removePiece();
+        this->eraseFromMap(lastMove.from);
         to->setPiece(piece);
+        this->addToMap(piece, lastMove.to);
+        // if the pawn captured a piece before promotion,
+        // then we need to place back the captured piece onto the board
+        if (lastMove.captured != '/') {
+            from->setPiece(lastMove.captured);
+            this->addToMap(lastMove.captured, lastMove.from);
+        }
     } else if (lastMove.enPassant) {
         if (myColour == Colour::White) {
             offset = -1;
         } else offset = 1;
-        move(lastMove);
+        moveNoCapture(lastMove);
         grid[lastMove.from.row - 1 + offset][lastMove.from.col - 'a'].setPiece(lastMove.captured);
+        this->addToMap(lastMove.captured, Position{lastMove.from.row + offset, lastMove.from.col});
     } else if (lastMove.castling) {
         undoMove();
     } else if (!(lastMove.captured == '/')) {
-        move(lastMove);
+        moveNoCapture(lastMove);
         from->setPiece(lastMove.captured);
+        this->addToMap(lastMove.captured, lastMove.from);
     } else{
-        move(lastMove);
+        moveNoCapture(lastMove);
     }
     return true;
+}
+
+void Board::moveNoCapture(Move m) {
+    // assume move is valid, and move does not capture pieces
+    Cell *fromCell = &grid[m.from.row - 1][m.from.col - 'a'];
+    Cell *toCell = &grid[m.to.row - 1][m.to.col - 'a'];
+    char piece = fromCell->getInfo().piece->getPiece();
+    // move the piece, and modify piecesOnBoard, kings
+    fromCell->removePiece();
+    this->eraseFromMap(m.from);
+    toCell->setPiece(piece);
+    this->addToMap(piece, m.to);
 }
