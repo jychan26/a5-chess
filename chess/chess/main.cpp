@@ -80,7 +80,7 @@ int main(int argc, const char * argv[]) {
                             if (black.win(whoseTurn)) cout << "Black wins!";
                             board.init();
                             break;
-                        } else if (board.isStalemate(whoseTurn)) {
+                        } else if (board.isStalemate()) {
                             white.stalemate();
                             black.stalemate();
                             cout << "Stalemate! ";

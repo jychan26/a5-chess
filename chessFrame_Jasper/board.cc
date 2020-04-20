@@ -151,12 +151,6 @@ void Board::move(Move m) {
         throw ErrorMessage{"Cannot move past a piece that blocks the path."};
     }
     
-    //
-    //
-    // cannot make a move that puts your king in check
-    //
-    //
-    
     // if move a pawn straight forward, then the pawn cannot capture pieces
     char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
     if ((name == 'p' || name == 'P') && this->isPawnForwardStraight(m)) {
@@ -252,6 +246,12 @@ void Board::move(Move m) {
         // remove the attacked pawn from the board, modify piecesOnBoard, kings
         grid[m.from.row - 1][m.to.col - 'a'].removePiece();
         this->eraseFromMap(Position{m.from.row, m.to.col});
+    }
+    
+    // cannot make a move that puts your king in check
+    if (this->isChecked(whoseTurn)) {
+        this->undoMove();
+        throw ErrorMessage{"Cannot make a move that puts your king in check."};
     }
     
     // reset whoseTurn after moving the piece
@@ -676,7 +676,15 @@ std::vector<Move*> Board::getAllLegalMoves(Colour myColour) {
 Info Board::getInfo(Position pos) {return grid[pos.row - 1][pos.col - 'a'].getInfo();}
 
 
-bool Board::isStalemate(Colour colour) {return false;}
+bool Board::isStalemate() {
+    if (this->getAllLegalMoves(Colour::White).size() == 0 && !this->isChecked(Colour::White)) {
+        return true;
+    }
+    if (this->getAllLegalMoves(Colour::Black).size() == 0 && !this->isChecked(Colour::Black)) {
+        return true;
+    }
+    return false;
+}
 
 
 bool Board::isOpponentPawn(char name) {
@@ -766,7 +774,12 @@ bool Board::undoMove() {
         grid[lastMove.from.row - 1 + offset][lastMove.from.col - 'a'].setPiece(lastMove.captured);
         this->addToMap(lastMove.captured, Position{lastMove.from.row + offset, lastMove.from.col});
     } else if (lastMove.castling) {
-        undoMove();
+        char name = from->getInfo().piece->getPiece();
+        moveNoCapture(lastMove);
+        // if the pice we move back is a rook, then we still need to call undoMove to move back the king
+        if (name == 'r' || name == 'R') {
+            undoMove();
+        }
     } else if (!(lastMove.captured == '/')) {
         moveNoCapture(lastMove);
         from->setPiece(lastMove.captured);
