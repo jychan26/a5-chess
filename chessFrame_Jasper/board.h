@@ -41,7 +41,7 @@ public:
     std::vector<Move*> getLegalMoves(Position &pos);
     std::vector<Move*> getAllLegalMoves(Colour myColour);
     bool isCheckmate(Colour colour);
-    bool isStalemate(Colour colour);
+    bool isStalemate();
     Colour getWhoseTurn();
     bool isSetupComplete();
     Info getInfo(Position pos);
