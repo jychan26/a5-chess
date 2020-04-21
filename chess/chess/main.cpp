@@ -13,7 +13,7 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    //cin.exceptions(ios::eofbit|ios::failbit);
+    cin.exceptions(ios::eofbit|ios::failbit);
     Board board;
     string cmd;
     GamePlayer white{Colour::White}, black{Colour::Black};
@@ -39,9 +39,10 @@ int main(int argc, const char * argv[]) {
                         throw ErrorMessage{"Invalid player name."};
                     }
                 } catch (ErrorMessage &e) {
-                    cout << e.getErrorMessage() << endl;
+                        board.displayErrorMessage(e);
                     continue;
                 }
+		board.clearErrorMessage();
                 while (true) {
                     cin >> cmd;
                     whoseTurn = board.getWhoseTurn();
@@ -59,21 +60,18 @@ int main(int argc, const char * argv[]) {
                             try {
                                 move.promotion = true;
                                 board.promote(type, move);
-                                //cout << board;
                             } catch (ErrorMessage &e) {
-                                cout << e.getErrorMessage() << endl;
+                               	board.displayErrorMessage(e);
                             }
                         }
                         if (board.isCastlingValid(move)) {
                             move.castling = true;
                             board.castle(move);
-                            // cout << board;
                         } else {
                             try {
                                 board.move(move);
-                                // cout << board;
                             } catch (ErrorMessage &e) {
-                                cout << e.getErrorMessage() << endl;
+                                board.displayErrorMessage(e);
                             }
                         }
                         try {
@@ -84,37 +82,40 @@ int main(int argc, const char * argv[]) {
                             }
                             cout << board;
                             if (board.isCheckmate(whoseTurn)) {
-                                cout << "Checkmate! ";
-                                if (white.win(whoseTurn)) cout << "White wins!" << endl;
-                                if (black.win(whoseTurn)) cout << "Black wins!" << endl;
-                                board.init();
+				string s{"Checkmate! "};
+                                if (white.win(whoseTurn)) board.displayMessage(s + "White wins!");
+                                if (black.win(whoseTurn)) board.displayMessage(s + "Black wins!");
+                                board.displayMessage(s);
+				board.init();
                                 break;
                             } else if (board.isStalemate()) {
                                 white.stalemate();
                                 black.stalemate();
-                                cout << "Stalemate! ";
+                                board.displayMessage( "Stalemate! ");
                                 board.init();
                                 break;
-                            } else if (board.isChecked(oppoColour)) {
-                                if (oppoColour == Colour::White) cout << "White is in check." << endl;
-                                if (oppoColour == Colour::Black) cout << "Black is in check." << endl;
+                            } else if (board.isChecked(oppoColour)) { 
+                                if (oppoColour == Colour::White) board.displayMessage("White is in check.");
+                                if (oppoColour == Colour::Black) board.displayMessage("Black is in check.");
                                     }
                         } catch (ErrorMessage &e) {
-                            cout << e.getErrorMessage() << endl;
+			    board.displayErrorMessage(e);
                         }
                     } else if (cmd == "resign") {
                         whoseTurn = board.getWhoseTurn();
-                        if (white.win(whoseTurn)) cout << "White wins!" << endl;
-                        if (black.win(whoseTurn)) cout << "Black wins!" << endl;
+                        if (white.win(whoseTurn)) board.displayMessage("White wins!");
+                        if (black.win(whoseTurn)) board.displayMessage("Black wins!");
                         board.init();
                         break;
                     } else if (cmd == "undo") {
                         if (board.undoMove()) cout << board;
                     }
                 } // end of while loop inside game
-                cout << "Current score:" << endl;
-                cout << "White: " << white.getScore() << endl;
-                cout << "Black: " << black.getScore() << endl;
+		ostringstream ss;
+                ss << "Current score:" << endl;
+                ss << "White: " << white.getScore() << endl;
+                ss << "Black: " << black.getScore() << endl;
+		board.displayMessage(ss.str());
             } else if (cmd == "setup") {
                 cin >> cmd;
                 while (true) {
@@ -133,7 +134,7 @@ int main(int argc, const char * argv[]) {
                             board.setPiece(name, pos);
                             cout << board;
                         } catch (ErrorMessage &e) {
-                            cout << e.getErrorMessage() << endl;
+                            board.displayErrorMessage(e);
                         }
                     } else if (cmd == "-") {
                         cin >> s;
@@ -156,7 +157,7 @@ int main(int argc, const char * argv[]) {
                         }
                     } else if (cmd == "done") {
                         if (board.isSetupComplete()) break;
-                        cout << "Please make sure that: \n1. the board contains exactly one white king and exactly one black king\n2. no pawns are on the first or last row of the board\n3. neither king is in check" << endl;
+                        board.displayMessage("Please make sure that: \n1. the board contains exactly one white king and exactly one black king\n2. no pawns are on the first or last row of the board\n3. neither king is in check");
                     }
                     for (Move *randMove: board.getAllLegalMoves(Colour::White)) {
                         cout << randMove->from.col << randMove->from.row << "|" << randMove->to.col << randMove->to.row << " ";
@@ -167,9 +168,11 @@ int main(int argc, const char * argv[]) {
             } // end of setup
         }
     } catch (ios::failure &e) {
-        cout << "Final score:" << endl;
-        cout << "White: " << white.getScore() << endl;
-        cout << "Black: " << black.getScore() << endl;
+	ostringstream ss;
+        ss << "Final score:" << endl;
+        ss << "White: " << white.getScore() << endl;
+        ss << "Black: " << black.getScore() << endl;
+	board.displayMessage(ss.str());
     }
 
 }
