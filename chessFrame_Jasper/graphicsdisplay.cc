@@ -21,6 +21,9 @@ GraphicsDisplay::~GraphicsDisplay() {
 }
 
 void GraphicsDisplay::notify(Subject &whoNotified) {
+	// clear previous error messages first before making a move
+	this->clearErrorMessage();
+
 	Info i = whoNotified.getInfo();
 	Position pos = i.pos;
 	Piece *piece = i.piece;
@@ -38,6 +41,21 @@ void GraphicsDisplay::notify(Subject &whoNotified) {
 			Xwindow::PowderBlue : Xwindow::Black;
 
 		string name{1, piece->getPiece()}; // convert char to string
-		xw->drawBigString(trans_x, trans_y, name, pieceColour);
+		xw->drawString(trans_x, trans_y, name, pieceColour);
 	}
+}
+
+void GraphicsDisplay::displayErrorMessage(ErrorMessage &e) {
+	// clear previous error messages first before displaying a new one
+	this->clearErrorMessage();
+	// add new one
+	xw->drawString(50, 475, e.getErrorMessage(), Xwindow::Red);
+}
+
+void GraphicsDisplay::clearErrorMessage() {
+	xw->fillRectangle(50, 450, 450, 100, Xwindow::White);
+}
+
+void GraphicsDisplay::displayMessage(string s, int line_num) {
+	xw->drawString(50, 475 + 15 * line_num, s, Xwindow::Black);
 }
