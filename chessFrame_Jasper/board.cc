@@ -558,7 +558,7 @@ std::vector<Move*> Board::getPossibleMoves(Position &pos) {
         } else if ((toInfo.piece != nullptr) && (fromInfo.piece->getPieceColour() == toInfo.piece->getPieceColour())) {
             // if there is a piece in the destination cell and its colour is the same, then it's not a legal move
             erase = true;
-        } else if ((name == 'p' || name == 'P') && this->isOneSquareDiagonal(m) && fromInfo.piece == nullptr) {
+        } else if ((name == 'p' || name == 'P') && this->isOneSquareDiagonal(m) && toInfo.piece == nullptr) {
             // if move a pawn one square diagonally but there is no piece in destination cell
             
             // if the cell where the would-be attacked pawn should have sit has no piece, then it's not a legal move
