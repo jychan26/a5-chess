@@ -384,6 +384,11 @@
 					/usr/X11/include,
 					/usr/X11/lib,
 				);
+				OTHER_LDFLAGS = (
+					"-lX11",
+					"-L/usr/X11/lib",
+					"-I/usr/X11/include",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = (
 					/usr/X11/lib,
@@ -402,6 +407,11 @@
 					"$(PROJECT_DIR)/build/include",
 					/usr/X11/lib,
 					/usr/X11/include,
+				);
+				OTHER_LDFLAGS = (
+					"-lX11",
+					"-L/usr/X11/lib",
+					"-I/usr/X11/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = (

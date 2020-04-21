@@ -336,8 +336,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "525"
             endingLineNumber = "525"
-            landmarkName = "operator&lt;&lt;(out, b)"
-            landmarkType = "9">
+            landmarkName = "Board::isSetupComplete()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -352,8 +352,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "529"
             endingLineNumber = "529"
-            landmarkName = "operator&lt;&lt;(out, b)"
-            landmarkType = "9">
+            landmarkName = "Board::isSetupComplete()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -368,8 +368,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "538"
             endingLineNumber = "538"
-            landmarkName = "Board::getPossibleMoves(pos)"
-            landmarkType = "7">
+            landmarkName = "operator&lt;&lt;(out, b)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -384,7 +384,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "710"
             endingLineNumber = "710"
-            landmarkName = "Board::isCheckmate(colour)"
+            landmarkName = "Board::threatenedBy(pos, myColour)"
             landmarkType = "7">
             <Locations>
                <Location
