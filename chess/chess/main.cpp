@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
     string cmd;
     GamePlayer white{Colour::White}, black{Colour::Black};
     GamePlayer *currentPlayer;
-    Colour whoseTurn;
+    Colour whoseTurn, oppoColour;
     Position pos1, pos2;
     Move move;
     istringstream iss;
@@ -45,6 +45,8 @@ int main(int argc, const char * argv[]) {
                 while (true) {
                     cin >> cmd;
                     whoseTurn = board.getWhoseTurn();
+                    oppoColour = Colour::White;
+                    if (whoseTurn == oppoColour) oppoColour = Colour::Black;
                     if (cmd == "move") {
                         if (whoseTurn == white.getColour()) {
                             currentPlayer = &white;
@@ -57,7 +59,7 @@ int main(int argc, const char * argv[]) {
                             try {
                                 move.promotion = true;
                                 board.promote(type, move);
-                                cout << board;
+                                //cout << board;
                             } catch (ErrorMessage &e) {
                                 cout << e.getErrorMessage() << endl;
                             }
@@ -65,38 +67,54 @@ int main(int argc, const char * argv[]) {
                         if (board.isCastlingValid(move)) {
                             move.castling = true;
                             board.castle(move);
-                            cout << board;
+                            // cout << board;
                         } else {
                             try {
                                 board.move(move);
-                                cout << board;
+                                // cout << board;
                             } catch (ErrorMessage &e) {
                                 cout << e.getErrorMessage() << endl;
                             }
                         }
-                        if (board.isCheckmate(whoseTurn)) {
-                            cout << "Checkmate! ";
-                            if (white.win(whoseTurn)) cout << "White wins!";
-                            if (black.win(whoseTurn)) cout << "Black wins!";
-                            board.init();
-                            break;
-                        } else if (board.isStalemate()) {
-                            white.stalemate();
-                            black.stalemate();
-                            cout << "Stalemate! ";
-                            board.init();
-                            break;
+                        try {
+                            if (board.isChecked(whoseTurn)) {
+                                // board.undoMove();
+                                cout << board;
+                                throw ErrorMessage{"Cannot make move that puts your king in check."};
+                            }
+                            cout << board;
+                            if (board.isCheckmate(whoseTurn)) {
+                                cout << "Checkmate! ";
+                                if (white.win(whoseTurn)) cout << "White wins!" << endl;
+                                if (black.win(whoseTurn)) cout << "Black wins!" << endl;
+                                board.init();
+                                break;
+                            } else if (board.isStalemate()) {
+                                white.stalemate();
+                                black.stalemate();
+                                cout << "Stalemate! ";
+                                board.init();
+                                break;
+                            } else if (board.isChecked(oppoColour)) {
+                                if (oppoColour == Colour::White) cout << "White is in check." << endl;
+                                if (oppoColour == Colour::Black) cout << "Black is in check." << endl;
+                                    }
+                        } catch (ErrorMessage &e) {
+                            cout << e.getErrorMessage() << endl;
                         }
                     } else if (cmd == "resign") {
                         whoseTurn = board.getWhoseTurn();
-                        if (white.win(whoseTurn)) cout << "White wins!";
-                        if (black.win(whoseTurn)) cout << "Black wins!";
+                        if (white.win(whoseTurn)) cout << "White wins!" << endl;
+                        if (black.win(whoseTurn)) cout << "Black wins!" << endl;
                         board.init();
                         break;
                     } else if (cmd == "undo") {
                         if (board.undoMove()) cout << board;
                     }
                 } // end of while loop inside game
+                cout << "Current score:" << endl;
+                cout << "White: " << white.getScore() << endl;
+                cout << "Black: " << black.getScore() << endl;
             } else if (cmd == "setup") {
                 cin >> cmd;
                 while (true) {
@@ -148,5 +166,9 @@ int main(int argc, const char * argv[]) {
                 }
             } // end of setup
         }
-    } catch (ios::failure &e) {}
+    } catch (ios::failure &e) {
+        cout << "Final score:" << endl;
+        cout << "White: " << white.getScore() << endl;
+        cout << "Black: " << black.getScore() << endl;
+    }
 }

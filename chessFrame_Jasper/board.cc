@@ -670,6 +670,10 @@ std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
                 break;
             }
         }
+        
+        // delete all controlled moves
+        for (auto &move: allControlledMoves) delete move;
+        
         // no matter whether the move puts your king in check, we need to undo the move
         this->undoMove();
         
@@ -679,6 +683,7 @@ std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
             it -= 1;
         }
     }
+    
     return possibleMoves;
 }
 
@@ -698,23 +703,37 @@ std::vector<Info> Board::threatenedBy(Position pos, Colour myColour) {
     for (Move *move: allLegalMoves) {
         if (move->to == pos) threatenInfo.push_back(grid[pos.row - 1][pos.col - 'a'].getInfo());
     }
-    for (Move *move: allLegalMoves) {delete move;}
+    for (auto &move: allLegalMoves) delete move;
     return threatenInfo;
 }
 
 bool Board::isCheckmate(Colour colour) {
+    //    map<std::string, Info>::iterator it;
+    //    bool noLegalMoves = false;
+    //    vector<Move*> moves;
+    
+    //    for (it = kings.begin(); it != kings.end(); it++) {
+    //        Info kingInfo = it->second;
+    //        noLegalMoves = false;
+    //        moves = getLegalMoves(kingInfo.pos, oppoColour);
+    //        if (moves.size() == 0) noLegalMoves = true;
+    //        for (auto &move: moves) delete move;
+    //        if (kingInfo.piece && kingInfo.piece->getPieceColour() == oppoColour && threatenedBy(kingInfo.pos, oppoColour).size() > 0 && noLegalMoves) return true;
+    //    }
     Colour oppoColour = Colour::White;
     if (colour == oppoColour) oppoColour = Colour::Black;
-    for (map<std::string, Info>::iterator it = kings.begin(); it != kings.end(); it++) {
-        if (it->second.piece && it->second.piece->getPieceColour() == oppoColour) return false;
-    }
-    return true;
+    vector<Move*> allLegalMoves = getAllLegalMoves(oppoColour);
+    int nofMoves = allLegalMoves.size();
+    for (auto &move: allLegalMoves) delete move;
+    if (nofMoves == 0 && isChecked(oppoColour)) return true;
+    return false;
 }
 
 bool Board::isChecked(Colour kingColour) {
+    map<std::string, Info>::iterator it;
     Colour oppoColour = Colour::White;
     if (kingColour == oppoColour) oppoColour = Colour::Black;
-    for (map<std::string, Info>::iterator it = kings.begin(); it != kings.end(); it++) {
+    for (it = kings.begin(); it != kings.end(); it++) {
         if (it->second.piece && it->second.piece->getPieceColour() == kingColour) {
             if (threatenedBy(it->second.pos, kingColour).size()) return true;
         }
@@ -749,9 +768,17 @@ Info Board::getInfo(Position pos) {return grid[pos.row - 1][pos.col - 'a'].getIn
 
 
 bool Board::isStalemate() {
-    if (this->getAllLegalMoves(Colour::White).size() == 0 && !this->isChecked(Colour::White)) {
+    vector<Move*> movesWhite, movesBlack;
+    size_t sizeWhite, sizeBlack;
+    movesWhite = getAllLegalMoves(Colour::White);
+    sizeWhite = movesWhite.size();
+    for (auto &move: movesWhite) {delete move;}
+    if (sizeWhite == 0 && !this->isChecked(Colour::White)) {
         return true;
     }
+    movesBlack = getAllLegalMoves(Colour::Black);
+    sizeBlack = movesBlack.size();
+    for (auto &move: movesBlack) {delete move;}
     if (this->getAllLegalMoves(Colour::Black).size() == 0 && !this->isChecked(Colour::Black)) {
         return true;
     }

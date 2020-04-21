@@ -9,8 +9,9 @@
 #include "gameplayer.h"
 
 
-GamePlayer::GamePlayer(Colour colour): colour(colour), score(0) {}
+GamePlayer::GamePlayer(Colour colour): colour(colour), score(0), player(nullptr) {}
 void GamePlayer::setPlayer(string playerName, Board *board) {
+    if (player) delete player;
     if (playerName == "human") {
         player = new Human;
     } else if (playerName == "computer[1]") {
