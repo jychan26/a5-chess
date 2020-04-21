@@ -4,20 +4,17 @@
 #include "observer.h"
 #include "cell.h"
 #include "window.h"
-class Xwindow;
 
 class GraphicsDisplay : public Observer {
-    Xwindow xw;
-    const int size;
-    const int GAP = 5;
-    const int XWSIZE = 500;
+    Xwindow *xw;
+    const int BOARDSIZE = 8;
+    const int GAP = 50;
+    const int PIECE_PLACEMENT = 75;
 public:
-    GraphicsDisplay(int n);
+    GraphicsDisplay();
+    ~GraphicsDisplay();
+
     void notify(Subject &whoNotified) override;
-    int getLength() const;
-    int mapToX(size_t col) const;
-    int mapToY(size_t row) const;
-    int mapColour(Colour colour) const;
 };
 
 #endif

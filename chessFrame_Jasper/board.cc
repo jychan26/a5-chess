@@ -7,6 +7,7 @@ using namespace std;
 
 Board::~Board() {
     delete td;
+    delete gd;
 }
 
 void Board::init() {
@@ -25,11 +26,13 @@ void Board::init() {
         }
         grid.emplace_back(temp);
     }
-    td = new TextDisplay();
+    td = (!td) ? new TextDisplay(): td;
+    gd = (!gd) ? new GraphicsDisplay(): gd;
     // attach observers
     for (int r = 0; r < size; ++r) {
         for (int c = 0; c < size; ++c) {
             grid[r][c].attach(td);
+	    grid[r][c].attach(gd);
         }
     }
     // remove old pieces first for reinitialization
