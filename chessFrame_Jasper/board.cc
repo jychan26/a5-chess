@@ -1,7 +1,6 @@
 #include "board.h"
 #include "cell.h"
 #include "subject.h"
-#include "errormessage.h"
 #include <cctype>
 using namespace std;
 
@@ -912,4 +911,28 @@ void Board::moveNoCapture(Move m) {
     this->eraseFromMap(m.from);
     toCell->setPiece(piece);
     this->addToMap(piece, m.to);
+}
+
+void Board::displayErrorMessage(ErrorMessage &e) {
+	cout << e.getErrorMessage() << endl;
+	gd->displayErrorMessage(e);
+}
+
+void Board::clearErrorMessage() {
+	gd->clearErrorMessage();
+
+}
+
+void Board::displayMessage(string s) {
+	string delim = "\n";
+	int pos = 0;
+	string token;
+	int count = 0;
+	while ((pos = s.find(delim)) != string::npos) {
+		token = s.substr(0, pos);
+		cout << token << endl;
+		gd->displayMessage(token, count);
+		s.erase(0, pos + delim.length());
+		++count;
+	}
 }

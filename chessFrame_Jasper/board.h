@@ -11,6 +11,7 @@
 #include "cell.h"
 #include "textdisplay.h"
 #include "graphicsdisplay.h"
+#include "errormessage.h"
 
 class Board {
     std::vector<std::vector<Cell>> grid;
@@ -57,6 +58,9 @@ public:
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
     bool undoMove();
     void moveNoCapture(Move m);
+    void displayErrorMessage(ErrorMessage &e);
+    void clearErrorMessage();
+    void displayMessage(std::string s);
 };
 
 

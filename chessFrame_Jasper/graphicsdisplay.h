@@ -4,6 +4,8 @@
 #include "observer.h"
 #include "cell.h"
 #include "window.h"
+#include "errormessage.h"
+#include <string>
 
 class GraphicsDisplay : public Observer {
     Xwindow *xw;
@@ -15,6 +17,9 @@ public:
     ~GraphicsDisplay();
 
     void notify(Subject &whoNotified) override;
+    void displayErrorMessage(ErrorMessage &e);
+    void clearErrorMessage();
+    void displayMessage(std::string s, int line_num);
 };
 
 #endif
