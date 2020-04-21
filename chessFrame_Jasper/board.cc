@@ -32,6 +32,14 @@ void Board::init() {
             grid[r][c].attach(td);
         }
     }
+    // remove old pieces first for reinitialization
+    for (int row = 6; row >= 3; --row) {
+	    for (int c = 0; c < size; ++c) {
+	 	   char column = 'a' + c;
+		   Position pos{row, column};
+		   this->removePiece(pos);
+	    }
+    }
     // initial configuration
     this->setPiece('R', {1, 'a'});
     this->setPiece('N', {1, 'b'});
