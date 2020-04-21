@@ -558,15 +558,13 @@ std::vector<Move*> Board::getPossibleMoves(Position &pos) {
         } else if ((toInfo.piece != nullptr) && (fromInfo.piece->getPieceColour() == toInfo.piece->getPieceColour())) {
             // if there is a piece in the destination cell and its colour is the same, then it's not a legal move
             erase = true;
-        } else if ((name == 'p' || name == 'P') && this->isOneSquareDiagonal(m) && fromInfo.piece == nullptr) {
+        } else if ((name == 'p' || name == 'P') && this->isOneSquareDiagonal(m) && toInfo.piece == nullptr) {
             // if move a pawn one square diagonally but there is no piece in destination cell
             
             // if the cell where the would-be attacked pawn should have sit has no piece, then it's not a legal move
             if (grid[m.from.row - 1][m.to.col - 'a'].getPiece() == nullptr) {
                 erase = true;
-            }
-            
-            if (grid[m.from.row - 1][m.to.col - 'a'].getPiece() != nullptr) {
+            } else {
                 char besidePieceName = grid[m.from.row-1][m.to.col-'a'].getPiece()->getPiece();
                 if (besidePieceName != 'p' && besidePieceName != 'P') {
                     // if the cell where the would-be attacked pawn should have sit has a piece that is not a pawn,
@@ -585,9 +583,10 @@ std::vector<Move*> Board::getPossibleMoves(Position &pos) {
                 if (!grid[m.from.row - 1][m.to.col - 'a'].getPiece()->getIsEnPassantValid()) {
                     erase = true;
                 }
+                
+                // The conditions of using en passant are satisfied, set enPassant to true
+                if (!erase) {m.enPassant = true;}
             }
-            // The conditions of using en passant are satisfied, set enPassant to true
-            m.enPassant = true;
         } else if ((name == 'p' || name == 'P') && this->isPawnForwardStraight(m) && toInfo.piece != nullptr) {
             // if move a pawn straight forward and there is a piece in destination cell,
             // then it's not a legal move
@@ -598,7 +597,6 @@ std::vector<Move*> Board::getPossibleMoves(Position &pos) {
         if (erase == true) {
             moves.erase(it);
             it -= 1;
-            continue;
         }
     }
     return moves;
@@ -628,10 +626,10 @@ std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
     for (vector<Move*>::iterator it= possibleMoves.begin(); it < possibleMoves.end(); ++it) {
         Move pm = **it;
         bool erase = false;
+        bool twoSquaresMove = grid[pos.row - 1][pos.col - 'a'].getPiece()->getIsEnPassantValid();
         
         // do the move first
         if (!pm.enPassant) {
-            bool twoSquaresMove = isPawnMoveTwoSquares(pm);
             // move the piece, modify piecesOnBoard, kings and history
             Piece *pieceToBeMoved = grid[pm.from.row - 1][pm.from.col - 'a'].moveFrom();
             this->eraseFromMap(pm.from);
@@ -642,10 +640,6 @@ std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
                 pm.captured = grid[pm.to.row - 1][pm.to.col - 'a'].getPiece()->getPiece();
             }
             grid[pm.to.row - 1][pm.to.col - 'a'].moveTo(pieceToBeMoved); // Cell::moveTo will notify observers
-            // if a pawn makes a two-square move, then set its field isEnPassantValid to true
-            if (twoSquaresMove) {
-                grid[pm.to.row - 1][pm.to.col - 'a'].setIsEnPassantValid(true);
-            }
             this->addToMap(pieceToBeMoved->getPiece(), pm.to);
             history.emplace_back(pm);
         } else { // en passant implementation
@@ -688,13 +682,17 @@ std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
         // no matter whether the move puts your king in check, we need to undo the move
         this->undoMove();
         
+        // if a pawn makes a two-square move, then set its field isEnPassantValid to true
+        if (twoSquaresMove) {
+            grid[pos.row - 1][pos.col - 'a'].getPiece()->setIsEnPassantValid(true);
+        }
+        
         // erase the move from possibleMoves that puts the king in check after move
-        if (erase == true) {
+        if (erase) {
             possibleMoves.erase(it);
             it -= 1;
         }
     }
-    
     return possibleMoves;
 }
 
@@ -710,11 +708,11 @@ std::vector<Info> Board::threatenedBy(Position pos, Colour myColour) {
     std::vector<Info> threatenInfo;
     Colour oppoColour = Colour::White;
     if (myColour == oppoColour) oppoColour = Colour::Black;
-    vector<Move *> allLegalMoves = getAllLegalMoves(oppoColour);
-    for (Move *move: allLegalMoves) {
+    vector<Move *> allPossibleMoves = getAllPossibleMoves(oppoColour);
+    for (Move *move: allPossibleMoves) {
         if (move->to == pos) threatenInfo.push_back(grid[pos.row - 1][pos.col - 'a'].getInfo());
     }
-    for (auto &move: allLegalMoves) delete move;
+    for (auto &move: allPossibleMoves) delete move;
     return threatenInfo;
 }
 
@@ -806,7 +804,9 @@ bool Board::isOpponentPawn(char name) {
 }
 
 bool Board::isOneSquareDiagonal(Move m) {
-    if (whoseTurn == Colour::White) {
+    if (grid[m.from.row - 1][m.from.col - 'a'].getPiece() == nullptr) return false;
+    Colour pieceColour = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPieceColour();
+    if (pieceColour == Colour::White) {
         if (m.to.row - m.from.row == 1 &&
             (m.to.col - m.from.col == 1 || m.to.col - m.from.col == -1)) {
             return true;
@@ -824,10 +824,11 @@ bool Board::isOneSquareDiagonal(Move m) {
 bool Board::isPawnMoveTwoSquares(Move m) {
     if (grid[m.from.row - 1][m.from.col - 'a'].getPiece() == nullptr) return false;
     char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
+    Colour pieceColour = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPieceColour();
     if (name != 'p' && name != 'P') {
         return false;
     }
-    if (whoseTurn == Colour::White) {
+    if (pieceColour == Colour::White) {
         return m.to.row - m.from.row == 2;
     } else {
         return m.to.row - m.from.row == -2;
@@ -837,10 +838,11 @@ bool Board::isPawnMoveTwoSquares(Move m) {
 bool Board::isPawnForwardStraight(Move m) {
     if (grid[m.from.row - 1][m.from.col - 'a'].getPiece() == nullptr) return false;
     char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
+    Colour pieceColour = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPieceColour();
     if (name != 'p' && name != 'P') {
         return false;
     }
-    if (whoseTurn == Colour::White) {
+    if (pieceColour == Colour::White) {
         return ((m.to.row - m.from.row == 1 && m.to.col == m.from.col)
                 || m.to.row - m.from.row == 2);
     } else {
