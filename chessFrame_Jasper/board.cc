@@ -738,7 +738,7 @@ std::vector<Move*> Board::getAllLegalMoves(Colour myColour) {
         pos = pieceInfo.pos;
         piece = pieceInfo.piece;
         if (piece->getPieceColour() == myColour) {
-            moves = getLegalMoves(pos);
+            moves = getLegalMoves(pos, myColour);
             allLegalMoves.insert(allLegalMoves.end(),moves.begin(),moves.end());
         }
     }
