@@ -171,4 +171,5 @@ int main(int argc, const char * argv[]) {
         cout << "White: " << white.getScore() << endl;
         cout << "Black: " << black.getScore() << endl;
     }
+
 }

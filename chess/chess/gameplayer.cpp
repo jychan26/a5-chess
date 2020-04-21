@@ -38,7 +38,10 @@ GamePlayer::~GamePlayer() {
 float GamePlayer::getScore() {return score;}
 Colour GamePlayer::getColour() {return colour;}
 bool GamePlayer::win(Colour colour) {
-    if (colour == this->colour) return true;
+    if (colour == this->colour) {
+        score += 1;
+        return true;
+    }
     return false;
 }
 void GamePlayer::stalemate() {score += 0.5;}
