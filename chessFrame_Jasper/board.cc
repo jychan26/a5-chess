@@ -528,88 +528,158 @@ ostream &operator<<(ostream &out, const Board &b) {
     return out;
 }
 
-
-
-
-std::vector<Move*> Board::getLegalMoves(Position &pos) {
+std::vector<Move*> Board::getPossibleMoves(Position &pos) {
+    // getPossibleMoves(Position &pos) returns possible moves from Position pos,
+    // including moves that put the king in check
     std::vector<Move*> moves = grid[pos.row - 1][pos.col - 'a'].getLegalMoves();
-    Move m;
-    bool erase = false;
     
     for (vector<Move*>::iterator it= moves.begin(); it < moves.end(); ++it) {
-        m = **it;
-        erase = false;
-        Info fromInfo = grid[m.from.row - 1][m.from.col - 'a'].getInfo(), toInfo = grid[m.to.row - 1][m.to.col - 'a'].getInfo();
-        Colour pieceColour = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPieceColour();
+        Move m = **it;
+        bool erase = false;
+        Info fromInfo = grid[m.from.row - 1][m.from.col - 'a'].getInfo();
+        Info toInfo = grid[m.to.row - 1][m.to.col - 'a'].getInfo();
         char name = grid[m.from.row - 1][m.from.col - 'a'].getPiece()->getPiece();
-        // raise invalid position
         if (this->isBlocked(this->getInBetweenPositions(m))) {
+            // if move is blocked by pieces in between, it's not a legal move
             erase = true;
             // if move a pawn one square diagonally but there is no piece in destination cell
             // en passant or throw error message
         } else if ((toInfo.piece != nullptr) && (fromInfo.piece->getPieceColour() == toInfo.piece->getPieceColour())) {
+            // if there is a piece in the destination cell and its colour is the same, then it's not a legal move
             erase = true;
-        } else if ((name == 'p' || name == 'P') && this->isOneSquareDiagonal(m) &&
-                   grid[m.to.row - 1][m.to.col - 'a'].getPiece() == nullptr) {
-            // if the cell where the would-be attacked pawn should have sit has no piece,
+        } else if ((name == 'p' || name == 'P') && this->isOneSquareDiagonal(m) && fromInfo.piece == nullptr) {
+            // if move a pawn one square diagonally but there is no piece in destination cell
             
+            // if the cell where the would-be attacked pawn should have sit has no piece, then it's not a legal move
             if (grid[m.from.row - 1][m.to.col - 'a'].getPiece() == nullptr) {
                 erase = true;
             }
             
-            // if the cell where the would-be attacked pawn should have sit has a piece that is not a pawn,
-            // then throw error message
-            if (grid[m.from.row-1][m.to.col-'a'].getPiece()) {
+            if (grid[m.from.row - 1][m.to.col - 'a'].getPiece() != nullptr) {
                 char besidePieceName = grid[m.from.row-1][m.to.col-'a'].getPiece()->getPiece();
                 if (besidePieceName != 'p' && besidePieceName != 'P') {
+                    // if the cell where the would-be attacked pawn should have sit has a piece that is not a pawn,
+                    // then it's not a legal move
                     erase = true;
                 }
                 
-                // en passant must be used to capture the opposing pawn, cannot capture my own pawn
+                // if the cell where the would-be attacked pawn sits has the same colour,
+                // then it's not a legal move
                 if (!isOpponentPawn(besidePieceName)) {
                     erase = true;
                 }
-            }
-            // if isEnPassantValid field of the captured pawn is false, i.e. the opposing pawn does not
-            // make a two-square move or the attack does not immediately follow, then throw error message
-            if (grid[m.from.row - 1][m.to.col - 'a'].getPiece()) {
+                
+                // if isEnPassantValid field of the captured pawn is false, i.e. the opposing pawn does not
+                // make a two-square move or the attack does not immediately follow, then it's not a legal move
                 if (!grid[m.from.row - 1][m.to.col - 'a'].getPiece()->getIsEnPassantValid()) {
                     erase = true;
                 }
             }
-            
-            if (grid[m.to.row - 1][m.to.col - 'a'].getPiece() != nullptr) {
-                // cannot capture your own's piece
-                pieceColour = grid[m.to.row - 1][m.to.col - 'a'].getPiece()->getPieceColour();
-                if (whoseTurn == pieceColour) {
-                    string s;
-                    erase = true;
-                }
-                
-                // move does not obey the rule of piece's movement
-            }
+            // The conditions of using en passant are satisfied, set enPassant to true
+            m.enPassant = true;
+        } else if ((name == 'p' || name == 'P') && this->isPawnForwardStraight(m) && toInfo.piece != nullptr) {
+            // if move a pawn straight forward and there is a piece in destination cell,
+            // then it's not a legal move
+            erase = true;
         }
-        //    else {
-        //
-        //            Info fromInfo = grid[m.from.row - 1][m.from.col - 'a'].getInfo(), toInfo = grid[m.to.row - 1][m.to.col - 'a'].getInfo();
-        //            if (isBlocked(getInBetweenPositions(m))) {
-        //                moves.erase(it);
-        //                it -= 1;
-        //            } else if ((toInfo.piece != nullptr) && (fromInfo.piece->getPieceColour() == toInfo.piece->getPieceColour())) {
-        //                moves.erase(it);
-        //                it -= 1;
-        //            } else if (fromInfo.piece ) {
-        //
-        //            }
-        //        }
         
         // erase the move not satisfied
         if (erase == true) {
             moves.erase(it);
             it -= 1;
+            continue;
         }
     }
     return moves;
+}
+
+std::vector<Move*> Board::getAllPossibleMoves(Colour myColour) {
+    // getAllPossibleMoves(Colour myColour) returns all possible moves of all pieces whose colour are myColour,
+    // including moves that put the king in check
+    vector<Move*> allPossibleMoves, possibleMoves;
+    for (Info &pieceInfo : getPieces()) {
+        Position pos = pieceInfo.pos;
+        Piece *piece = pieceInfo.piece;
+        if (piece != nullptr && piece->getPieceColour() == myColour) {
+            possibleMoves = getPossibleMoves(pos);
+            allPossibleMoves.insert(allPossibleMoves.end(), possibleMoves.begin(), possibleMoves.end());
+        }
+    }
+    return allPossibleMoves;
+}
+
+
+std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
+    // getLegalMoves(Position &pos, Colour myColour) returns the legal moves of pieces of myColour
+    // from Position pos, not including moves that put the king in check
+    std::vector<Move*> possibleMoves = getPossibleMoves(pos);
+    
+    for (vector<Move*>::iterator it= possibleMoves.begin(); it < possibleMoves.end(); ++it) {
+        Move pm = **it;
+        bool erase = false;
+        
+        // do the move first
+        if (!pm.enPassant) {
+            bool twoSquaresMove = isPawnMoveTwoSquares(pm);
+            // move the piece, modify piecesOnBoard, kings and history
+            Piece *pieceToBeMoved = grid[pm.from.row - 1][pm.from.col - 'a'].moveFrom();
+            this->eraseFromMap(pm.from);
+            // if there is a piece to capture, we need to erase the captured piece from piecesOnBoard, kings
+            // we also need to update the field captured of move m
+            if (grid[pm.to.row - 1][pm.to.col - 'a'].getPiece() != nullptr) {
+                this->eraseFromMap(pm.to);
+                pm.captured = grid[pm.to.row - 1][pm.to.col - 'a'].getPiece()->getPiece();
+            }
+            grid[pm.to.row - 1][pm.to.col - 'a'].moveTo(pieceToBeMoved); // Cell::moveTo will notify observers
+            // if a pawn makes a two-square move, then set its field isEnPassantValid to true
+            if (twoSquaresMove) {
+                grid[pm.to.row - 1][pm.to.col - 'a'].setIsEnPassantValid(true);
+            }
+            this->addToMap(pieceToBeMoved->getPiece(), pm.to);
+            history.emplace_back(pm);
+        } else { // en passant implementation
+            // set the enPassant field of the move to true, update the captured field of the move
+            pm.enPassant = true;
+            pm.captured = grid[pm.from.row - 1][pm.to.col - 'a'].getPiece()->getPiece();
+            // move the attacking pawn one square diagonally
+            Piece *pawnToBeMoved = grid[pm.from.row - 1][pm.from.col - 'a'].moveFrom();
+            this->eraseFromMap(pm.from);
+            grid[pm.to.row - 1][pm.to.col - 'a'].moveTo(pawnToBeMoved);
+            this->addToMap(pawnToBeMoved->getPiece(), pm.to);
+            history.emplace_back(pm);
+            // remove the attacked pawn from the board, modify piecesOnBoard, kings
+            grid[pm.from.row - 1][pm.to.col - 'a'].removePiece();
+            this->eraseFromMap(Position{pm.from.row, pm.to.col});
+        }
+        
+        Colour oppoColour = (myColour == Colour::White ? Colour::Black : Colour::White);
+        vector<Move*> allControlledMoves = getAllPossibleMoves(oppoColour);
+        
+        // check if my king is in check after making a move of my piece
+        for (vector<Move*>::iterator it = allControlledMoves.begin(); it < allControlledMoves.end(); ++it) {
+            Move cm = **it;
+            Position myKingPos;
+            // find the position of my king
+            for (map<std::string, Info>::iterator it = kings.begin(); it != kings.end(); ++it) {
+                if (it->second.piece && it->second.piece->getPieceColour() == myColour) {
+                    myKingPos = it->second.pos;
+                }
+            }
+            if (cm.to == myKingPos) {
+                erase = true;
+                break;
+            }
+        }
+        // no matter whether the move puts your king in check, we need to undo the move
+        this->undoMove();
+        
+        // erase the move from possibleMoves that puts the king in check after move
+        if (erase == true) {
+            possibleMoves.erase(it);
+            it -= 1;
+        }
+    }
+    return possibleMoves;
 }
 
 std::vector<Info> Board::getPieces() {
@@ -658,6 +728,8 @@ bool Board::setWhoseTurn(Colour colour) {
 }
 
 std::vector<Move*> Board::getAllLegalMoves(Colour myColour) {
+    // getAllLegalMoves(Colour myColour) returns all legal moves of all pieces whose colour are myColour,
+    // not including moves that put the king in check
     vector<Move*> allLegalMoves, moves;
     Position pos;
     Piece* piece;
@@ -759,6 +831,7 @@ bool Board::undoMove() {
         from->removePiece();
         this->eraseFromMap(lastMove.from);
         to->setPiece(piece);
+        to->getPiece()->setFirstMove(false);
         this->addToMap(piece, lastMove.to);
         // if the pawn captured a piece before promotion,
         // then we need to place back the captured piece onto the board
@@ -772,6 +845,7 @@ bool Board::undoMove() {
         } else offset = 1;
         moveNoCapture(lastMove);
         grid[lastMove.from.row - 1 + offset][lastMove.from.col - 'a'].setPiece(lastMove.captured);
+        grid[lastMove.from.row - 1 + offset][lastMove.from.col - 'a'].setIsEnPassantValid(true);
         this->addToMap(lastMove.captured, Position{lastMove.from.row + offset, lastMove.from.col});
     } else if (lastMove.castling) {
         char name = from->getInfo().piece->getPiece();

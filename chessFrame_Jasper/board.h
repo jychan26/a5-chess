@@ -38,8 +38,10 @@ public:
     void promote(char name, Move m);
     bool isCastlingValid(Move m);
     void castle(Move m);
-    std::vector<Move*> getLegalMoves(Position &pos);
+    std::vector<Move*> getLegalMoves(Position &pos, Colour myColour);
     std::vector<Move*> getAllLegalMoves(Colour myColour);
+    std::vector<Move*> getPossibleMoves(Position &pos);
+    std::vector<Move*> getAllPossibleMoves(Colour myColour);
     bool isCheckmate(Colour colour);
     bool isStalemate();
     Colour getWhoseTurn();
