@@ -336,8 +336,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "525"
             endingLineNumber = "525"
-            landmarkName = "Board::getLegalMoves(pos)"
-            landmarkType = "7">
+            landmarkName = "operator&lt;&lt;(out, b)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -352,8 +352,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "529"
             endingLineNumber = "529"
-            landmarkName = "Board::getLegalMoves(pos)"
-            landmarkType = "7">
+            landmarkName = "operator&lt;&lt;(out, b)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
