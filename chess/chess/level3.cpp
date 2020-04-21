@@ -89,6 +89,7 @@ Move Level3::nextMove() {
 
     
     int random = 0;
+    if (nofBestMoves == 0) nofBestMoves = 1;
     if (sortedMoves.size() >= 1) random = rand() % nofBestMoves;
     bestMove = *sortedMoves[random];
     for (Move *move: allLegalMoves) {delete move;}
