@@ -92,5 +92,13 @@ Move Level3::nextMove() {
     if (sortedMoves.size() >= 1) random = rand() % nofBestMoves;
     bestMove = *sortedMoves[random];
     for (Move *move: allLegalMoves) {delete move;}
+    
+    // set promotion
+    promotion = NULL;
+    if (toupper(board->getInfo(bestMove.from).piece->getPiece()) == 'P' && (bestMove.to.row == 1 || bestMove.to.row == 8)) {
+        if (colour == Colour::White) promotion = 'Q';
+        if (colour == Colour::Black) promotion = 'q';
+    }
+    
     return bestMove;
 }
