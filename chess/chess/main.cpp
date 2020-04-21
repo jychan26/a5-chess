@@ -39,10 +39,10 @@ int main(int argc, const char * argv[]) {
                         throw ErrorMessage{"Invalid player name."};
                     }
                 } catch (ErrorMessage &e) {
-                        board.displayErrorMessage(e);
+                    board.displayErrorMessage(e);
                     continue;
                 }
-		board.clearErrorMessage();
+                board.clearErrorMessage();
                 while (true) {
                     cin >> cmd;
                     whoseTurn = board.getWhoseTurn();
@@ -60,62 +60,59 @@ int main(int argc, const char * argv[]) {
                             try {
                                 move.promotion = true;
                                 board.promote(type, move);
+                                cout << board;
                             } catch (ErrorMessage &e) {
-                               	board.displayErrorMessage(e);
+                                board.displayErrorMessage(e);
                             }
                         }
                         if (board.isCastlingValid(move)) {
                             move.castling = true;
                             board.castle(move);
+                            cout << board;
                         } else {
                             try {
                                 board.move(move);
+                                cout << board;
                             } catch (ErrorMessage &e) {
                                 board.displayErrorMessage(e);
                             }
                         }
                         try {
-                            if (board.isChecked(whoseTurn)) {
-                                // board.undoMove();
-                                cout << board;
-                                throw ErrorMessage{"Cannot make move that puts your king in check."};
-                            }
-                            cout << board;
                             if (board.isCheckmate(whoseTurn)) {
-				string s{"Checkmate! "};
-                                if (white.win(whoseTurn)) board.displayMessage(s + "White wins!");
-                                if (black.win(whoseTurn)) board.displayMessage(s + "Black wins!");
+                                string s{"Checkmate! "};
+                                if (white.win(whoseTurn)) board.displayMessage(s + "White wins!\n");
+                                if (black.win(whoseTurn)) board.displayMessage(s + "Black wins!\n");
                                 board.displayMessage(s);
-				board.init();
+                                board.init();
                                 break;
                             } else if (board.isStalemate()) {
                                 white.stalemate();
                                 black.stalemate();
-                                board.displayMessage( "Stalemate! ");
+                                board.displayMessage( "Stalemate! \n");
                                 board.init();
                                 break;
-                            } else if (board.isChecked(oppoColour)) { 
-                                if (oppoColour == Colour::White) board.displayMessage("White is in check.");
-                                if (oppoColour == Colour::Black) board.displayMessage("Black is in check.");
-                                    }
+                            } else if (board.isChecked(oppoColour)) {
+                                if (oppoColour == Colour::White) board.displayMessage("White is in check.\n");
+                                if (oppoColour == Colour::Black) board.displayMessage("Black is in check.\n");
+                            }
                         } catch (ErrorMessage &e) {
-			    board.displayErrorMessage(e);
+                            board.displayErrorMessage(e);
                         }
                     } else if (cmd == "resign") {
                         whoseTurn = board.getWhoseTurn();
-                        if (white.win(whoseTurn)) board.displayMessage("White wins!");
-                        if (black.win(whoseTurn)) board.displayMessage("Black wins!");
+                        if (white.win(whoseTurn)) board.displayMessage("White wins!\n");
+                        if (black.win(whoseTurn)) board.displayMessage("Black wins!\n");
                         board.init();
                         break;
                     } else if (cmd == "undo") {
                         if (board.undoMove()) cout << board;
                     }
                 } // end of while loop inside game
-		ostringstream ss;
+                ostringstream ss;
                 ss << "Current score:" << endl;
                 ss << "White: " << white.getScore() << endl;
                 ss << "Black: " << black.getScore() << endl;
-		board.displayMessage(ss.str());
+                board.displayMessage(ss.str());
             } else if (cmd == "setup") {
                 cin >> cmd;
                 while (true) {
@@ -168,11 +165,11 @@ int main(int argc, const char * argv[]) {
             } // end of setup
         }
     } catch (ios::failure &e) {
-	ostringstream ss;
+        ostringstream ss;
         ss << "Final score:" << endl;
         ss << "White: " << white.getScore() << endl;
         ss << "Black: " << black.getScore() << endl;
-	board.displayMessage(ss.str());
+        board.displayMessage(ss.str());
     }
-
+    
 }
