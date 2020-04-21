@@ -13,7 +13,7 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    //cin.exceptions(ios::eofbit|ios::failbit);
+    cin.exceptions(ios::eofbit|ios::failbit);
     Board board;
     string cmd;
     GamePlayer white{Colour::White}, black{Colour::Black};
@@ -171,5 +171,4 @@ int main(int argc, const char * argv[]) {
         cout << "White: " << white.getScore() << endl;
         cout << "Black: " << black.getScore() << endl;
     }
-
 }
