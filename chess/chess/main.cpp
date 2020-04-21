@@ -76,8 +76,8 @@ int main(int argc, const char * argv[]) {
                         }
                         if (board.isCheckmate(whoseTurn)) {
                             cout << "Checkmate! ";
-                            if (white.win(whoseTurn)) cout << "White wins!";
-                            if (black.win(whoseTurn)) cout << "Black wins!";
+                            if (white.win(whoseTurn)) cout << "White wins!" << endl;
+                            if (black.win(whoseTurn)) cout << "Black wins!" << endl;
                             board.init();
                             break;
                         } else if (board.isStalemate(whoseTurn)) {
@@ -89,14 +89,17 @@ int main(int argc, const char * argv[]) {
                         }
                     } else if (cmd == "resign") {
                         whoseTurn = board.getWhoseTurn();
-                        if (white.win(whoseTurn)) cout << "White wins!";
-                        if (black.win(whoseTurn)) cout << "Black wins!";
+                        if (white.win(whoseTurn)) cout << "White wins!" << endl;
+                        if (black.win(whoseTurn)) cout << "Black wins!" << endl;
                         board.init();
                         break;
                     } else if (cmd == "undo") {
                         if (board.undoMove()) cout << board;
                     }
                 } // end of while loop inside game
+                cout << "Current score:" << endl;
+                cout << "White: " << white.getScore() << endl;
+                cout << "Black: " << black.getScore() << endl;
             } else if (cmd == "setup") {
                 cin >> cmd;
                 while (true) {
@@ -148,5 +151,8 @@ int main(int argc, const char * argv[]) {
                 }
             } // end of setup
         }
+        cout << "Final score:" << endl;
+        cout << "White: " << white.getScore() << endl;
+        cout << "Black: " << black.getScore() << endl;
     } catch (ios::failure &e) {}
 }
