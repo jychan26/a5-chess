@@ -23,7 +23,7 @@ static int forceThreaten(Board *board, Move m, Colour myColour) {
 
 Level3::Level3(Colour colour, Board *board): Computer(colour, board) {}
 Move Level3::nextMove() {
-    vector<Move*> sortedMoves, allLegalMoves, moves;
+    vector<Move> sortedMoves, allLegalMoves, moves;
     Position pos, from, to;
     Move bestMove;
     vector<Info> threatenedPieces;
@@ -52,11 +52,11 @@ Move Level3::nextMove() {
     
     // sort the sortedMoves
     for (int i = 1; i < allLegalMoves.size(); i++) {
-        for (vector<Move*>::iterator it= sortedMoves.begin(); it != sortedMoves.end(); it += 1) {
-            Move currentMove = **it;
-            advantage1 = forceAdvantage(board, *allLegalMoves[i]);
+        for (vector<Move>::iterator it= sortedMoves.begin(); it != sortedMoves.end(); it += 1) {
+            Move currentMove = *it;
+            advantage1 = forceAdvantage(board, allLegalMoves[i]);
             advantage2 = forceAdvantage(board, currentMove);
-            threaten1 = forceThreaten(board, *allLegalMoves[i], colour);
+            threaten1 = forceThreaten(board, allLegalMoves[i], colour);
             threaten2 = forceThreaten(board, currentMove, colour);
             if (advantage1 - threaten1 >= advantage2 - threaten2) {
                 sortedMoves.insert(it, allLegalMoves[i]);
@@ -71,7 +71,7 @@ Move Level3::nextMove() {
 
 // count best moves
     for (int i = 1; i < sortedMoves.size(); i++) {
-        if (sortedMoves[i - 1]->advantage(board, colour) - sortedMoves[i - 1]->threat(board, colour) == sortedMoves[i]->advantage(board, colour) - sortedMoves[i]->threat(board, colour)) {
+        if (sortedMoves[i - 1].advantage(board, colour) - sortedMoves[i - 1].threat(board, colour) == sortedMoves[i].advantage(board, colour) - sortedMoves[i].threat(board, colour)) {
             nofBestMoves += 1;
         } else { break; }
     }
@@ -97,8 +97,7 @@ Move Level3::nextMove() {
     
     int random = 0;
     if (sortedMoves.size() >= 1) random = rand() % nofBestMoves;
-    bestMove = *sortedMoves[random];
-    for (Move *move: allLegalMoves) {delete move;}
+    bestMove = sortedMoves[random];
     
     // set promotion
     promotion = NULL;

@@ -15,7 +15,7 @@ static int forceAdvantage(Board *board, Move m) {
 
 Level4::Level4(Colour colour, Board *board): Computer(colour, board) {}
 Move Level4::nextMove() {
-       vector<Move*> sortedMoves, allLegalMoves, moves;
+       vector<Move> sortedMoves, allLegalMoves, moves;
         Position pos, from, to;
         Move bestMove;
         vector<Info> threatenedPieces;
@@ -26,11 +26,11 @@ Move Level4::nextMove() {
         sortedMoves.push_back(allLegalMoves[0]);
         
         for (int i = 1; i < allLegalMoves.size(); i++) {
-            for (vector<Move*>::iterator it= sortedMoves.begin(); it != sortedMoves.end(); it += 1) {
-                Move currentMove = **it;
-                advantage1 = allLegalMoves[i]->advantage(board, colour);
+            for (vector<Move>::iterator it= sortedMoves.begin(); it != sortedMoves.end(); it += 1) {
+                Move currentMove = *it;
+                advantage1 = allLegalMoves[i].advantage(board, colour);
                 advantage2 = currentMove.advantage(board, colour);
-                threaten1 = allLegalMoves[i]->threat(board, colour);
+                threaten1 = allLegalMoves[i].threat(board, colour);
                 threaten2 = currentMove.threat(board, colour);
                 if (advantage1 - threaten1 >= advantage2 - threaten2) {
                     sortedMoves.insert(it, allLegalMoves[i]);
@@ -45,7 +45,7 @@ Move Level4::nextMove() {
 
     // count best moves
         for (int i = 1; i < sortedMoves.size(); i++) {
-            if (sortedMoves[i - 1]->advantage(board, colour) - sortedMoves[i - 1]->threat(board, colour) == sortedMoves[i]->advantage(board, colour) - sortedMoves[i]->threat(board, colour)) {
+            if (sortedMoves[i - 1].advantage(board, colour) - sortedMoves[i - 1].threat(board, colour) == sortedMoves[i].advantage(board, colour) - sortedMoves[i].threat(board, colour)) {
                 nofBestMoves += 1;
             } else { break; }
         }
@@ -59,12 +59,11 @@ Move Level4::nextMove() {
         
         int random = 0;
         if (sortedMoves.size() >= 1) random = rand() % nofBestMoves;
-        bestMove = *sortedMoves[random];
-        for (Move *move: allLegalMoves) {delete move;}
+        bestMove = sortedMoves[random];
         
         // set promotion
         promotion = NULL;
-        if (toupper(board->getInfo(bestMove.from).piece->getPiece()) == 'P' && (bestMove.to.row == 1 || bestMove.to.row == 8)) {
+        if (board->getInfo(bestMove.from).piece && toupper(board->getInfo(bestMove.from).piece->getPiece()) == 'P' && (bestMove.to.row == 1 || bestMove.to.row == 8)) {
             if (colour == Colour::White) promotion = 'Q';
             if (colour == Colour::Black) promotion = 'q';
         }
