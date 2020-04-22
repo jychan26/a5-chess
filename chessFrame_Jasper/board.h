@@ -50,6 +50,7 @@ public:
     Info getInfo(Position pos);
     std::vector<Info> getPieces();
     std::vector<Info> threatenedBy(Position pos, Colour myColour);
+    std::vector<Info> protectedBy(Position pos, Colour myColour);
     bool setWhoseTurn(Colour colour);
     bool isOpponentPawn(char name);
     bool isOneSquareDiagonal(Move m);

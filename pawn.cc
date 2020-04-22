@@ -47,6 +47,11 @@ vector<Move*> Pawn::getLegalMoves(Position pos) const {
     if (getPieceColour() == Colour::Black) forward *= -1;
 
     dest.row += forward;
+    if (nofMove == 0) {
+        dest.row += forward;
+         if (dest.isValid()) moves.push_back(new Move(pos, dest));
+        dest.row -= forward;
+    }
     if (dest.isValid()) moves.push_back(new Move(pos, dest));
     dest.col += 1;
     if (dest.isValid()) moves.push_back(new Move(pos, dest));

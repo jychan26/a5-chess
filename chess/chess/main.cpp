@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include "cell.h"
+#include "move.h"
 #include "board.h"
 #include "errormessage.h"
 #include "level1.h"
@@ -44,11 +45,12 @@ int main(int argc, const char * argv[]) {
                 }
                 board.clearErrorMessage();
                 while (true) {
-                    cin >> cmd;
+                    // cin >> cmd;
                     whoseTurn = board.getWhoseTurn();
                     oppoColour = Colour::White;
                     if (whoseTurn == oppoColour) oppoColour = Colour::Black;
-                    if (cmd == "move") {
+                    if (true) {
+                        //cmd == "move"
                         if (whoseTurn == white.getColour()) {
                             currentPlayer = &white;
                         } else {
@@ -64,8 +66,7 @@ int main(int argc, const char * argv[]) {
                             } catch (ErrorMessage &e) {
                                 board.displayErrorMessage(e);
                             }
-                        }
-                        if (board.isCastlingValid(move)) {
+                        } else if (board.isCastlingValid(move)) {
                             move.castling = true;
                             board.castle(move);
                             cout << board;
@@ -156,10 +157,6 @@ int main(int argc, const char * argv[]) {
                         if (board.isSetupComplete()) break;
                         board.displayMessage("Please make sure that: \n1. the board contains exactly one white king and exactly one black king\n2. no pawns are on the first or last row of the board\n3. neither king is in check");
                     }
-                    for (Move *randMove: board.getAllLegalMoves(Colour::White)) {
-                        cout << randMove->from.col << randMove->from.row << "|" << randMove->to.col << randMove->to.row << " ";
-                    }
-                    cout << endl;
                     cin >> cmd;
                 }
             } // end of setup

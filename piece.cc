@@ -40,4 +40,12 @@ vector<Position> Piece::getInBetweenPositions(Move &m) const {
 	return positions;
 }
 
+void Piece::changeColour() {
+    if (pieceColour == Colour::White) {
+        pieceColour = Colour::Black;
+    } else {
+        pieceColour = Colour::White;
+    }
+}
+
 Piece::~Piece() {}

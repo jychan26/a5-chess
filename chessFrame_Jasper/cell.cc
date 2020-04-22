@@ -5,6 +5,7 @@
 #include "pawn.h"
 #include "queen.h"
 #include "rook.h"
+#include "move.h"
 using namespace std;
 #include <iostream>
 
@@ -108,7 +109,12 @@ void Cell::promote(char name) {
 std::vector<Move*> Cell::getLegalMoves() {
     if (piece) return piece->getLegalMoves(pos);
     vector<Move*> moves;
+    moves.clear();
     return moves;
+}
+
+void Cell::changeColour() {
+    if (piece) piece->changeColour();
 }
 
 void Cell::setIsEnPassantValid(bool isEnPassantValid) {

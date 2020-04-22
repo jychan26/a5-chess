@@ -1,6 +1,8 @@
 #ifndef MOVE_H
 #define MOVE_H
 #include "position.h"
+#include "colour.h"
+class Board;
 
 struct Move {
     Position from;
@@ -9,14 +11,13 @@ struct Move {
     bool castling;
     bool enPassant;
     char captured;
-    Move(): promotion(false), castling(false), enPassant(false), captured('/') {}
-    Move(Position from, Position to, char captured): from(from), to(to), captured(captured), promotion(false), castling(false), enPassant(false) {}
-    Move(Position from, Position to, bool promotion = false, bool castling = false, bool enPassant = false) : from(from), to(to), promotion(promotion), castling(castling), enPassant(enPassant), captured('/') {};
-    void reverse() {
-        Position tmp = from;
-        from = to;
-        to = tmp;
-    }
+    Move();
+    Move(Position from, Position to, char captured);
+    Move(Position from, Position to, bool promotion = false, bool castling = false, bool enPassant = false);
+    
+    void reverse();
+    int advantage(Board *board, Colour myColour);
+    int threat(Board *board, Colour myColour);
 };
 
 #endif

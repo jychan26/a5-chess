@@ -1,3 +1,4 @@
+
 #include "board.h"
 #include "cell.h"
 #include "subject.h"
@@ -718,7 +719,17 @@ std::vector<Info> Board::threatenedBy(Position pos, Colour myColour) {
     for (auto &move: allPossibleMoves) delete move;
     return threatenInfo;
 }
-
+        
+std::vector<Info> Board::protectedBy(Position pos, Colour myColour) {
+    std::vector<Info> protectInfo;
+    Colour oppoColour = Colour::White;
+    if (myColour == oppoColour) oppoColour = Colour::Black;
+    grid[pos.row - 1][pos.col - 'a'].changeColour();
+    protectInfo = threatenedBy(pos, oppoColour);
+    grid[pos.row - 1][pos.col - 'a'].changeColour();
+    return protectInfo;
+}
+        
 bool Board::isCheckmate(Colour colour) {
     //    map<std::string, Info>::iterator it;
     //    bool noLegalMoves = false;
@@ -904,6 +915,7 @@ bool Board::undoMove() {
     } else{
         moveNoCapture(lastMove);
     }
+    
     return true;
 }
 

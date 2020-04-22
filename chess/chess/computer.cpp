@@ -15,7 +15,7 @@ Move Computer::nextMove() {
 }
 
 char Computer::getPromotion() {
-    return NULL;
+    return promotion;
 }
 
 

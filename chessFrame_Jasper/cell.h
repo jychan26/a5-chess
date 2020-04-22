@@ -2,7 +2,6 @@
 #define CELL_H
 #include "colour.h"
 #include "position.h"
-#include "move.h"
 #include "subject.h"
 // #include "piece.h"
 #include <vector>
@@ -26,6 +25,7 @@ public:
     std::vector<Position> getInBetweenPositions(Move m);
     std::vector<Move*> getLegalMoves();
     void promote(char name);
+    void changeColour();
     void setIsEnPassantValid(bool isEnPassantValid);
 };
 
