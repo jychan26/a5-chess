@@ -792,7 +792,7 @@ Info Board::getInfo(Position pos) {return grid[pos.row - 1][pos.col - 'a'].getIn
 
 bool Board::isStalemate() {
     vector<Move*> movesWhite, movesBlack;
-    size_t sizeWhite;
+    size_t sizeWhite, sizeBlack;
     movesWhite = getAllLegalMoves(Colour::White);
     sizeWhite = movesWhite.size();
     for (auto &move: movesWhite) {delete move;}
@@ -800,6 +800,7 @@ bool Board::isStalemate() {
         return true;
     }
     movesBlack = getAllLegalMoves(Colour::Black);
+    sizeBlack = movesBlack.size();
     for (auto &move: movesBlack) {delete move;}
     if (this->getAllLegalMoves(Colour::Black).size() == 0 && !this->isChecked(Colour::Black)) {
         return true;

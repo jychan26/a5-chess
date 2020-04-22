@@ -49,7 +49,8 @@ int main(int argc, const char * argv[]) {
                     whoseTurn = board.getWhoseTurn();
                     oppoColour = Colour::White;
                     if (whoseTurn == oppoColour) oppoColour = Colour::Black;
-                    if (cmd == "move") {
+                    if (true) {
+                        cmd == "move";
                         if (whoseTurn == white.getColour()) {
                             currentPlayer = &white;
                         } else {
@@ -105,11 +106,7 @@ int main(int argc, const char * argv[]) {
                         board.init();
                         break;
                     } else if (cmd == "undo") {
-                        if (board.undoMove()) {
-                            cout << board;
-                            if (board.getWhoseTurn() == Colour::Black) { board.setWhoseTurn(Colour::White);
-                            } else if (board.getWhoseTurn() == Colour::White) board.setWhoseTurn(Colour::Black);
-                        }
+                        if (board.undoMove()) cout << board;
                     }
                 } // end of while loop inside game
                 ostringstream ss;
