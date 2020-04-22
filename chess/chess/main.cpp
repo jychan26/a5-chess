@@ -45,12 +45,12 @@ int main(int argc, const char * argv[]) {
                 }
                 board.clearErrorMessage();
                 while (true) {
-                    // cin >> cmd;
+                    cin >> cmd;
                     whoseTurn = board.getWhoseTurn();
                     oppoColour = Colour::White;
                     if (whoseTurn == oppoColour) oppoColour = Colour::Black;
                     if (true) {
-                        //cmd == "move"
+                        cmd == "move"
                         if (whoseTurn == white.getColour()) {
                             currentPlayer = &white;
                         } else {
