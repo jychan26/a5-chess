@@ -1,0 +1,1 @@
+colour.o: colour.cc

@@ -1,0 +1,1 @@
+info.o: info.cc
