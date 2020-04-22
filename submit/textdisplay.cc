@@ -37,6 +37,10 @@ void TextDisplay::notify(Subject &whoNotified) {
     }
 }
 
+int TextDisplay::getSize() { return size; }
+
+std::vector<std::vector<char>> TextDisplay::getTheDisplay() { return theDisplay; }
+
 ostream &operator<<(ostream &out, const TextDisplay &td) {
     for (int i = td.size - 1; i >= 0; --i) {
         out << i + 1 << ' ';
@@ -50,3 +54,4 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
     return out;
 }
 
+        
