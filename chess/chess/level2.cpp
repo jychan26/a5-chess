@@ -18,7 +18,7 @@ static int forceAdvantage(Board *board, Move m) {
 
 Level2::Level2(Colour colour, Board *board): Computer(colour, board) {}
 Move Level2::nextMove() {
-    vector<Move*> bestMoves, allLegalMoves, moves;
+    vector<Move> bestMoves, allLegalMoves, moves;
     Position pos, from, to;
     Move bestMove;
     int advantage1, advantage2;
@@ -29,8 +29,8 @@ Move Level2::nextMove() {
     bestMoves.push_back(allLegalMoves[idx]);
     // choose the best legal move
     for (int i = 1; i < allLegalMoves.size(); i++) {
-        advantage1 = forceAdvantage(board, *allLegalMoves[i]);
-        advantage2 = forceAdvantage(board, *allLegalMoves[idx]);
+        advantage1 = forceAdvantage(board, allLegalMoves[i]);
+        advantage2 = forceAdvantage(board, allLegalMoves[idx]);
         if (advantage1 > advantage2) {
             idx = i;
             bestMoves.clear();
@@ -41,8 +41,7 @@ Move Level2::nextMove() {
     }
     int random = 0;
     if (bestMoves.size() >= 1) random = rand() % bestMoves.size();
-    bestMove = *bestMoves[random];
-    for (Move *move: allLegalMoves) {delete move;}
+    bestMove = bestMoves[random];
     
     // set promotion
     promotion = NULL;
