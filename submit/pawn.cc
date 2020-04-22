@@ -40,8 +40,8 @@ bool Pawn::isObeyRule(Move &m) const {
 	return (is_valid_reg_move or is_valid_capture_move);
 }
 
-vector<Move*> Pawn::getLegalMoves(Position pos) const {
-	vector<Move*> moves;
+vector<Move> Pawn::getLegalMoves(Position pos) const {
+	vector<Move> moves;
     Position dest = pos;
     int forward = 1;
     if (getPieceColour() == Colour::Black) forward *= -1;
@@ -49,14 +49,14 @@ vector<Move*> Pawn::getLegalMoves(Position pos) const {
     dest.row += forward;
     if (getFirstMove()) {
         dest.row += forward;
-         if (dest.isValid()) moves.push_back(new Move(pos, dest));
+         if (dest.isValid()) moves.push_back(Move(pos, dest));
         dest.row -= forward;
     }
-    if (dest.isValid()) moves.push_back(new Move(pos, dest));
+    if (dest.isValid()) moves.push_back(Move(pos, dest));
     dest.col += 1;
-    if (dest.isValid()) moves.push_back(new Move(pos, dest));
+    if (dest.isValid()) moves.push_back(Move(pos, dest));
     dest.col -= 2;
-    if (dest.isValid()) moves.push_back(new Move(pos, dest));
+    if (dest.isValid()) moves.push_back(Move(pos, dest));
 	return moves;
 }
 

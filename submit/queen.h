@@ -7,7 +7,7 @@ class Queen: public Piece {
 	Queen(char name, const Colour pieceColour, const int force = 70);
 
 	bool isObeyRule(Move &) const override;
-	std::vector<Move*> getLegalMoves(Position) const override;
+	std::vector<Move> getLegalMoves(Position) const override;
 	std::vector<Position> getInBetweenPositions(Move &) const override;
 };
 

@@ -21,31 +21,31 @@ bool Queen::isObeyRule(Move &m) const {
 		(col_diff_abs == row_diff_abs));
 }
 
-vector<Move*> Queen::getLegalMoves(Position pos) const {
-	vector<Move*> moves;
+vector<Move> Queen::getLegalMoves(Position pos) const {
+	vector<Move> moves;
     for (Position p = pos; p.isValid(); p.col += 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.col -= 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.row -= 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.row += 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.col += 1, p.row += 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.col += 1, p.row -= 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.col -= 1, p.row += 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.col -= 1, p.row -= 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
 	return moves;
 }

@@ -6,7 +6,7 @@ class King: public Piece {
 	public:
 	King(char name, const Colour pieceColour, const int force = 9000);
 	bool isObeyRule(Move &) const override;
-	std::vector<Move*> getLegalMoves(Position) const override;
+	std::vector<Move> getLegalMoves(Position) const override;
 };
 
 #endif
