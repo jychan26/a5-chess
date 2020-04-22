@@ -29,6 +29,7 @@
 		6A6F476E2447B221001EE8D6 /* board.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47682447B220001EE8D6 /* board.cc */; };
 		6A6F476F2447B221001EE8D6 /* cell.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F47692447B220001EE8D6 /* cell.cc */; };
 		6A6F4772244BB00E001EE8D6 /* errormessage.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F4771244BB00D001EE8D6 /* errormessage.cc */; };
+		6ACDB6EA244FD276006A5BC9 /* move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDB6E9244FD276006A5BC9 /* move.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -94,6 +95,7 @@
 		6A6F476A2447B221001EE8D6 /* board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = board.h; path = ../../chessFrame_Jasper/board.h; sourceTree = "<group>"; };
 		6A6F4770244BB00D001EE8D6 /* errormessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = errormessage.h; path = ../../chessFrame_Jasper/errormessage.h; sourceTree = "<group>"; };
 		6A6F4771244BB00D001EE8D6 /* errormessage.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = errormessage.cc; path = ../../chessFrame_Jasper/errormessage.cc; sourceTree = "<group>"; };
+		6ACDB6E9244FD276006A5BC9 /* move.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = move.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				6A6F47632447B220001EE8D6 /* graphicsdisplay.cc */,
 				6A6F47612447B220001EE8D6 /* graphicsdisplay.h */,
 				6A6F475E2447B21F001EE8D6 /* info.h */,
+				6ACDB6E9244FD276006A5BC9 /* move.cpp */,
 				6A6F47622447B220001EE8D6 /* move.h */,
 				6A6F47652447B220001EE8D6 /* observer.h */,
 				6A6F47662447B220001EE8D6 /* subject.h */,
@@ -245,6 +248,7 @@
 				6A6F475B2447B212001EE8D6 /* king.cc in Sources */,
 				6A6F47442447B1F3001EE8D6 /* level1.cpp in Sources */,
 				6A6F475A2447B212001EE8D6 /* queen.cc in Sources */,
+				6ACDB6EA244FD276006A5BC9 /* move.cpp in Sources */,
 				6A6F47562447B212001EE8D6 /* rook.cc in Sources */,
 				6A52690C24421AB7009DB73A /* main.cpp in Sources */,
 				6A6F47592447B212001EE8D6 /* pawn.cc in Sources */,

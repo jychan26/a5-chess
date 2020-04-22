@@ -20,6 +20,12 @@ Move Level1::nextMove() {
     randMove = *allLegalMoves[random];
     for (Move *move: allLegalMoves) {delete move;}
     
+    // set promotion
+    promotion = NULL;
+    if (toupper(board->getInfo(randMove.from).piece->getPiece()) == 'P' && (randMove.to.row == 1 || randMove.to.row == 8)) {
+        if (colour == Colour::White) promotion = 'Q';
+        if (colour == Colour::Black) promotion = 'q';
+    }
     
     return randMove;
 }
