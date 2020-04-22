@@ -19,19 +19,19 @@ bool Rook::isObeyRule(Move &m) const {
 	return ((curr_pos.col == next_pos.col) or (curr_pos.row == next_pos.row));
 }
 
-vector<Move*> Rook::getLegalMoves(Position pos) const {
-	vector<Move*> moves;
+vector<Move> Rook::getLegalMoves(Position pos) const {
+	vector<Move> moves;
     for (Position p = pos; p.isValid(); p.col += 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.col -= 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.row -= 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.row += 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
 	return moves;
 }

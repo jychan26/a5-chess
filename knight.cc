@@ -19,8 +19,8 @@ bool Knight::isObeyRule(Move &m) const {
 		((row_diff_abs == 1) and (col_diff_abs == 2)));
 }
 
-vector<Move*> Knight::getLegalMoves(Position pos) const {
-	vector<Move*> moves;
+vector<Move> Knight::getLegalMoves(Position pos) const {
+	vector<Move> moves;
     Position dest;
     for (int i = -1; i < 2; i += 2) {
         for (int j = -1; j < 2; j += 2) {
@@ -29,7 +29,7 @@ vector<Move*> Knight::getLegalMoves(Position pos) const {
                 y = 3 - x;
                 dest.col += x * i;
                 dest.row += y * j;
-                if (dest.isValid()) moves.push_back(new Move(pos, dest));
+                if (dest.isValid()) moves.push_back(Move(pos, dest));
             }
         }
     }
