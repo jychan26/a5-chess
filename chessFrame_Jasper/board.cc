@@ -27,7 +27,7 @@ void Board::init() {
         grid.emplace_back(temp);
     }
     td = (!td) ? new TextDisplay(): td;
-    gd = (!gd) ? new GraphicsDisplay(): gd;
+    gd = (!gd) ? new GraphicsDisplay(td): gd;
     // attach observers
     for (int r = 0; r < size; ++r) {
         for (int c = 0; c < size; ++c) {
@@ -535,6 +535,7 @@ bool Board::isSetupComplete() {
 ostream &operator<<(ostream &out, const Board &b) {
     if (b.td != nullptr) {
         out << *(b.td);
+        out << *(b.gd);
     }
     return out;
 }

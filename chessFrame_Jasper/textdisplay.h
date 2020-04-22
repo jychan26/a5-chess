@@ -11,6 +11,9 @@ class TextDisplay : public Observer {
 public:
     TextDisplay();
     void notify(Subject &whoNotified) override;
+    int getSize();
+    std::vector<std::vector<char>> getTheDisplay();
+    friend class GraphicsDisplay;
     friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
 };
 
