@@ -626,6 +626,7 @@ std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
         Move pm = **it;
         bool erase = false;
         bool isEnPassantValid = grid[pos.row - 1][pos.col - 'a'].getPiece()->getIsEnPassantValid();
+        bool firstMove = grid[pos.row - 1][pos.col - 'a'].getPiece()->getFirstMove();
         
         // do the move first
         if (!pm.enPassant) {
@@ -686,6 +687,9 @@ std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
             grid[pos.row - 1][pos.col - 'a'].getPiece()->setIsEnPassantValid(true);
         }
         
+        // we need to set the value of firstMove to be the same as before moving
+        grid[pos.row - 1][pos.col - 'a'].getPiece()->setFirstMove(firstMove);
+        
         // erase the move from possibleMoves that puts the king in check after move
         if (erase) {
             possibleMoves.erase(it);
@@ -731,7 +735,7 @@ bool Board::isCheckmate(Colour colour) {
     Colour oppoColour = Colour::White;
     if (colour == oppoColour) oppoColour = Colour::Black;
     vector<Move*> allLegalMoves = getAllLegalMoves(oppoColour);
-    int nofMoves = allLegalMoves.size();
+    unsigned long nofMoves = allLegalMoves.size();
     for (auto &move: allLegalMoves) delete move;
     if (nofMoves == 0 && isChecked(oppoColour)) return true;
     return false;
@@ -927,7 +931,7 @@ void Board::clearErrorMessage() {
 
 void Board::displayMessage(string s) {
 	string delim = "\n";
-	int pos = 0;
+	unsigned long pos = 0;
 	string token;
 	int count = 0;
 	while ((pos = s.find(delim)) != string::npos) {
