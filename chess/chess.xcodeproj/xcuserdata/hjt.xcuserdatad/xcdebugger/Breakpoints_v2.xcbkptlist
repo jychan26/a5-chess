@@ -520,7 +520,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "DB94E5D9-67EF-4382-9978-9614382ECFCD"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "chess/main.cpp"
@@ -690,6 +690,54 @@
             endingLineNumber = "70"
             landmarkName = "Level3::nextMove()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF7F1518-B7D4-4AC0-9B8C-C7CA2E6AD59F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "chess/level4.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "Level4::nextMove()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FF7F1518-B7D4-4AC0-9B8C-C7CA2E6AD59F - c07608f857bfdc6e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Level4::nextMove()"
+                  moduleName = "chess"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hjt/Documents/GitHub/chess/a5-chess/chess/chess/level4.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "1494">
+               </Location>
+               <Location
+                  uuid = "FF7F1518-B7D4-4AC0-9B8C-C7CA2E6AD59F - c07608f857bfdc6e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Level4::nextMove()"
+                  moduleName = "chess"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hjt/Documents/GitHub/chess/a5-chess/chess/chess/level4.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "1582">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

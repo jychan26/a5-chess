@@ -51,11 +51,11 @@ Move Level4::nextMove() {
         }
         
     // debug
-//            for (Move *randMove: sortedMoves) {
-//                cout << randMove->from.col << randMove->from.row << "|" << randMove->to.col << randMove->to.row << ":" << randMove->advantage(board, colour) << "," << randMove->threat(board, Colour::White) << "     ";
-//            }
-//            cout << endl;
-//        cout << nofBestMoves << endl;
+            for (Move *randMove: sortedMoves) {
+                cout << randMove->from.col << randMove->from.row << "|" << randMove->to.col << randMove->to.row << ":" << randMove->advantage(board, colour) << "," << randMove->threat(board, Colour::White) << "     ";
+            }
+            cout << endl;
+        cout << nofBestMoves << endl;
         
         int random = 0;
         if (sortedMoves.size() >= 1) random = rand() % nofBestMoves;
