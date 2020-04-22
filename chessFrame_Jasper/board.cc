@@ -539,13 +539,13 @@ ostream &operator<<(ostream &out, const Board &b) {
     return out;
 }
 
-std::vector<Move*> Board::getPossibleMoves(Position &pos) {
+std::vector<Move> Board::getPossibleMoves(Position &pos) {
     // getPossibleMoves(Position &pos) returns possible moves from Position pos,
     // including moves that put the king in check
-    std::vector<Move*> moves = grid[pos.row - 1][pos.col - 'a'].getLegalMoves();
+    std::vector<Move> moves = grid[pos.row - 1][pos.col - 'a'].getLegalMoves();
     
-    for (vector<Move*>::iterator it= moves.begin(); it < moves.end(); ++it) {
-        Move m = **it;
+    for (vector<Move>::iterator it= moves.begin(); it < moves.end(); ++it) {
+        Move m = *it;
         bool erase = false;
         Info fromInfo = grid[m.from.row - 1][m.from.col - 'a'].getInfo();
         Info toInfo = grid[m.to.row - 1][m.to.col - 'a'].getInfo();
@@ -602,29 +602,31 @@ std::vector<Move*> Board::getPossibleMoves(Position &pos) {
     return moves;
 }
 
-std::vector<Move*> Board::getAllPossibleMoves(Colour myColour) {
+std::vector<Move> Board::getAllPossibleMoves(Colour myColour) {
     // getAllPossibleMoves(Colour myColour) returns all possible moves of all pieces whose colour are myColour,
     // including moves that put the king in check
-    vector<Move*> allPossibleMoves, possibleMoves;
+    vector<Move> allPossibleMoves, possibleMoves;
     for (Info &pieceInfo : getPieces()) {
         Position pos = pieceInfo.pos;
         Piece *piece = pieceInfo.piece;
-        if (piece != nullptr && piece->getPieceColour() == myColour) {
-            possibleMoves = getPossibleMoves(pos);
-            allPossibleMoves.insert(allPossibleMoves.end(), possibleMoves.begin(), possibleMoves.end());
+        if (piece != nullptr) {
+            if (piece->getPieceColour() == myColour) {
+                possibleMoves = getPossibleMoves(pos);
+                allPossibleMoves.insert(allPossibleMoves.end(), possibleMoves.begin(), possibleMoves.end());
+            }
         }
     }
     return allPossibleMoves;
 }
 
 
-std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
+std::vector<Move> Board::getLegalMoves(Position &pos, Colour myColour) {
     // getLegalMoves(Position &pos, Colour myColour) returns the legal moves of pieces of myColour
     // from Position pos, not including moves that put the king in check
-    std::vector<Move*> possibleMoves = getPossibleMoves(pos);
+    std::vector<Move> possibleMoves = getPossibleMoves(pos);
     
-    for (vector<Move*>::iterator it= possibleMoves.begin(); it < possibleMoves.end(); ++it) {
-        Move pm = **it;
+    for (vector<Move>::iterator it= possibleMoves.begin(); it < possibleMoves.end(); ++it) {
+        Move pm = *it;
         bool erase = false;
         bool isEnPassantValid = grid[pos.row - 1][pos.col - 'a'].getPiece()->getIsEnPassantValid();
         bool firstMove = grid[pos.row - 1][pos.col - 'a'].getPiece()->getFirstMove();
@@ -659,11 +661,11 @@ std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
         }
         
         Colour oppoColour = (myColour == Colour::White ? Colour::Black : Colour::White);
-        vector<Move*> allControlledMoves = getAllPossibleMoves(oppoColour);
+        vector<Move> allControlledMoves = getAllPossibleMoves(oppoColour);
         
         // check if my king is in check after making a move of my piece
-        for (vector<Move*>::iterator it = allControlledMoves.begin(); it < allControlledMoves.end(); ++it) {
-            Move cm = **it;
+        for (vector<Move>::iterator it = allControlledMoves.begin(); it < allControlledMoves.end(); ++it) {
+            Move cm = *it;
             Position myKingPos;
             // find the position of my king
             for (map<std::string, Info>::iterator it = kings.begin(); it != kings.end(); ++it) {
@@ -676,9 +678,6 @@ std::vector<Move*> Board::getLegalMoves(Position &pos, Colour myColour) {
                 break;
             }
         }
-        
-        // delete all controlled moves
-        for (auto &move: allControlledMoves) delete move;
         
         // no matter whether the move puts your king in check, we need to undo the move
         this->undoMove();
@@ -712,11 +711,10 @@ std::vector<Info> Board::threatenedBy(Position pos, Colour myColour) {
     std::vector<Info> threatenInfo;
     Colour oppoColour = Colour::White;
     if (myColour == oppoColour) oppoColour = Colour::Black;
-    vector<Move *> allPossibleMoves = getAllPossibleMoves(oppoColour);
-    for (Move *move: allPossibleMoves) {
-        if (move->to == pos) threatenInfo.push_back(grid[pos.row - 1][pos.col - 'a'].getInfo());
+    vector<Move> allPossibleMoves = getAllPossibleMoves(oppoColour);
+    for (Move move: allPossibleMoves) {
+        if (move.to == pos) threatenInfo.push_back(grid[pos.row - 1][pos.col - 'a'].getInfo());
     }
-    for (auto &move: allPossibleMoves) delete move;
     return threatenInfo;
 }
         
@@ -733,7 +731,7 @@ std::vector<Info> Board::protectedBy(Position pos, Colour myColour) {
 bool Board::isCheckmate(Colour colour) {
     //    map<std::string, Info>::iterator it;
     //    bool noLegalMoves = false;
-    //    vector<Move*> moves;
+    //    vector<Move> moves;
     
     //    for (it = kings.begin(); it != kings.end(); it++) {
     //        Info kingInfo = it->second;
@@ -745,9 +743,8 @@ bool Board::isCheckmate(Colour colour) {
     //    }
     Colour oppoColour = Colour::White;
     if (colour == oppoColour) oppoColour = Colour::Black;
-    vector<Move*> allLegalMoves = getAllLegalMoves(oppoColour);
+    vector<Move> allLegalMoves = getAllLegalMoves(oppoColour);
     unsigned long nofMoves = allLegalMoves.size();
-    for (auto &move: allLegalMoves) delete move;
     if (nofMoves == 0 && isChecked(oppoColour)) return true;
     return false;
 }
@@ -769,19 +766,21 @@ bool Board::setWhoseTurn(Colour colour) {
     return true;
 }
 
-std::vector<Move*> Board::getAllLegalMoves(Colour myColour) {
+std::vector<Move> Board::getAllLegalMoves(Colour myColour) {
     // getAllLegalMoves(Colour myColour) returns all legal moves of all pieces whose colour are myColour,
     // not including moves that put the king in check
-    vector<Move*> allLegalMoves, moves;
+    vector<Move> allLegalMoves, moves;
     Position pos;
     Piece* piece;
     
     for (Info &pieceInfo: getPieces()) {
         pos = pieceInfo.pos;
         piece = pieceInfo.piece;
-        if (piece->getPieceColour() == myColour) {
-            moves = getLegalMoves(pos, myColour);
-            allLegalMoves.insert(allLegalMoves.end(),moves.begin(),moves.end());
+        if (piece != nullptr) {
+            if (piece->getPieceColour() == myColour) {
+                moves = getLegalMoves(pos, myColour);
+                allLegalMoves.insert(allLegalMoves.end(),moves.begin(),moves.end());
+            }
         }
     }
     return allLegalMoves;
@@ -791,16 +790,14 @@ Info Board::getInfo(Position pos) {return grid[pos.row - 1][pos.col - 'a'].getIn
 
 
 bool Board::isStalemate() {
-    vector<Move*> movesWhite, movesBlack;
+    vector<Move> movesWhite, movesBlack;
     size_t sizeWhite;
     movesWhite = getAllLegalMoves(Colour::White);
     sizeWhite = movesWhite.size();
-    for (auto &move: movesWhite) {delete move;}
     if (sizeWhite == 0 && !this->isChecked(Colour::White)) {
         return true;
     }
     movesBlack = getAllLegalMoves(Colour::Black);
-    for (auto &move: movesBlack) {delete move;}
     if (this->getAllLegalMoves(Colour::Black).size() == 0 && !this->isChecked(Colour::Black)) {
         return true;
     }

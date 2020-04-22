@@ -18,19 +18,19 @@ bool Bishop::isObeyRule(Move &m) const {
 	return (abs(curr_pos.col - next_pos.col) == abs(curr_pos.row - next_pos.row)); 
 }
 
-vector<Move*> Bishop::getLegalMoves(Position pos) const {
-	vector<Move*> moves;
+vector<Move> Bishop::getLegalMoves(Position pos) const {
+	vector<Move> moves;
     for (Position p = pos; p.isValid(); p.col += 1, p.row += 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.col += 1, p.row -= 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.col -= 1, p.row += 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
     for (Position p = pos; p.isValid(); p.col -= 1, p.row -= 1) {
-        if (!(p == pos)) moves.push_back(new Move(pos, p));
+        if (!(p == pos)) moves.push_back(Move(pos, p));
     }
 	return moves;
 }

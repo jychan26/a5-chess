@@ -27,7 +27,7 @@ class Piece { // abstract class
 
 	virtual bool isObeyRule(Move &) const = 0; // does Move agree with Piece's movement (in terms of direction and distance)?
 	virtual std::vector<Position> getInBetweenPositions(Move &) const; // get positions between Move that Piece could otherwise have validly landed on
-	virtual std::vector<Move*> getLegalMoves(Position) const = 0;
+	virtual std::vector<Move> getLegalMoves(Position) const = 0;
     void changeColour();
 	virtual ~Piece();
 };
